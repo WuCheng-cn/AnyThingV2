@@ -1,5 +1,3 @@
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { unheadVueComposablesImports } from '@unhead/vue'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -11,7 +9,6 @@ import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import { VitePWA } from 'vite-plugin-pwa'
 import Sitemap from 'vite-plugin-sitemap'
 import VueDevTools from 'vite-plugin-vue-devtools'
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { createViteVConsole } from './vconsole'
 
 export function createVitePlugins() {
@@ -19,7 +16,7 @@ export function createVitePlugins() {
     // https://github.com/posva/unplugin-vue-router
     VueRouter({
       extensions: ['.vue'],
-      routesFolder: 'src/pages',
+      routesFolder: 'src/views',
       dts: 'src/types/typed-router.d.ts',
     }),
 
@@ -54,24 +51,19 @@ export function createVitePlugins() {
         '@vueuse/core',
         VueRouterAutoImports,
         {
-          'vue-router/auto': ['useLink'],
-          '@/utils/i18n': ['i18n', 'locale'],
+          'vue-router': ['useLink'],
           'vue-i18n': ['useI18n'],
         },
         unheadVueComposablesImports,
       ],
       dts: 'src/types/auto-imports.d.ts',
       dirs: [
-        'src/composables',
+        'src/hooks',
       ],
       resolvers: [VantResolver()],
     }),
 
-    // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
-    VueI18nPlugin({
-      // locale messages resource pre-compile option
-      include: resolve(dirname(fileURLToPath(import.meta.url)), '../../src/locales/**'),
-    }),
+ 
 
     // https://github.com/vadxq/vite-plugin-vconsole
     createViteVConsole(),

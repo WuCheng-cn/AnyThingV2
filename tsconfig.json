@@ -1,28 +1,39 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "types": [],
-    "lib": ["esnext", "dom"],
     "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "moduleResolution": "Bundler",
+    "lib": ["esnext", "dom"],
+    "strict": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": true,
+    "types": [
+      "node",
+      "unplugin-vue-router/client",
+      "vite-plugin-pwa/client",
+      "@intlify/unplugin-vue-i18n/messages"
+    ],
     "paths": {
-      "@/*": ["/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": [
-    "src/**/*.ts", 
-    "src/**/*.vue"
+    "src/App.vue",
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "src/components.d.ts",
+    "src/auto-imports.d.ts",
+    "src/typed-router.d.ts",
+    "tests/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
 }

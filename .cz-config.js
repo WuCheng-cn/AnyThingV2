@@ -11,13 +11,13 @@ module.exports = {
     { name: '⏪️ revert:   回退', value: ':rewind: revert' },
     { name: '📦️ build:    打包', value: ':package: build' },
     { name: '🚀 chore:    构建/工程依赖/工具', value: ':rocket: chore' },
-    { name: '👷 ci:       CI 相关变更', value: ':construction_worker: ci' }
+    { name: '👷 ci:       CI 相关变更', value: ':construction_worker: ci' },
   ],
   scopes: [
-    { name: 'public' }, 
-    { name: 'view' }, 
-    { name: 'components' }, 
-    { name: 'utils' }
+    { name: 'public' },
+    { name: 'view' },
+    { name: 'components' },
+    { name: 'utils' },
   ],
   messages: {
     type: '选择你的提交类型(必填):',
@@ -26,9 +26,9 @@ module.exports = {
     body: '请输入详细描述,使用"|"换行(可选)：',
     footer:
       '关联关闭的issue，例如：#1, #2(可选);破坏性修改参照 BREAKING CHANGE: 变动的描述/理由/迁移方法:',
-    confirmCommit: '确认要使用以上信息提交?'
+    confirmCommit: '确认要使用以上信息提交?',
   },
   allowCustomScopes: true,
   allowBreakingChanges: ['特性', '修复'],
-  subjectLimit: 100
+  subjectLimit: 100,
 }
