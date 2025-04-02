@@ -1,4 +1,4 @@
-export default  {
+export default {
   plugins: {
     '@release-it/conventional-changelog': {
       infile: 'CHANGELOG.md',
@@ -7,7 +7,7 @@ export default  {
       parserOpts: {
         headerPattern: /^(\p{Emoji_Presentation}|:[a-z]+:) (\w+)(?:\(([\w-]+)\))?: (.+)$/u,
         headerCorrespondence: ['emoji', 'type', 'scope', 'subject'],
-        noteKeywords: ['BREAKING CHANGE']
+        noteKeywords: ['BREAKING CHANGE'],
       },
       writerOpts: {
         transform: (commit) => {
@@ -39,7 +39,7 @@ export default  {
             revert: '⏪️ Reverts | 回退',
             build: '📦️ Builds | 打包',
             chore: '🚀 Chores | 构建/工程依赖/工具',
-            ci: '👷 Continuous Integrations | CI 相关变更'
+            ci: '👷 Continuous Integrations | CI 相关变更',
           }
           // 标准化处理
           if (typeEmojiMap[commit.type]) {
@@ -52,7 +52,7 @@ export default  {
                 commit.repository
               }/commit/${commit.hash}))`,
               shortHash: commit.hash?.substring(0, 7) || '',
-              type: typesTitleMap[commit.type]
+              type: typesTitleMap[commit.type],
             }
           }
           return null
@@ -63,11 +63,12 @@ export default  {
         filter: (commit) => {
           // 只保留有emoji映射的提交类型（早期有一些非标准的提交类型）
           return !!commit.emoji
-        }
-      }
-    }
+        },
+      },
+    },
   },
   git: {
-    commitMessage: '🚀 chore(release): Release v${version}'
-  }
+    // eslint-disable-next-line no-template-curly-in-string
+    commitMessage: '🚀 chore(release): Release v${version}',
+  },
 }
