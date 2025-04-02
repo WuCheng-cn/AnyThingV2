@@ -1,5 +1,6 @@
 {
   "name": "any-core",
+  "type": "module",
   "version": "1.0.0",
   "description": "AnyCore ========= ## 简介 - 基于装饰器语法的快速开发框架。",
   "author": "WuCheng",
@@ -38,6 +39,9 @@
   "config": {
     "commitizen": {
       "path": "cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./.cz-config.cjs"
     }
   },
   "dependencies": {
