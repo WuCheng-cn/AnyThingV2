@@ -1,5 +1,5 @@
-import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
 import type { ISearchFieldConfig } from '../interface/ISearchFieldConfig'
+import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
 
 export const SEARCHFIELD_PROPERTY_KEY = 'SearchField'
 

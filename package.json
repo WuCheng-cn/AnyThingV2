@@ -31,6 +31,7 @@
     "s": "vite",
     "build": "vue-tsc --noEmit && vite build --emptyOutDir",
     "preview": "vite preview",
+    "lint:fix": "eslint --fix",
     "test": "vitest",
     "cz": "cz",
     "release": "release-it",

@@ -1,9 +1,9 @@
 import type { App, Component } from 'vue'
-import { createApp } from 'vue'
 import type { IDialogPropsSelector } from '../interface/IDialogProps'
+import { createApp } from 'vue'
+import AppProvider from '~/components/AppProvider.vue'
 import { directivePlugin } from '~/directives'
 import 'ant-design-vue/dist/reset.css'
-import AppProvider from '~/components/AppProvider.vue'
 
 /**
  * 对话框帮助类

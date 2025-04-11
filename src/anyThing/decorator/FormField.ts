@@ -1,6 +1,6 @@
+import type { IFormFieldConfig } from '../interface/IFormFieldConfig'
 import { EFormItemType } from '../enum/EFormItemType'
 import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
-import type { IFormFieldConfig } from '../interface/IFormFieldConfig'
 
 export const FORMFIELD_PROPERTY_KEY = 'FormField'
 

@@ -1,8 +1,8 @@
-import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
-import type { AnyDictionaryModel } from '../model/AnyDictionaryModel'
 import type { AnyDictionaryArrayModel } from '../model/AnyDictionaryArrayModel'
-import { getDictByCode } from '~/api/common'
+import type { AnyDictionaryModel } from '../model/AnyDictionaryModel'
 import type { IDictByBackend } from '~/interface/IDictByBackend'
+import { getDictByCode } from '~/api/common'
+import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
 
 export const CUSTOMFIELD_PROPERTY_KEY = 'CustomField'
 

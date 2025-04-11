@@ -6,7 +6,7 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <slot :data="list"></slot>
+      <slot :data="list" />
       <van-empty
         v-if="list.length === 0 && !loading"
         image-size="100"

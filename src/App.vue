@@ -13,8 +13,7 @@
 </template>
 
 <script setup lang="ts">
-
-import { setDialogDefaultOptions, setToastDefaultOptions } from 'vant';
+import { setDialogDefaultOptions, setToastDefaultOptions } from 'vant'
 
 setToastDefaultOptions({
   teleport: '.layout',
@@ -27,9 +26,4 @@ setToastDefaultOptions('loading', {
   message: '加载中...',
   duration: 0,
 })
-
-
-
-
 </script>
-

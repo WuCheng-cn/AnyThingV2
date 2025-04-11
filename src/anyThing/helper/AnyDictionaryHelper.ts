@@ -1,6 +1,6 @@
-import { IDictionary } from "../interface/IDictionary"
-import { AnyDictionaryArrayModel } from "../model/AnyDictionaryArrayModel"
-import { AnyDictionaryModel } from "../model/AnyDictionaryModel"
+import type { IDictionary } from '../interface/IDictionary'
+import { AnyDictionaryArrayModel } from '../model/AnyDictionaryArrayModel'
+import { AnyDictionaryModel } from '../model/AnyDictionaryModel'
 
 /**
  * # 字典助手类

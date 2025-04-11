@@ -6,7 +6,12 @@
     readonly
     @click="showPicker = true"
   />
-  <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
+  <van-popup
+    v-model:show="showPicker"
+    destroy-on-close
+    round
+    position="bottom"
+  >
     <van-picker
       v-model="value"
       :columns="props.options"

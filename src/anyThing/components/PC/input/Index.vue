@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-import { EFormItemType } from '../../enum/EFormItemType'
 import type { AnyBaseModel } from '../../model/AnyBaseModel'
 import type { ClassConstructor } from '../../types/ClassConstructor'
 import { componentsMap } from '.'
+import { EFormItemType } from '../../enum/EFormItemType'
 
 const props = defineProps<{
   /**

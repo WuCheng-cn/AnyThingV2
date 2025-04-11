@@ -10,6 +10,7 @@ export function createPostcssPlugins() {
       appSelector: '#app',
       viewportWidth: 375,
       disableDesktop: true,
+      disableMobile: true,
       enableMediaQuery: true,
       rootContainingBlockSelectorList: [
         'van-tabbar',

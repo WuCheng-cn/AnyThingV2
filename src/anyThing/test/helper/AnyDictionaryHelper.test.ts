@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest'
 import type { IDictionary } from '../../interface/IDictionary'
+import { AnyDictionaryHelper } from 'src/anyThing/helper/AnyDictionaryHelper'
+import { describe, expect, it } from 'vitest'
 import { AnyDictionaryArrayModel } from '../../model/AnyDictionaryArrayModel'
 import { AnyDictionaryModel } from '../../model/AnyDictionaryModel'
-import { AnyDictionaryHelper } from 'src/anyThing/helper/AnyDictionaryHelper'
 
 describe('anyDictionaryHelper', () => {
   it('should create a dictionary array model from an array of IDictionary', () => {

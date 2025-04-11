@@ -6,7 +6,12 @@
     readonly
     @click="showPicker = true"
   />
-  <van-popup v-model:show="showPicker" destroy-on-close round position="bottom">
+  <van-popup
+    v-model:show="showPicker"
+    destroy-on-close
+    round
+    position="bottom"
+  >
     <van-picker-group
       title="时间范围"
       next-step-text="下一步"

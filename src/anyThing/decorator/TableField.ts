@@ -1,5 +1,5 @@
-import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
 import type { ITableFieldConfig } from '../interface/ITableFieldConfig'
+import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
 
 export const TABLEFIELD_PROPERTY_KEY = 'TableField'
 

@@ -1,4 +1,4 @@
-import { EDateFormatType } from "../enum/EDateFormatType"
+import { EDateFormatType } from '../enum/EDateFormatType'
 
 /**
  * 时间处理工具类

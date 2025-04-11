@@ -8,9 +8,9 @@ import InputDateTimeRange from './InputDateTimeRange.vue'
 import InputNumber from './InputNumber.vue'
 import InputRadio from './InputRadio.vue'
 import InputSelect from './InputSelect.vue'
+import InputSelector from './InputSelector.vue'
 import InputString from './InputString.vue'
 import InputSwitch from './InputSwitch.vue'
-import InputSelector from './InputSelector.vue'
 
 type FormItemTypeMapping = {
   [K in EFormItemType]: any;

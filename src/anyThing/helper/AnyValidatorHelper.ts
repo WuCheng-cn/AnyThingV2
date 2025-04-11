@@ -1,8 +1,8 @@
 import type { Rule } from 'ant-design-vue/es/form'
 import type { IFormFieldConfig } from '../interface/IFormFieldConfig'
 import type { AnyBaseModel } from '../model/AnyBaseModel'
-import { EFormItemType } from '../enum/EFormItemType'
 import { AppConfig } from '../config/AppConfig'
+import { EFormItemType } from '../enum/EFormItemType'
 
 /**
  * # 表单验证规则辅助类

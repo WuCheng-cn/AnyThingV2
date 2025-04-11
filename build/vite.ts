@@ -1,7 +1,7 @@
 import { unheadVueComposablesImports } from '@unhead/vue'
+import { VantResolver } from '@vant/auto-import-resolver'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
-import { VantResolver } from '@vant/auto-import-resolver'
 import Components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueRouter from 'unplugin-vue-router/vite'
@@ -62,8 +62,6 @@ export function createVitePlugins() {
       ],
       resolvers: [VantResolver()],
     }),
-
- 
 
     // https://github.com/vadxq/vite-plugin-vconsole
     createViteVConsole(),
