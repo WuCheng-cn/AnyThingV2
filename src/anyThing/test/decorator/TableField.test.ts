@@ -1,5 +1,5 @@
+import { getTableFieldConfigObj, getTableFieldList, TableField } from '@/anyThing/decorator/TableField'
 import { describe, expect, it } from 'vitest'
-import { getTableFieldConfigObj, getTableFieldList, TableField } from '~/anyThing/decorator/TableField'
 
 class TestClass {
   @TableField({

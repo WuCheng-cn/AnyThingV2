@@ -1,3 +1,4 @@
+import type { EDateFormatType } from '../enum/EDateFormatType'
 import type { EFormItemType } from '../enum/EFormItemType'
 import type { IFieldBaseConfig } from './IFieldBaseConfig'
 import type { IInputSelectorConfig } from './IInputSelectorConfig'

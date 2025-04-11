@@ -1,7 +1,5 @@
 import type { AnyDictionaryArrayModel } from '../model/AnyDictionaryArrayModel'
 import type { AnyDictionaryModel } from '../model/AnyDictionaryModel'
-import type { IDictByBackend } from '~/interface/IDictByBackend'
-import { getDictByCode } from '~/api/common'
 import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
 
 export const CUSTOMFIELD_PROPERTY_KEY = 'CustomField'
@@ -11,17 +9,8 @@ export const CUSTOMFIELD_PROPERTY_KEY = 'CustomField'
  * @param name 字段名称
  * @param dictionaryArray 字典数组或者字典code(传入字典code自动调用字典接口)
  */
-export function CustomField(name: string, dictionaryArray?: AnyDictionaryArrayModel<AnyDictionaryModel> | string, dictKey?: keyof IDictByBackend): any {
+export function CustomField(name: string, dictionaryArray?: AnyDictionaryArrayModel<AnyDictionaryModel>): any {
   return async function (target: any, key: string) {
-    if (typeof dictionaryArray === 'string') {
-      const { data } = await getDictByCode(dictionaryArray)
-      dictionaryArray = AnyDictionaryHelper.createDictionaryArray(data.map((item) => {
-        return {
-          key: item[dictKey || 'typeCode'],
-          label: item.typeName,
-        }
-      }))
-    }
     AnyDecoratorHelper.setFieldConfig(target, key, CUSTOMFIELD_PROPERTY_KEY, {
       name,
       dictionaryArray,

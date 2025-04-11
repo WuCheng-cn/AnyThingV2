@@ -1,6 +1,6 @@
+import { FormField, getFormFieldConfigObj, getFormFieldList } from '@/anyThing/decorator/FormField'
+import { EFormItemType } from '@/anyThing/enum/EFormItemType'
 import { describe, expect, it } from 'vitest'
-import { FormField, getFormFieldConfigObj, getFormFieldList } from '~/anyThing/decorator/FormField'
-import { EFormItemType } from '~/anyThing/enum/EFormItemType'
 
 class TestClass {
   @FormField({

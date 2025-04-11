@@ -3,12 +3,12 @@
  */
 export interface IDictionary {
   /**
-   * # 字典键（通常对应枚举值）
+   * # 字典传递值（通常对应枚举值）
    */
-  key: string | number | symbol | boolean
+  value: string | number | symbol | boolean
 
   /**
-   * # 字典值（通常对应枚举描述翻译）
+   * # 字典展示（通常对应枚举描述翻译）
    */
   label: any
 

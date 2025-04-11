@@ -1,6 +1,7 @@
+import { CustomField, getCustomFieldDictionaryArray, getCustomFieldName } from '@/anyThing/decorator/CustomField'
+import { AnyDictionaryHelper } from '@/anyThing/helper/AnyDictionaryHelper'
+import { AnyBaseModel } from '@/anyThing/model/AnyBaseModel'
 import { describe, expect, it } from 'vitest'
-import { CustomField, getCustomFieldDictionaryArray, getCustomFieldName } from '~/anyThing/decorator/CustomField'
-import { AnyBaseModel } from '~/anyThing/model/AnyBaseModel'
 
 describe('customField', () => {
   enum TestEnum {
@@ -9,7 +10,7 @@ describe('customField', () => {
 
   const TestEnumDict = AnyDictionaryHelper.createDictionaryArray([
     {
-      key: TestEnum.test,
+      value: TestEnum.test,
       label: 'test',
       description: 'test',
     },

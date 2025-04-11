@@ -1,4 +1,4 @@
-import type { IOption } from '~/interface/IOption'
+import type { IDictionary } from '../interface/IDictionary'
 
 export abstract class AnyDataTransformHelper {
   /**
@@ -40,7 +40,7 @@ export abstract class AnyDataTransformHelper {
    * - data 对象数组
    * - [labelKey, valueKey]
    */
-  static recordListToOptions(data: Record<string, any>[], [labelKey, valueKey]: [string, string]): IOption[] {
+  static recordListToOptions(data: Record<string, any>[], [labelKey, valueKey]: [string, string]): IDictionary[] {
     return data?.map((item) => {
       return {
         label: item?.[labelKey],

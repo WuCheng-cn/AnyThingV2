@@ -1,5 +1,5 @@
+import { getSearchFileldConfigObj, getSearchFileldList, SearchField } from '@/anyThing/decorator/SearchField'
 import { describe, expect, it } from 'vitest'
-import { getSearchFileldConfigObj, getSearchFileldList, SearchField } from '~/anyThing/decorator/SearchField'
 
 class TestClass {
   @SearchField({

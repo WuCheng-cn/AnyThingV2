@@ -1,3 +1,4 @@
+import type { EDateFormatType } from '../enum/EDateFormatType'
 import type { IFieldBaseConfig } from './IFieldBaseConfig'
 
 export interface ITableFieldConfig extends IFieldBaseConfig {

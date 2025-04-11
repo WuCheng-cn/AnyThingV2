@@ -1,8 +1,8 @@
 import type { App, Component } from 'vue'
 import type { IDialogPropsSelector } from '../interface/IDialogProps'
+import { directivePlugin } from '@/directives'
 import { createApp } from 'vue'
 import AppProvider from '~/components/AppProvider.vue'
-import { directivePlugin } from '~/directives'
 import 'ant-design-vue/dist/reset.css'
 
 /**
@@ -14,14 +14,14 @@ import 'ant-design-vue/dist/reset.css'
  * AnyDialogHelper.showModel(HelloWorld, { name: 'world' })
  * ```
  */
-export class AnyDialogHelper {
+export abstract class AnyDialogHelper {
   /**
    * 创建一个对话框
    * @param view 对话框内组件
    * @param param 对话框内组件的参数
    * @returns 对话框的Promise
    */
-  static #bulid<RES>(view: Component, param: Record<string, any>): Promise<RES> {
+  private static bulid<RES>(view: Component, param: Record<string, any>): Promise<RES> {
     const parentNode = document.createElement('div')
     const domId = `any_dialog_${Math.random()}`
     parentNode.setAttribute('id', domId)
@@ -40,18 +40,12 @@ export class AnyDialogHelper {
           return
         }
         const dialogParam = {
-          onConfirm: async (p: RES) => {
-            resolve(p)
-          },
-          onClosed: () => {
-            unmount()
-          },
+          onConfirm: async (p: RES) => resolve(p),
+          onClosed: () => unmount(),
           ...param,
         }
 
-        /**
-         * 创建App实例
-         */
+        // 创建App实例
         const renderApp = {
           render: () => h(
             AppProvider,
@@ -60,10 +54,10 @@ export class AnyDialogHelper {
           ),
         }
         app = createApp(renderApp, dialogParam)
-          .use(directivePlugin)
+        // 指令注册
+        app.use(directivePlugin)
 
         document.body.appendChild(parentNode)
-        // 挂载组件
         app.mount(parentNode)
       }
       catch (error) {
@@ -79,7 +73,7 @@ export class AnyDialogHelper {
    * @returns 对话框的异步结果
    */
   static showModel<RES>(view: Component, param?: Record<string, any>): Promise<RES> {
-    return this.#bulid(view, { param: param || {} })
+    return this.bulid(view, { param: param || {} })
   }
 
   /**
@@ -90,6 +84,6 @@ export class AnyDialogHelper {
    * @returns 选择器的异步结果（数组）
    */
   static showSelector<T>(view: Component, param?: Omit<IDialogPropsSelector<T>, 'onConfirm' | 'onClosed'>): Promise<T[]> {
-    return this.#bulid(view, param || {})
+    return this.bulid(view, param || {})
   }
 }

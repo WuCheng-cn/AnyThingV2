@@ -7,8 +7,8 @@ import { AnyDictionaryModel } from '../../model/AnyDictionaryModel'
 describe('anyDictionaryHelper', () => {
   it('should create a dictionary array model from an array of IDictionary', () => {
     const input: IDictionary[] = [
-      { key: 'key1', label: 'Label1', description: 'Description1' },
-      { key: 'key2', label: 'Label2', description: 'Description2' },
+      { value: 'key1', label: 'Label1', description: 'Description1' },
+      { value: 'key2', label: 'Label2', description: 'Description2' },
       // ... more items if needed
     ]
 
@@ -19,7 +19,7 @@ describe('anyDictionaryHelper', () => {
     for (let i = 0; i < input.length; i++) {
       const item = result[i]
       expect(item).toBeInstanceOf(AnyDictionaryModel)
-      expect(item.key).toBe(input[i].key)
+      expect(item.value).toBe(input[i].value)
       expect(item.label).toBe(input[i].label)
       expect(item.description).toBe(input[i].description)
     }
@@ -34,10 +34,10 @@ describe('anyDictionaryHelper', () => {
     expect(result.length).toBe(input.length)
   })
 
-  it('getLabelByKey should return the correct label for a given key', () => {
+  it('getLabelByKey should return the correct label for a given value', () => {
     const dict = AnyDictionaryHelper.createDictionaryArray([
-      { key: 'key1', label: 'Label1', description: 'Description1' },
-      { key: 'key2', label: 'Label2', description: 'Description2' },
+      { value: 'key1', label: 'Label1', description: 'Description1' },
+      { value: 'key2', label: 'Label2', description: 'Description2' },
       // ... more items if needed
     ])
 
@@ -46,10 +46,10 @@ describe('anyDictionaryHelper', () => {
     expect(dict.getLabelByKey('key3')).toBeUndefined()
   })
 
-  it('getDescriptionByKey should return the correct description for a given key', () => {
+  it('getDescriptionByKey should return the correct description for a given value', () => {
     const dict = AnyDictionaryHelper.createDictionaryArray([
-      { key: 'key1', label: 'Label1', description: 'Description1' },
-      { key: 'key2', label: 'Label2', description: 'Description2' },
+      { value: 'key1', label: 'Label1', description: 'Description1' },
+      { value: 'key2', label: 'Label2', description: 'Description2' },
       // ... more items if needed
     ])
 
@@ -60,8 +60,8 @@ describe('anyDictionaryHelper', () => {
 
   it('exclude should remove the specified keys from the dictionary array', () => {
     const dict = AnyDictionaryHelper.createDictionaryArray([
-      { key: 'key1', label: 'Label1', description: 'Description1' },
-      { key: 'key2', label: 'Label2', description: 'Description2' },
+      { value: 'key1', label: 'Label1', description: 'Description1' },
+      { value: 'key2', label: 'Label2', description: 'Description2' },
       // ... more items if needed
     ])
 
@@ -76,8 +76,8 @@ describe('anyDictionaryHelper', () => {
 
   it('expose should add the specified keys to the dictionary array', () => {
     const dict = AnyDictionaryHelper.createDictionaryArray([
-      { key: 'key1', label: 'Label1', description: 'Description1' },
-      { key: 'key2', label: 'Label2', description: 'Description2' },
+      { value: 'key1', label: 'Label1', description: 'Description1' },
+      { value: 'key2', label: 'Label2', description: 'Description2' },
       // ... more items if needed
     ])
 
