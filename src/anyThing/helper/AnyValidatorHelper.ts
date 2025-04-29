@@ -44,7 +44,6 @@ export class AnyValidatorHelper {
       case EFormItemType.SELECT:
       case EFormItemType.DATE:
       case EFormItemType.DATETIME:
-      case EFormItemType.INPUT_SELECTOR:
         return [
           ...(config?.required ? [{ required: true, message: `请选择${field}`, trigger: config.trigger ?? 'blur' }] : []),
         ] as Rule[]

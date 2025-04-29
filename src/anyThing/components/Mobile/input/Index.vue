@@ -21,30 +21,20 @@
 <script lang="ts" setup>
 import type { AnyBaseModel } from '../../../model/AnyBaseModel'
 import type { ClassConstructor } from '../../../types/ClassConstructor'
+import { AnyDateTimeHelper } from '@/anyThing/helper/AnyDateTimeHelper'
 import { componentsMobileMap } from '.'
 import { EFormItemType } from '../../../enum/EFormItemType'
 
 const props = defineProps<{
-  /**
-   * # 双向数据绑定
-   * @description 父组件通过v-model绑定
-   */
+  /** # 双向数据绑定 */
   modelValue: any
-  /**
-   * # 配置实体
-   */
+  /** # 配置实体 */
   entity: ClassConstructor<AnyBaseModel>
-  /**
-   * # 表单项关联字段
-   */
+  /** # 表单项关联字段 */
   field: string
-  /**
-   * # 占位符
-   */
+  /** # 占位符 */
   placeholder?: string
-  /**
-   * # 禁用
-   */
+  /** # 禁用 */
   disabled?: boolean
 }>()
 
@@ -53,14 +43,10 @@ const emits = defineEmits<{
   (event: 'change', value: string): void
 }>()
 
-/**
- * 配置实例
- */
+/** 配置实例 */
 const configInstance = ref(new props.entity!())
 
-/**
- * 表单字段配置
- */
+/** 表单字段配置 */
 const formFieldConfig = computed(() => {
   return configInstance.value.getFormFieldConfigObj(props.field)?.[props.field] || {}
 })
@@ -108,9 +94,7 @@ const value = computed({
   },
 })
 
-/**
- * 占位符
- */
+/** 占位符 */
 const placeholder = computed(() => {
   if (props.disabled && !props.modelValue) {
     return ''
@@ -131,7 +115,6 @@ const placeholder = computed(() => {
     case EFormItemType.SELECT:
     case EFormItemType.DATE:
     case EFormItemType.DATETIME:
-    case EFormItemType.INPUT_SELECTOR:
       return `请选择${label}`
     case EFormItemType.DATE_RANGE:
     case EFormItemType.DATETIME_RANGE:

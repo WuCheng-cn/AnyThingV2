@@ -8,7 +8,6 @@ import InputDateTimeRange from './InputDateTimeRange.vue'
 import InputNumber from './InputNumber.vue'
 import InputRadio from './InputRadio.vue'
 import InputSelect from './InputSelect.vue'
-import InputSelector from './InputSelector.vue'
 import InputString from './InputString.vue'
 import InputSwitch from './InputSwitch.vue'
 
@@ -19,7 +18,6 @@ type FormItemTypeMapping = {
 export const componentsMobileMap: FormItemTypeMapping = {
   [EFormItemType.INPUT]: InputString,
   [EFormItemType.INPUT_NUMBER]: InputNumber,
-  [EFormItemType.INPUT_SELECTOR]: InputSelector,
   [EFormItemType.SELECT]: InputSelect,
   [EFormItemType.TEXTAREA]: InputArea,
   [EFormItemType.CHECKBOX]: InputCheckBox,

@@ -2,46 +2,33 @@
   <component
     :is="componentsMap[formFieldConfig.formType || EFormItemType.INPUT]"
     v-bind="$attrs"
+    v-model="value"
     allow-clear
-    :model-value="value"
     :value-format="formFieldConfig.dateFormat"
     :placeholder="placeholder"
-    :form-field-config="formFieldConfig"
-    :selector-config="formFieldConfig.selectorConfig"
     :options="configInstance.getOptions(field)"
     :disabled="disabled"
-    @update:model-value="value = $event"
     @change="(e:any) => emits('change', e)"
   />
 </template>
 
 <script lang="ts" setup>
-import type { AnyBaseModel } from '../../model/AnyBaseModel'
-import type { ClassConstructor } from '../../types/ClassConstructor'
+import type { AnyBaseModel } from '../../../model/AnyBaseModel'
+import type { ClassConstructor } from '../../../types/ClassConstructor'
 import { componentsMap } from '.'
-import { EFormItemType } from '../../enum/EFormItemType'
+import { EFormItemType } from '../../../enum/EFormItemType'
+import { AnyDateTimeHelper } from '../../../helper/AnyDateTimeHelper'
 
 const props = defineProps<{
-  /**
-   * # 双向数据绑定
-   * @description 父组件通过v-model绑定
-   */
+  /** # 双向数据绑定 */
   modelValue: any
-  /**
-   * # 配置实体
-   */
+  /** # 配置实体 */
   entity: ClassConstructor<AnyBaseModel>
-  /**
-   * # 表单项关联字段
-   */
+  /** # 表单项关联字段 */
   field: string
-  /**
-   * # 占位符
-   */
+  /** # 占位符 */
   placeholder?: string
-  /**
-   * # 禁用
-   */
+  /** # 禁用 */
   disabled?: boolean
 }>()
 
@@ -50,88 +37,66 @@ const emits = defineEmits<{
   (event: 'change', value: string): void
 }>()
 
-const value = ref(props.modelValue)
-
-/**
- * 配置实例
- */
+/** 配置实例 */
 const configInstance = computed(() => {
   return new props.entity!()
 })
 
-/**
- * 表单字段配置
- */
+/** 表单字段配置 */
 const formFieldConfig = computed(() => {
   return configInstance.value.getFormFieldConfigObj(props.field)[props.field]
 })
 
-watch(() => props.modelValue, (newValue: any) => {
-  if ([EFormItemType.DATE, EFormItemType.DATETIME].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
-    value.value = AnyDateTimeHelper.format(newValue, formFieldConfig.value.dateFormat)
-    emits('update:modelValue', value.value)
-  }
-  else if ([EFormItemType.DATE_RANGE, EFormItemType.DATETIME_RANGE].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
-    if (value.value?.length === 2) {
-      value.value[0] = AnyDateTimeHelper.format(newValue?.[0], formFieldConfig.value.dateFormat)
-      value.value[1] = AnyDateTimeHelper.format(newValue?.[1], formFieldConfig.value.dateFormat)
+const value = computed({
+  get: () => {
+    if ([EFormItemType.DATE, EFormItemType.DATE_RANGE, EFormItemType.DATETIME, EFormItemType.DATETIME_RANGE].includes(formFieldConfig.value?.formType) && !formFieldConfig.value?.dateFormat) {
+      console.error(`Field(${props.field}):标记了日期类型${formFieldConfig.value.formType}，但未传入dateFormat`)
     }
-    emits('update:modelValue', value.value)
-  }
-  else {
-    value.value = newValue
-  }
-}, {
-  immediate: true,
+    if ([EFormItemType.DATE, EFormItemType.DATETIME].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
+      return AnyDateTimeHelper.format(props.modelValue, formFieldConfig.value.dateFormat)
+    }
+    if ([EFormItemType.DATE_RANGE, EFormItemType.DATETIME_RANGE].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
+      const transfromDate = Array.from({ length: 2 })
+      if (props.modelValue?.length === 2) {
+        transfromDate[0] = AnyDateTimeHelper.format(props.modelValue?.[0], formFieldConfig.value.dateFormat)
+        transfromDate[1] = AnyDateTimeHelper.format(props.modelValue?.[1], formFieldConfig.value.dateFormat)
+      }
+      return transfromDate
+    }
+    return props.modelValue
+  },
+  set: (val) => {
+    emits('update:modelValue', val)
+  },
 })
 
-watch(() => value.value, (newValue) => {
-  emits('update:modelValue', newValue)
-}, {
-  immediate: true,
-  deep: true,
-})
-
-/**
- * 占位符
- */
+/** 占位符 */
 const placeholder = computed(() => {
   if (props.disabled && !props.modelValue) {
     return ''
   }
-
+  const label = configInstance.value.getFormFieldLabel(props.field)
   if (props.placeholder) {
     return props.placeholder
   }
-
-  const label = configInstance.value.getFormFieldLabel(props.field)
-
   if (formFieldConfig.value.placeholder) {
     return formFieldConfig.value.placeholder
   }
-  else if (
-    formFieldConfig.value.formType === EFormItemType.INPUT
-    || formFieldConfig.value.formType === EFormItemType.INPUT_NUMBER
-    || formFieldConfig.value.formType === EFormItemType.TEXTAREA
-  ) {
-    return `请输入${label}`
-  }
-  else if (
-    formFieldConfig.value.formType === EFormItemType.SELECT
-    || formFieldConfig.value.formType === EFormItemType.DATE
-    || formFieldConfig.value.formType === EFormItemType.DATETIME
-    || formFieldConfig.value.formType === EFormItemType.INPUT_SELECTOR
-  ) {
-    return `请选择${label}`
-  }
-  else if (
-    formFieldConfig.value.formType === EFormItemType.DATE_RANGE
-    || formFieldConfig.value.formType === EFormItemType.DATETIME_RANGE
-  ) {
-    return [`${label}开始`, `${label}结束`]
-  }
-  else {
-    return '请输入...'
+
+  switch (formFieldConfig.value.formType) {
+    case EFormItemType.INPUT:
+    case EFormItemType.INPUT_NUMBER:
+    case EFormItemType.TEXTAREA:
+      return `请输入${label}`
+    case EFormItemType.SELECT:
+    case EFormItemType.DATE:
+    case EFormItemType.DATETIME:
+      return `请选择${label}`
+    case EFormItemType.DATE_RANGE:
+    case EFormItemType.DATETIME_RANGE:
+      return [`${label}开始`, `${label}结束`]
+    default:
+      return '请输入...'
   }
 })
 </script>

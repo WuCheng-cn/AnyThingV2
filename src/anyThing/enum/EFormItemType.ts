@@ -4,7 +4,6 @@
 export enum EFormItemType {
   INPUT = 'input',
   INPUT_NUMBER = 'inputNumber',
-  INPUT_SELECTOR = 'inputSelector',
   SELECT = 'select',
   DATE = 'date',
   DATETIME = 'datetime',

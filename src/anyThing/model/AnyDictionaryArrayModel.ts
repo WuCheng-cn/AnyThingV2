@@ -15,7 +15,7 @@ export class AnyDictionaryArrayModel<T extends IDictionary> extends Array<T> {
    * ```
    */
   getLabelByKey(key: string | number | symbol | boolean) {
-    const dictionary = this.find(item => item.key === key)
+    const dictionary = this.find(item => item.value === key)
     return dictionary?.label
   }
 
@@ -29,7 +29,7 @@ export class AnyDictionaryArrayModel<T extends IDictionary> extends Array<T> {
    * ```
    */
   getDescriptionByKey(key: string | number | symbol | boolean) {
-    const dictionary = this.find(item => item.key === key)
+    const dictionary = this.find(item => item.value === key)
     return dictionary?.description
   }
 
@@ -37,13 +37,13 @@ export class AnyDictionaryArrayModel<T extends IDictionary> extends Array<T> {
    * # 根据传入字典的键数组获取字典数组
    */
   expose(keyArr: (string | number | symbol | boolean)[]) {
-    return this.filter(item => keyArr.includes(item.key)) as AnyDictionaryArrayModel<T>
+    return this.filter(item => keyArr.includes(item.value)) as AnyDictionaryArrayModel<T>
   }
 
   /**
    * # 根据传入字典的键数组获取排除后的字典数组
    */
   exclude(keyArr: (string | number | symbol | boolean)[]) {
-    return this.filter(item => !keyArr.includes(item.key)) as AnyDictionaryArrayModel<T>
+    return this.filter(item => !keyArr.includes(item.value)) as AnyDictionaryArrayModel<T>
   }
 }

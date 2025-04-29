@@ -192,7 +192,7 @@ export class AnyBaseModel {
     return this.getFieldDictionaryArray(field)?.map((item) => {
       return {
         label: item.label,
-        value: item.key,
+        value: item.value,
       }
     })
   }

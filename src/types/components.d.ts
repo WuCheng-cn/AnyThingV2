@@ -11,5 +11,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
+    VanIcon: typeof import('vant/es')['Icon']
   }
 }

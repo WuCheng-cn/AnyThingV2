@@ -23,11 +23,10 @@ const emits = defineEmits<{
 
 const value = computed({
   get: () => props.modelValue,
-  set: (val) => {
-    emits('update:modelValue', val)
+  set: (value) => {
+    emits('update:modelValue', value)
   },
 })
-
 function filterOption(input: string, option: any) {
   return option.label.toLowerCase().includes(input.trim().toLowerCase())
 }

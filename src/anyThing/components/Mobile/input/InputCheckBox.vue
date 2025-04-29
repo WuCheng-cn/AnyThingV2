@@ -9,7 +9,7 @@
         <div class="checkbox-group">
           <van-checkbox
             v-for="item in options"
-            :key="item.value"
+            :key="item.value.toString()"
             :name="item.value"
             shape="square"
           >
@@ -22,12 +22,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { IOption } from '~/interface/IOption'
+import type { IDictionary } from '@/anyThing/interface/IDictionary'
 
 const props = defineProps<{
   modelValue: number[] | string[] | undefined
-
-  options: IOption[]
+  options: IDictionary[]
 }>()
 
 const emits = defineEmits<{

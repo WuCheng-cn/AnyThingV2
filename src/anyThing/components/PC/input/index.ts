@@ -1,4 +1,4 @@
-import { EFormItemType } from '../../enum/EFormItemType'
+import { EFormItemType } from '../../../enum/EFormItemType'
 import InputArea from './InputArea.vue'
 import InputCheckBox from './InputCheckBox.vue'
 import InputDate from './InputDate.vue'

@@ -19,14 +19,11 @@ const emits = defineEmits<{
   (event: 'change', value: number | string | boolean): void
 }>()
 
-const value = ref(props.modelValue)
-
-watch(() => props.modelValue, (newValue) => {
-  value.value = newValue
-})
-
-watch(() => value.value, (newValue) => {
-  emits('update:modelValue', newValue)
+const value = computed({
+  get: () => props.modelValue,
+  set: (value) => {
+    emits('update:modelValue', value)
+  },
 })
 
 function onChange(e: string | number | boolean) {

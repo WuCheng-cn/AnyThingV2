@@ -14,7 +14,7 @@
   >
     <van-picker
       v-model="value"
-      :columns="props.options"
+      :columns="(props.options as any)"
       :columns-field-names="{ text: 'label' }"
       @cancel="showPicker = false"
       @confirm="onConfirm"
@@ -23,11 +23,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { IOption } from '~/interface/IOption'
+import type { Numeric } from 'vant/lib/utils'
+import type { IDictionary } from '../../../interface/IDictionary'
 
 const props = defineProps<{
-  modelValue: string | number | undefined
-  options: IOption[]
+  modelValue: Numeric
+  options: IDictionary[]
 }>()
 
 const emits = defineEmits<{

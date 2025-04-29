@@ -43,7 +43,7 @@ const showPicker = ref(false)
 
 const fieldValue = ref('')
 
-function formatter(type: 'hour' | 'minute' | 'second', option: any) {
+function formatter(type: string, option: any) {
   if (type === 'hour') {
     option.text += '时'
   }
