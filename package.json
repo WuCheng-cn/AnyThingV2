@@ -35,7 +35,8 @@
     "test": "vitest",
     "cz": "cz",
     "release": "release-it",
-    "publish": "npm publish"
+    "publish": "npm publish",
+    "prepare": "husky"
   },
   "config": {
     "commitizen": {
@@ -52,6 +53,7 @@
     "@vueuse/core": "^13.0.0",
     "ant-design-vue": "^4.2.6",
     "axios": "^1.8.4",
+    "lint-staged": "^15.5.1",
     "nprogress": "^0.2.0",
     "pinia": "^3.0.1",
     "pinia-plugin-persistedstate": "^4.2.0",
@@ -104,10 +106,15 @@
     "vitest": "^3.1.1",
     "vue-tsc": "^2.2.8"
   },
+  "lint-staged": {
+    "src/**/*.{?([cm])[jt]s?(x),vue,md,json}": [
+      "eslint --cache --fix"
+    ]
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "volta": {
-    "node": "20.11.0"
+    "node": "23.11.0"
   }
 }
