@@ -1,5 +1,5 @@
 import type { ObjectDirective } from 'vue'
-import { usePermissionStore } from '@/stores/modules/permissionStore'
+import { usePermissionStore } from '@/stores/modules/usePermissionStore'
 
 /**
  * # 权限指令

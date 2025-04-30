@@ -2081,6 +2081,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@floating-ui/core@npm:^1.6.0":
+  version: 1.6.9
+  resolution: "@floating-ui/core@npm:1.6.9"
+  dependencies:
+    "@floating-ui/utils": "npm:^0.2.9"
+  checksum: 10c0/77debdfc26bc36c6f5ae1f26ab3c15468215738b3f5682af4e1915602fa21ba33ad210273f31c9d2da1c531409929e1afb1138b1608c6b54a0f5853ee84c340d
+  languageName: node
+  linkType: hard
+
+"@floating-ui/dom@npm:^1.6.13":
+  version: 1.6.13
+  resolution: "@floating-ui/dom@npm:1.6.13"
+  dependencies:
+    "@floating-ui/core": "npm:^1.6.0"
+    "@floating-ui/utils": "npm:^0.2.9"
+  checksum: 10c0/272242d2eb6238ffcee0cb1f3c66e0eafae804d5d7b449db5ecf904bc37d31ad96cf575a9e650b93c1190f64f49a684b1559d10e05ed3ec210628b19116991a9
+  languageName: node
+  linkType: hard
+
+"@floating-ui/utils@npm:^0.2.9":
+  version: 0.2.9
+  resolution: "@floating-ui/utils@npm:0.2.9"
+  checksum: 10c0/48bbed10f91cb7863a796cc0d0e917c78d11aeb89f98d03fc38d79e7eb792224a79f538ed8a2d5d5584511d4ca6354ef35f1712659fd569868e342df4398ad6f
+  languageName: node
+  linkType: hard
+
 "@gitmoji/commit-types@npm:1.1.5":
   version: 1.1.5
   resolution: "@gitmoji/commit-types@npm:1.1.5"
@@ -2384,6 +2410,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@interactjs/types@npm:1.10.27":
+  version: 1.10.27
+  resolution: "@interactjs/types@npm:1.10.27"
+  checksum: 10c0/767afe37cd932ed248712dc0aa9c912b18af1104ec26829d655daaeef57d13c8e9e973c9f59e4be978d66fe7e86b77f58dec4688bb2e5d38b838d5a38cb27cf4
+  languageName: node
+  linkType: hard
+
 "@intlify/bundle-utils@npm:^10.0.1":
   version: 10.0.1
   resolution: "@intlify/bundle-utils@npm:10.0.1"
@@ -2598,6 +2631,13 @@ __metadata:
     "@jridgewell/resolve-uri": "npm:^3.1.0"
     "@jridgewell/sourcemap-codec": "npm:^1.4.14"
   checksum: 10c0/3d1ce6ebc69df9682a5a8896b414c6537e428a1d68b02fcc8363b04284a8ca0df04d0ee3013132252ab14f2527bc13bea6526a912ecb5658f0e39fd2860b4df4
+  languageName: node
+  linkType: hard
+
+"@juggle/resize-observer@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@juggle/resize-observer@npm:3.4.0"
+  checksum: 10c0/12930242357298c6f2ad5d4ec7cf631dfb344ca7c8c830ab7f64e6ac11eb1aae486901d8d880fd08fb1b257800c160a0da3aee1e7ed9adac0ccbb9b7c5d93347
   languageName: node
   linkType: hard
 
@@ -3642,6 +3682,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vexip-ui/hooks@npm:^2.6.0":
+  version: 2.8.0
+  resolution: "@vexip-ui/hooks@npm:2.8.0"
+  dependencies:
+    "@floating-ui/dom": "npm:^1.6.13"
+    "@juggle/resize-observer": "npm:^3.4.0"
+    "@vexip-ui/utils": "npm:2.16.1"
+  peerDependencies:
+    vue: ^3.2.25
+  checksum: 10c0/7edc527c14f5494775cf91d8f4c91bf2f58953a504ac11d13cf0cd1962e0bd77277229e98816462fc3e3e6ee31fc7e9e2c7652c3c19f747abfc7a69fdda9a7a6
+  languageName: node
+  linkType: hard
+
+"@vexip-ui/utils@npm:2.16.1, @vexip-ui/utils@npm:^2.16.1":
+  version: 2.16.1
+  resolution: "@vexip-ui/utils@npm:2.16.1"
+  checksum: 10c0/bac0547d5db4b43d6dc11ea719153c8acf8bf4b5c50f9221544aa13e5b23970de3505b4aaa1badb52582db003be215af6d9550b78750e2baf214a962ee5ad687
+  languageName: node
+  linkType: hard
+
 "@vitejs/plugin-legacy@npm:^6.0.2":
   version: 6.0.2
   resolution: "@vitejs/plugin-legacy@npm:6.0.2"
@@ -4350,10 +4410,13 @@ __metadata:
     consola: "npm:^3.4.2"
     cz-conventional-changelog: "npm:^3.3.0"
     cz-customizable: "npm:^7.4.0"
+    dayjs: "npm:^1.11.13"
     esbuild: "npm:0.19.12"
     eslint: "npm:^9.23.0"
+    grid-layout-plus: "npm:^1.0.6"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^15.5.1"
+    lucide: "npm:^0.503.0"
     mockjs: "npm:^1.1.0"
     nprogress: "npm:^0.2.0"
     pinia: "npm:^3.0.1"
@@ -4364,7 +4427,7 @@ __metadata:
     tailwindcss: "npm:^4.0.17"
     typescript: "npm:^5.8.2"
     unplugin-auto-import: "npm:^19.1.2"
-    unplugin-vue-components: "npm:^28.4.1"
+    unplugin-vue-components: "npm:^28.5.0"
     unplugin-vue-router: "npm:^0.12.0"
     vant: "npm:^4.9.18"
     vconsole: "npm:^3.15.1"
@@ -4375,6 +4438,7 @@ __metadata:
     vite-plugin-vconsole: "npm:^2.1.1"
     vite-plugin-vue-devtools: "npm:^7.7.2"
     vitest: "npm:^3.1.1"
+    vooks: "npm:^0.2.12"
     vue: "npm:^3.5.13"
     vue-i18n: "npm:^11.1.2"
     vue-router: "npm:^4.5.0"
@@ -5606,7 +5670,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.10.5":
+"dayjs@npm:^1.10.5, dayjs@npm:^1.11.13":
   version: 1.11.13
   resolution: "dayjs@npm:1.11.13"
   checksum: 10c0/a3caf6ac8363c7dade9d1ee797848ddcf25c1ace68d9fe8678ecf8ba0675825430de5d793672ec87b24a69bf04a1544b176547b2539982275d5542a7955f35b7
@@ -6858,6 +6922,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"evtd@npm:^0.2.2":
+  version: 0.2.4
+  resolution: "evtd@npm:0.2.4"
+  checksum: 10c0/dbe43928e258960da2cec5971b07ef3a1e695379fe1dde245f533969eb2885425bf761b1013c768d1f723f0025cc06cfc53a2d7b5f2d32dd6b1d8a5c08098e17
+  languageName: node
+  linkType: hard
+
 "execa@npm:9.5.2, execa@npm:^9.5.1":
   version: 9.5.2
   resolution: "execa@npm:9.5.2"
@@ -7622,6 +7693,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"grid-layout-plus@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "grid-layout-plus@npm:1.0.6"
+  dependencies:
+    "@vexip-ui/hooks": "npm:^2.6.0"
+    "@vexip-ui/utils": "npm:^2.16.1"
+    interactjs: "npm:^1.10.27"
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: 10c0/f4df104abecbb62f075e67506779505967a589dfe2891494b20fe6cd569d2a026aa56dcdde35dd268693cc0e5098304525d9737b13450684444947fe90a4bd7a
+  languageName: node
+  linkType: hard
+
 "has-bigints@npm:^1.0.2":
   version: 1.1.0
   resolution: "has-bigints@npm:1.1.0"
@@ -7984,6 +8068,15 @@ __metadata:
     strip-ansi: "npm:^5.1.0"
     through: "npm:^2.3.6"
   checksum: 10c0/a5aa53a8f88405cf1cff63111493f87a5b3b5deb5ea4a0dbcd73ccc06a51a6bba0c3f1a0747f8880e9e3ec2437c69f90417be16368abf636b1d29eebe35db0ac
+  languageName: node
+  linkType: hard
+
+"interactjs@npm:^1.10.27":
+  version: 1.10.27
+  resolution: "interactjs@npm:1.10.27"
+  dependencies:
+    "@interactjs/types": "npm:1.10.27"
+  checksum: 10c0/35532c636fc7cf8273999d314c9738994bfc4a1a384fd64658420055e93456aa6333a865e04b1765d39ee4e29f898854c3f3451a7a88a09141e32115cc6112e2
   languageName: node
   linkType: hard
 
@@ -9148,6 +9241,13 @@ __metadata:
   version: 7.18.3
   resolution: "lru-cache@npm:7.18.3"
   checksum: 10c0/b3a452b491433db885beed95041eb104c157ef7794b9c9b4d647be503be91769d11206bb573849a16b4cc0d03cbd15ffd22df7960997788b74c1d399ac7a4fed
+  languageName: node
+  linkType: hard
+
+"lucide@npm:^0.503.0":
+  version: 0.503.0
+  resolution: "lucide@npm:0.503.0"
+  checksum: 10c0/77995230e99d53e5d70d4e8258afcefc9b7fa14c97c8be34d76f483cbf7689da565ee4989115d248083265005c1860cdebab8db34d21a80081a50d63761791b9
   languageName: node
   linkType: hard
 
@@ -12929,17 +13029,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unplugin-vue-components@npm:^28.4.1":
-  version: 28.4.1
-  resolution: "unplugin-vue-components@npm:28.4.1"
+"unplugin-vue-components@npm:^28.5.0":
+  version: 28.5.0
+  resolution: "unplugin-vue-components@npm:28.5.0"
   dependencies:
     chokidar: "npm:^3.6.0"
     debug: "npm:^4.4.0"
-    local-pkg: "npm:^1.0.0"
+    local-pkg: "npm:^1.1.1"
     magic-string: "npm:^0.30.17"
     mlly: "npm:^1.7.4"
     tinyglobby: "npm:^0.2.12"
-    unplugin: "npm:^2.2.0"
+    unplugin: "npm:^2.3.2"
     unplugin-utils: "npm:^0.2.4"
   peerDependencies:
     "@babel/parser": ^7.15.8
@@ -12950,7 +13050,7 @@ __metadata:
       optional: true
     "@nuxt/kit":
       optional: true
-  checksum: 10c0/f05448285e6d049b8aeadf5747cf7cda23105bfe8691326217abf3a5aa924768279f1c26f37ed0cd98c00f97ea7ce1cd5d5ed2916fb09f2b817f25563ece825a
+  checksum: 10c0/4a2419cee6a8d19e0dd121fa56afef29c981434ee4f632e972e46aec52f161608c85b0806737308c597ca6d19b07d62f654f4070bd4302c1691a1c865acb9248
   languageName: node
   linkType: hard
 
@@ -12999,6 +13099,17 @@ __metadata:
     acorn: "npm:^8.14.1"
     webpack-virtual-modules: "npm:^0.6.2"
   checksum: 10c0/76ba320f0c5d18c31c6efab0bcf1f487e900193da7d9a63d50ccb87ea3c50bc9952111caee4ec5017bdcb53445dce275b994c6aeca6b92567db283ec5d9fc01b
+  languageName: node
+  linkType: hard
+
+"unplugin@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "unplugin@npm:2.3.2"
+  dependencies:
+    acorn: "npm:^8.14.1"
+    picomatch: "npm:^4.0.2"
+    webpack-virtual-modules: "npm:^0.6.2"
+  checksum: 10c0/157a50072601b9bfbf3ab27a76a04685fb0af0c1a579d958787ffcb28a4d64e09acf42f0176e8767ccd940f27ee52d97a7f6aa6ce2e1e0dbe666ec26519750ef
   languageName: node
   linkType: hard
 
@@ -13433,6 +13544,17 @@ __metadata:
   bin:
     vitest: vitest.mjs
   checksum: 10c0/680f31d2a7ca59509f837acdbacd9dff405e1b00c606d7cd29717127c6b543f186055854562c2604f74c5cd668b70174968d28feb4ed948a7e013c9477a68d50
+  languageName: node
+  linkType: hard
+
+"vooks@npm:^0.2.12":
+  version: 0.2.12
+  resolution: "vooks@npm:0.2.12"
+  dependencies:
+    evtd: "npm:^0.2.2"
+  peerDependencies:
+    vue: ^3.0.0
+  checksum: 10c0/b2f9f63f03034b6218501fa113d63c3cc98a041176cd8637b2042fccbc49baf2a1bd2a5b236d4b1b6fc59418e55ed71422752f26adeed396cee7b1bab458d366
   languageName: node
   linkType: hard
 

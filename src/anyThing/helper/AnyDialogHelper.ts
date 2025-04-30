@@ -1,8 +1,9 @@
 import type { App, Component } from 'vue'
 import type { IDialogPropsSelector } from '../interface/IDialogProps'
+import Dialog from '@/anyThing/components/PC/dialog/index.vue'
+import AppProvider from '@/components/AppProvider.vue'
 import { directivePlugin } from '@/directives'
 import { createApp } from 'vue'
-import AppProvider from '~/components/AppProvider.vue'
 import 'ant-design-vue/dist/reset.css'
 
 /**
@@ -49,8 +50,19 @@ export abstract class AnyDialogHelper {
         const renderApp = {
           render: () => h(
             AppProvider,
-            { },
-            { default: () => h(view, dialogParam) },
+            {},
+            {
+              default: () => h(
+                Dialog,
+                {},
+                {
+                  default: () => h(
+                    view,
+                    dialogParam,
+                  ),
+                },
+              ),
+            },
           ),
         }
         app = createApp(renderApp, dialogParam)

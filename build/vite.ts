@@ -2,6 +2,7 @@ import { unheadVueComposablesImports } from '@unhead/vue'
 import { VantResolver } from '@vant/auto-import-resolver'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import Components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueRouter from 'unplugin-vue-router/vite'
@@ -33,7 +34,12 @@ export function createVitePlugins() {
     // https://github.com/antfu/unplugin-vue-components
     Components({
       extensions: ['vue'],
-      resolvers: [VantResolver()],
+      resolvers: [
+        VantResolver(),
+        AntDesignVueResolver({
+          importStyle: false, // css in js
+        }),
+      ],
       include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/types/components.d.ts',
     }),

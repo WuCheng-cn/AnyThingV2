@@ -5,19 +5,35 @@ export interface AppStore {
   switchMode: (val: ConfigProviderTheme) => void
 }
 
+export interface MousePosition {
+  x: number
+  y: number
+}
+
 const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
 
 const useAppStore = defineStore('app', () => {
   const theme = prefersDark ? 'dark' : 'light'
   const mode = ref<ConfigProviderTheme>(theme)
-
   const switchMode = (val: ConfigProviderTheme) => {
     mode.value = val
+  }
+
+  const clickedPosition = ref<MousePosition | null>(null)
+
+  const highestIndex = ref(0)
+
+  const setHighestIndex = (dom: HTMLElement) => {
+    dom.style.zIndex = highestIndex.value.toString()
+    highestIndex.value++
   }
 
   return {
     mode,
     switchMode,
+    clickedPosition,
+    highestIndex,
+    setHighestIndex,
   }
 }, {
   persist: true,
