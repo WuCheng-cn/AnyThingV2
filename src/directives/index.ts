@@ -1,4 +1,5 @@
 import type { App } from 'vue'
+import { lazyResize } from './lazyResize'
 import { permission } from './permission'
 
 /**
@@ -7,5 +8,6 @@ import { permission } from './permission'
 export const directivePlugin = {
   install(app: App<Element>) {
     app.directive('permission', permission)
+    app.directive('lazyResize', lazyResize)
   },
 }
