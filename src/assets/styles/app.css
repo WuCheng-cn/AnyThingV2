@@ -5,8 +5,8 @@
 }
 
 html {
-  background: var(--van-gray-1);
-  font-size: var(--van-font-size-lg);
+  background: #f7f8fa;
+  font-size: 16px;
   color-scheme: light;
 }
 

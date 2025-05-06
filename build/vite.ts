@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import { unheadVueComposablesImports } from '@unhead/vue'
 import { VantResolver } from '@vant/auto-import-resolver'
 import vue from '@vitejs/plugin-vue'
@@ -22,6 +23,9 @@ export function createVitePlugins() {
     }),
 
     vue(),
+
+    // https://github.com/tailwindlabs/tailwindcss
+    tailwindcss(),
 
     // https://github.com/jbaubree/vite-plugin-sitemap
     Sitemap({

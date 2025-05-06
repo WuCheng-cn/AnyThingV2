@@ -5,6 +5,8 @@ import AppProvider from '@/components/AppProvider.vue'
 import { directivePlugin } from '@/directives'
 import { createApp } from 'vue'
 import 'ant-design-vue/dist/reset.css'
+// 导入项目的主样式文件
+import '@/assets/styles/index.css'
 
 /**
  * 对话框帮助类

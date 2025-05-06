@@ -47,6 +47,7 @@
     }
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.5",
     "@unhead/vue": "^2.0.2",
     "@vant/touch-emulator": "^1.4.0",
     "@vant/use": "^1.6.0",
@@ -60,6 +61,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^3.0.1",
     "pinia-plugin-persistedstate": "^4.2.0",
+    "tw-animate-css": "^1.2.9",
     "vant": "^4.9.18",
     "vconsole": "^3.15.1",
     "vooks": "^0.2.12",
@@ -96,7 +98,7 @@
     "postcss": "^8.5.3",
     "postcss-mobile-forever": "^5.0.0",
     "release-it": "^18.1.2",
-    "tailwindcss": "^4.0.17",
+    "tailwindcss": "^4.1.5",
     "typescript": "^5.8.2",
     "unplugin-auto-import": "^19.1.2",
     "unplugin-vue-components": "^28.5.0",

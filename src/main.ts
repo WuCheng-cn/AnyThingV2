@@ -4,8 +4,8 @@ import { createApp } from 'vue'
 import { directivePlugin } from './directives/index'
 import pinia from './stores'
 
-// 初始化样式
-import '@/assets/css/app.css'
+// 项目主样式
+import '@/assets/styles/index.css'
 // Vant 桌面端适配
 import '@vant/touch-emulator'
 
