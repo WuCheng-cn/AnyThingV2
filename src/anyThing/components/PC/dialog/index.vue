@@ -1,11 +1,11 @@
 <template>
   <div ref="PositionProviderRef" class="w-full h-full" :style="positionProviderStyle">
-    <transition name="any-dialog" appear>
+    <Transition name="any-dialog" appear @after-leave="handleClose()">
       <div
         v-if="!isClose"
         ref="AnyModelRef"
         class="fixed flex flex-col bg-white rounded-lg shadow-lg select-none overflow-hidden transition-all duration-500 transform scale-100 z-[9999]"
-        :class="{ 'w-screen h-screen left-0 top-0 bottom-0 rounded-none z-[99999]': isFullScreen }"
+        :class="{ 'w-screen! h-screen! left-0! top-0! bottom-0! rounded-none! z-[99999]!': isFullScreen }"
         :style="modalPositionStyle"
         @mousedown="handleModelClick"
       >
@@ -13,32 +13,33 @@
         <div
           class="h-10 bg-gray-100 rounded-t-lg grid grid-cols-3 items-center px-2.5 cursor-grab active:cursor-grabbing"
           @mousedown="startDrag"
+          @dblclick="onMaximize()"
         >
           <!-- 控制按钮区域 -->
-          <div class="flex space-x-2">
+          <div class="flex gap-1">
             <button
-              class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-red-500 hover:text-white"
-              @click="onClose()"
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-red-500 text-transparent! hover:text-white! "
+              @click="isClose = true"
             >
-              <X class="w-3.5 h-3.5" />
+              <X class="w-3.5 h-3.5" :stroke-width="3" />
             </button>
             <button
-              class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-yellow-500 hover:text-white"
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-yellow-500 text-transparent! hover:text-white!"
               @click="onMinimize()"
             >
-              <Minus class="w-3.5 h-3.5" />
+              <Minus class="w-3.5 h-3.5" :stroke-width="3" />
             </button>
             <button
-              class="w-5 h-5 flex items-center justify-center rounded-full hover:bg-green-500 hover:text-white"
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-green-500 text-transparent! hover:text-white!"
               @click="onMaximize()"
             >
-              <Maximize class="w-3.5 h-3.5" />
+              <Maximize class="w-3.5 h-3.5" :stroke-width="3" />
             </button>
           </div>
 
           <!-- 标题 -->
           <div class="text-sm font-medium text-gray-700 text-center">
-            {{ title || '弹窗标题' }}
+            {{ title }}
           </div>
 
           <!-- 占位 -->
@@ -46,36 +47,42 @@
         </div>
 
         <!-- 主体内容 -->
-        <div class="flex-1 p-2.5 overflow-hidden">
+        <div class="flex-1 p-2.5 overflow-auto">
           <slot />
         </div>
 
         <!-- 底部 -->
-        <div class="p-2.5">
-          <slot name="footer" />
+        <div class="p-2.5 flex gap-2 justify-end items-center">
+          <slot name="footer">
+            <a-button
+              v-for="(item, index) in actions"
+              :key="index"
+              :type="item.type"
+              :plain="item.plain"
+              @click="item.onClick"
+            >
+              <template #icon>
+                <component :is="item.icon" />
+              </template>
+              {{ item.label }}
+            </a-button>
+          </slot>
         </div>
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type { IDialogPropsParam } from '@/anyThing/interface/IDialogProps'
 import { AnyResizeControllerHelper } from '@/anyThing/helper/AnyResizeControllerHelper'
 import useAppStore from '@/stores/modules/useAppStore'
-import { Maximize, Minus, X } from 'lucide'
+import { Maximize, Minus, X } from 'lucide-vue-next'
 import { computed, nextTick, onMounted, ref, toRefs } from 'vue'
 
-const props = defineProps<{
-  title?: string
-  /** # 挂载后的钩子 */
-  afterMounted?: (q: any) => void
-  /** # 关闭前的钩子 */
-  beforClose?: () => void
-  /** # 最小化前的钩子 */
-  beforMinimize?: () => void
-}>()
-
-const emits = defineEmits(['onAfterLeave'])
+const props = withDefaults(defineProps<IDialogPropsParam<any, any>>(), {
+  title: '弹窗标题',
+})
 
 const { clickedPosition, setHighestIndex } = useAppStore()
 const { highestIndex } = toRefs(useAppStore())
@@ -145,20 +152,13 @@ function handleModelClick() {
   setHighestIndex(AnyModelRef.value as HTMLElement)
 }
 
-async function onClose() {
-  if (props.beforClose) {
-    props.beforClose()
-  }
-  isClose.value = true
-  setTimeout(() => {
-    emits('onAfterLeave')
-  }, 1000)
+async function handleClose() {
+  props.beforClose?.()
+  props.onClosed()
 }
 
 async function onMinimize() {
-  if (props.beforMinimize) {
-    props.beforMinimize()
-  }
+  props.beforMinimize?.()
   isMinimized.value = true
 }
 
@@ -235,8 +235,8 @@ function stopDrag() {
 let _resizeController: AnyResizeControllerHelper | null = null
 
 onMounted(async () => {
-  if (props.afterMounted && AnyModelRef.value) {
-    props.afterMounted(AnyModelRef.value)
+  if (props.onMounted && AnyModelRef.value) {
+    props.onMounted(AnyModelRef.value)
   }
 
   setCssProperty()

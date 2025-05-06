@@ -4617,7 +4617,7 @@ __metadata:
     grid-layout-plus: "npm:^1.0.6"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^15.5.1"
-    lucide: "npm:^0.503.0"
+    lucide-vue-next: "npm:^0.507.0"
     mockjs: "npm:^1.1.0"
     nprogress: "npm:^0.2.0"
     pinia: "npm:^3.0.1"
@@ -9563,10 +9563,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide@npm:^0.503.0":
-  version: 0.503.0
-  resolution: "lucide@npm:0.503.0"
-  checksum: 10c0/77995230e99d53e5d70d4e8258afcefc9b7fa14c97c8be34d76f483cbf7689da565ee4989115d248083265005c1860cdebab8db34d21a80081a50d63761791b9
+"lucide-vue-next@npm:^0.507.0":
+  version: 0.507.0
+  resolution: "lucide-vue-next@npm:0.507.0"
+  peerDependencies:
+    vue: ">=3.0.1"
+  checksum: 10c0/9007fdbc64e10dd81cfe18bd8eac8fe33d23a1729d2bc8123c00bb3879a0e1c59536178f0ee1591d49777c96b3c4d8d4dc93dcc719d5f80d9a0e45ebd2cc8b2f
   languageName: node
   linkType: hard
 

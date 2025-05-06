@@ -1,5 +1,5 @@
 import type { App, Component } from 'vue'
-import type { IDialogPropsSelector } from '../interface/IDialogProps'
+import type { IDialogPropsParam, IDialogPropsSelector } from '../interface/IDialogProps'
 import Dialog from '@/anyThing/components/PC/dialog/index.vue'
 import AppProvider from '@/components/AppProvider.vue'
 import { directivePlugin } from '@/directives'
@@ -56,7 +56,7 @@ export abstract class AnyDialogHelper {
             {
               default: () => h(
                 Dialog,
-                {},
+                dialogParam,
                 {
                   default: () => h(
                     view,
@@ -86,8 +86,8 @@ export abstract class AnyDialogHelper {
    * @param param 对话框内组件的参数
    * @returns 对话框的异步结果
    */
-  static showModel<RES>(view: Component, param?: Record<string, any>): Promise<RES> {
-    return this.bulid(view, { param: param || {} })
+  static showModel<T, RES>(view: Component, param?: Omit<IDialogPropsParam<T, RES>, 'onConfirm' | 'onClosed'>): Promise<RES> {
+    return this.bulid(view, param || {})
   }
 
   /**
