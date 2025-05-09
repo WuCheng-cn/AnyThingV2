@@ -5,7 +5,7 @@ import type { ObjectDirective } from 'vue'
  * @param {number} delay 延迟时间
  * @description 例：<div v-lazyResize:height="300"></div> 尺寸变化完成300ms后设置高度
  */
-export const lazyResize: ObjectDirective = {
+export default {
   mounted(el, binding, _vnode) {
     (el as HTMLElement).style.cssText = 'opacity:0 ;transition:all .5s'
     const { value } = binding
@@ -54,4 +54,4 @@ export const lazyResize: ObjectDirective = {
   unmounted(el) {
     el._resizer.disconnect()
   },
-}
+} as ObjectDirective

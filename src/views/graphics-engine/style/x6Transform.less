@@ -1,0 +1,46 @@
+.x6-widget-transform {
+  border: unset;
+    & &-cursor{
+    &-n{
+      width: 60px !important;
+      transform: translate(-23px,0);
+    }
+    &-s{
+      width: 60px !important;
+      transform: translate(-23px,5px);
+    }
+    &-e{
+      height: 60px !important;
+      transform: translate(5px,-23px);
+    }
+    &-w{
+      height: 60px !important;
+      transform: translate(0,-23px);
+    }
+    &-sw{
+      transform: translate(0,5px);
+    }
+    &-se{
+      transform: translate(5px,5px);
+    }
+    &-ne{
+      transform: translate(5px,0);
+    }
+  }
+
+  & &-resize {
+    width: 20px;
+    height: 20px;
+    border: 4px solid var(--primary-color);
+
+    &:hover {
+      background-color: var(--primary-color-hover);
+    }
+  }
+
+  &-active {
+    & &-handle {
+      background-color: var(--primary-color-hover);
+    }
+  }
+}

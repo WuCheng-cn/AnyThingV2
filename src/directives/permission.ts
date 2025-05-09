@@ -4,7 +4,7 @@ import { usePermissionStore } from '@/stores/modules/usePermissionStore'
 /**
  * # 权限指令
  */
-export const permission: ObjectDirective = {
+export default {
   mounted(el: HTMLElement, binding) {
     const { value } = binding
     const { hasPermission } = usePermissionStore()
@@ -14,4 +14,4 @@ export const permission: ObjectDirective = {
       }
     }
   },
-}
+} as ObjectDirective

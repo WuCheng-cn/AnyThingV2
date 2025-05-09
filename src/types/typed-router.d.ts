@@ -21,5 +21,9 @@ declare module 'vue-router/auto-routes' {
     'home': RouteRecordInfo<'home', '/', Record<never, never>, Record<never, never>>,
     '404': RouteRecordInfo<'404', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
     '/demo/': RouteRecordInfo<'/demo/', '/demo', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/': RouteRecordInfo<'/graphics-engine/', '/graphics-engine', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/components/widgetList/': RouteRecordInfo<'/graphics-engine/components/widgetList/', '/graphics-engine/components/widgetList', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/components/widgetList/components/List': RouteRecordInfo<'/graphics-engine/components/widgetList/components/List', '/graphics-engine/components/widgetList/components/List', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/components/widgetList/components/Search': RouteRecordInfo<'/graphics-engine/components/widgetList/components/Search', '/graphics-engine/components/widgetList/components/Search', Record<never, never>, Record<never, never>>,
   }
 }

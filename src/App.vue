@@ -1,6 +1,6 @@
 <template>
   <AppProvider>
-    <div id="layout" class="layout">
+    <div id="layout" class="h-full">
       <router-view v-slot="{ Component, route }">
         <keep-alive :include="[]">
           <component :is="Component" :key="route.name" />

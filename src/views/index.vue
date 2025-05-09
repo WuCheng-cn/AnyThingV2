@@ -1,7 +1,12 @@
 <template>
-  <van-button @click="AnyDialogHelper.showModel(Demo)">
-    点击
-  </van-button>
+  <a-card>
+    <a-button @click="AnyDialogHelper.showModel(Demo)">
+      点击弹窗
+    </a-button>
+    <router-link to="/graphics-engine" class="text-blue-600 hover:underline">
+      图形引擎
+    </router-link>
+  </a-card>
 </template>
 
 <script lang="ts" setup>

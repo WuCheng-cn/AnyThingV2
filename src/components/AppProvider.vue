@@ -1,5 +1,6 @@
 <template>
   <a-config-provider
+    class="h-full"
     :locale="zhCN"
     component-size="middle"
     :theme="{
@@ -11,9 +12,7 @@
       },
     }"
   >
-    <VanConfigProvider>
-      <slot />
-    </VanConfigProvider>
+    <slot />
   </a-config-provider>
 </template>
 

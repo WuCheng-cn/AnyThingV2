@@ -3,3 +3,6 @@
 
 # 例外处理 Windows 必要文件
 *.bat eol=crlf
+
+# 确保Git对文件名大小写敏感
+* -case
