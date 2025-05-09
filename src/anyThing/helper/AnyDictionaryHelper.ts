@@ -17,10 +17,8 @@ export class AnyDictionaryHelper {
    */
   static #createDictionary(data: IDictionary) {
     const dictionary = new AnyDictionaryModel()
-    const keys = Object.keys(dictionary)
+    const keys = Object.keys(data)
     for (const key of keys) {
-      // eslint-disable-next-line ts/ban-ts-comment
-      // @ts-expect-error
       dictionary[key] = data[key]
     }
     return dictionary

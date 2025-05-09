@@ -1,10 +1,13 @@
 <template>
   <a-layout class="h-full">
     <a-layout class="h-full">
-      <WidgetFilter class=" absolute left-0 top-0 z-50 w-[280px]" :on-mousedown="onMousedown" />
+      <WidgetSearch
+        class="absolute left-0 top-0 z-50 w-[280px]"
+        :on-mousedown="onMousedown"
+      />
 
       <div v-onResize:100="resize" class="h-full overflow-hidden">
-        <div id="container" class=" w-full h-full transition-all" />
+        <div ref="container" class="w-full h-full transition-all" />
         <TeleportContainer />
       </div>
     </a-layout>
@@ -14,97 +17,87 @@
       collapsible
       collapsed-width="0"
     >
-      <div v-for="item in (currentNode?.getData() as IDefaultOption)?.formConfig" :key="item.title">
-        <component
-          :is="item.component"
-          :resize-handler="resizeHandler"
-          :current-node="currentNode"
-        />
-      </div>
-      <a-button @click="handleClick" />
+      <template v-if="currentNode">
+        <ConfigurationForm :current-node="currentNode" />
+      </template>
     </a-layout-sider>
   </a-layout>
 </template>
 
 <script lang="ts" setup>
 import type { Graph, Node } from '@antv/x6'
-import type { IDefaultOption } from './interface/IDefaultOption'
-import type { IRegistItem } from './interface/IRegistItem'
-import GraphicsHelper from '@/views/graphics-engine/index'
-import { Dnd } from '@antv/x6-plugin-dnd'
+import type { Dnd } from '@antv/x6-plugin-dnd'
+import type { IWidget } from './interface/IWidget'
+import { useGraphicsEngine } from '@/views/graphics-engine/hooks/useGraphicsEngine'
 import { getTeleport } from '@antv/x6-vue-shape'
-import { defineComponent, onMounted, ref } from 'vue'
-import WidgetFilter from './components/widgetList/index.vue'
+import ConfigurationForm from './components/configurationForm/index.vue'
+import WidgetSearch from './components/widgetList/index.vue'
 
-const graph = ref<Graph>()
+let graph: Graph | undefined
 
+let dnd: Dnd | undefined
+
+const collapsed = ref(false)
+
+const currentNode = ref<Node<Node.Properties> | null>(null)
+
+const container = ref<HTMLElement | null>(null)
+
+// 提供图表实例与当前节点给子组件
 provide('graph', graph)
 
+provide('currentNode', currentNode)
+
+/** # 传送门容器组件 */
 const TeleportContainer = getTeleport()
 
-defineComponent({
-  name: 'TeleportContainer',
-  components: {
-    TeleportContainer,
-  },
-})
-
-const collapsed = ref(true)
-
-const currentNode = ref<Node<Node.Properties>>()
-
-/**
- * @description: 画布自适应
- */
+/** # 画布自适应 */
 function resize(e: ResizeObserverEntry[]) {
-  const boxWidth = e[0].devicePixelContentBoxSize[0].inlineSize
-  const boxHeight = e[0].devicePixelContentBoxSize[0].blockSize
-  graph.value?.resize(boxWidth, boxHeight)
-  graph.value?.zoomToFit({
-    padding: 20,
-  })
+  if (!graph) {
+    console.warn('图表实例不存在')
+    return
+  }
+  const { inlineSize: boxWidth, blockSize: boxHeight } = e[0].devicePixelContentBoxSize[0]
+  graph.resize(boxWidth, boxHeight)
+  graph.zoomToFit({ padding: 20 })
 }
 
-/**
- * @description: 拖拽组件
- */
-function onMousedown(e: MouseEvent, item: IRegistItem) {
-  if (!graph.value)
+/** # 处理组件拖拽事件 */
+function onMousedown(e: MouseEvent, item: IWidget) {
+  if (!graph || !dnd) {
+    console.warn('图表实例或拖拽插件实例不存在')
     return
-  const dnd = new Dnd({
-    target: graph.value as Graph,
-    getDragNode: (node: any) => node.clone({ keepId: true }),
-    getDropNode: (node: any) => node.clone({ keepId: true }),
-  })
-  const node = graph.value.createNode({
-    shape: item.nodeShape,
-  })
+  }
+  const node = graph.createNode({ shape: item.nodeShape })
   dnd.start(node, e)
 }
 
-/**
- * @description: 初始化画布
- */
+// 初始化画布
 onMounted(() => {
-  const container = document.getElementById('container') as HTMLElement
-  graph.value = GraphicsHelper.create(container)
-  // 将Screen组件添加进画布
-  // graph.value.addNode({ shape: 'Screen', x: 20, y: 20 })
+  if (!container.value) {
+    console.warn('容器不存在')
+    return
+  }
+  const { graphInstance, dndInstance } = useGraphicsEngine(container.value)
+  graph = graphInstance
+  dnd = dndInstance
 
-  graph.value.on('node:selected', ({ node }) => {
+  // 选中节点事件
+  graph.on('node:selected', ({ node }) => {
     currentNode.value = node
   })
-  graph.value.on('node:resizing', () => {
+
+  // 点击空白区域清除选中节点，并折叠侧边栏
+  graph.on('blank:click', () => {
+    currentNode.value = null
+    collapsed.value = true
   })
 })
 
-function resizeHandler(width: number, height: number) {
-  currentNode.value?.setSize(width, height)
-}
-
-function handleClick() {
-
-}
+// 清理事件监听器
+onUnmounted(() => {
+  graph?.dispose()
+})
 </script>
 
 <style lang="less">

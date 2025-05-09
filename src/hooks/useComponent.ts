@@ -1,10 +1,11 @@
+import type { AsyncComponentLoader } from 'vue'
 import { defineAsyncComponent } from 'vue'
 
 export function useComponent() {
   /** # 注册异步组件 */
-  function resgistAsyncComponent(path: string, delay = 20) {
+  function resgistAsyncComponent(loader: AsyncComponentLoader, delay = 20) {
     return defineAsyncComponent({
-      loader: () => import(path),
+      loader,
       delay,
     })
   }

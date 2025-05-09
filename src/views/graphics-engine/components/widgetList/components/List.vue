@@ -1,41 +1,60 @@
 <template>
-  <div class="relative h-full p-2.5 overflow-auto transition-all duration-300 ease-in-out" style="background-color: var(--body-color);">
-    <div
-      v-for="(item, index) in widgetList"
-      :key="item.name"
-      class="absolute flex flex-col cursor-grab backdrop-blur-md border px-2.5 transition-all duration-300 ease-in-out shadow-md"
-      :style="getItemStyle(index)"
-      @mousedown="onMousedown($event, item)"
+  <a-collapse v-model:active-key="active">
+    <a-collapse-panel
+      v-for="item in (Object.keys(renderMap) as IWidget['category'][])"
+      :key="item"
+      :header="WidgetCategoryDict.getLabelByValue(item)"
     >
-      <div class="py-1.5">
-        <a-ellipsis class="text-sm tracking-wider transition-all duration-300 ease-in-out">
-          {{ item.name }}
-        </a-ellipsis>
+      <div class="relative h-full p-2.5 overflow-hidden transition-all duration-300 ease-in-out" style="background-color: var(--body-color);">
+        <div
+          v-for="(widget, index) in renderMap[item]"
+          :key="widget.name"
+          class="relative flex flex-col cursor-grab backdrop-blur-md border px-2.5 transition-all duration-300 ease-in-out shadow-md"
+          :style="getItemStyle(index)"
+          @mousedown="onMousedown($event, widget)"
+        >
+          <div class="py-1.5">
+            <div class="text-sm tracking-wider transition-all duration-300 ease-in-out">
+              {{ widget.name }}
+            </div>
+          </div>
+          <div class="flex-1 h-0">
+            <img
+              :src="widget.image"
+              class="w-full h-full object-contain"
+            >
+          </div>
+        </div>
       </div>
-      <div class="flex-1 h-0">
-        <a-image
-          lazy
-          preview-disabled
-          object-fit="scale-down"
-          :src="item.image"
-          class="h-full w-full"
-        />
-      </div>
-    </div>
-  </div>
+    </a-collapse-panel>
+  </a-collapse>
 </template>
 
 <script lang="ts" setup>
-import type { IRegistItem } from '@/views/graphics-engine/interface/IRegistItem'
+import type { IWidget } from '@/views/graphics-engine/interface/IWidget'
+import { WidgetCategoryDict } from '@/views/graphics-engine/interface/IWidget'
 
 const props = defineProps<{
   /** # 组件列表 */
-  widgetList: IRegistItem[]
+  widgetList: IWidget[]
   /** # 列数 */
   columns: number
   /** # 拖拽事件 */
-  onMousedown: (e: MouseEvent, item: IRegistItem) => void
+  onMousedown: (e: MouseEvent, item: IWidget) => void
 }>()
+
+const renderMap = computed(() => {
+  return props.widgetList.reduce((acc, cur) => {
+    const category = cur.category
+    if (!acc[category]) {
+      acc[category] = []
+    }
+    acc[category].push(cur)
+    return acc
+  }, {} as Record<IWidget['category'], IWidget[]>)
+})
+
+const active = ref(Object.keys(renderMap.value))
 
 function getItemStyle(index: number) {
   const gap = 10 // 间隙大小

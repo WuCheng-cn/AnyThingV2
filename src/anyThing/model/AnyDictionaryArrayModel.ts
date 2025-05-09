@@ -11,26 +11,25 @@ export class AnyDictionaryArrayModel<T extends IDictionary> extends Array<T> {
    * @description 该方法会根据传入的键获取对应的label
    * @example
    * ```ts
-   * const label = dictionaryArray.getLabelByKey(key);
+   * const label = dictionaryArray.getLabelByValue(key);
    * ```
    */
-  getLabelByKey(key: string | number | symbol | boolean) {
+  getLabelByValue(key: string | number | symbol | boolean) {
     const dictionary = this.find(item => item.value === key)
     return dictionary?.label
   }
 
   /**
-   * # 根据传入字典的键获取description
+   * # 根据传入字典的键获取字典
    * @param key
-   * @description 该方法会根据传入的键获取对应的description
+   * @description 该方法会根据传入的键获取对应的字典
    * @example
    * ```ts
-   * const description = dictionaryArray.getDescriptionByKey(key);
+   * const dictionary = dictionaryArray.getDictByValue(key);
    * ```
    */
-  getDescriptionByKey(key: string | number | symbol | boolean) {
-    const dictionary = this.find(item => item.value === key)
-    return dictionary?.description
+  getDictByValue(key: string | number | symbol | boolean) {
+    return this.find(item => item.value === key)
   }
 
   /**

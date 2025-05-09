@@ -1,7 +1,7 @@
-import type { IDefaultOption } from '@/interface/graph/IDefaultOption'
 // import {NodeView} from '@antv/x6'
 import type { Cell, Graph, Node } from '@antv/x6'
 import type { Options } from '@antv/x6/lib/graph/options'
+import type { IWidgetOption } from '../interface/IWidgetOption'
 
 export const GraphOption: Partial<Options.Manual> = {
   // 启用滚轮缩放画布
@@ -24,8 +24,8 @@ export const GraphOption: Partial<Options.Manual> = {
     findParent({ node }: { node: Node }): Cell[] {
       const bbox = node.getBBox()
       return (this as unknown as Graph).getNodes().filter((node: Cell) => {
-        const data = node.getData<IDefaultOption>()
-        if (data.isParent) {
+        const data = node.getData<IWidgetOption>()
+        if (data?.isParent) {
           const targetBBox = node.getBBox()
           return bbox.isIntersectWithRect(targetBBox)
         }

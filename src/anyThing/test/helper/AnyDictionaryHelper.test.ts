@@ -34,16 +34,16 @@ describe('anyDictionaryHelper', () => {
     expect(result.length).toBe(input.length)
   })
 
-  it('getLabelByKey should return the correct label for a given value', () => {
+  it('getLabelByValue should return the correct label for a given value', () => {
     const dict = AnyDictionaryHelper.createDictionaryArray([
       { value: 'key1', label: 'Label1', description: 'Description1' },
       { value: 'key2', label: 'Label2', description: 'Description2' },
       // ... more items if needed
     ])
 
-    expect(dict.getLabelByKey('key1')).toBe('Label1')
-    expect(dict.getLabelByKey('key2')).toBe('Label2')
-    expect(dict.getLabelByKey('key3')).toBeUndefined()
+    expect(dict.getLabelByValue('key1')).toBe('Label1')
+    expect(dict.getLabelByValue('key2')).toBe('Label2')
+    expect(dict.getLabelByValue('key3')).toBeUndefined()
   })
 
   it('getDescriptionByKey should return the correct description for a given value', () => {
@@ -68,9 +68,9 @@ describe('anyDictionaryHelper', () => {
     dict.exclude(['key1'])
 
     expect(dict.exclude(['key1']).length).toBe(1)
-    expect(dict.exclude(['key1']).getLabelByKey('key1')).toBeUndefined()
+    expect(dict.exclude(['key1']).getLabelByValue('key1')).toBeUndefined()
     expect(dict.exclude(['key1']).getDescriptionByKey('key1')).toBeUndefined()
-    expect(dict.exclude(['key1']).getLabelByKey('key2')).toBe('Label2')
+    expect(dict.exclude(['key1']).getLabelByValue('key2')).toBe('Label2')
     expect(dict.exclude(['key1']).getDescriptionByKey('key2')).toBe('Description2')
   })
 
@@ -84,9 +84,9 @@ describe('anyDictionaryHelper', () => {
     dict.expose(['key1'])
 
     expect(dict.expose(['key1']).length).toBe(1)
-    expect(dict.expose(['key1']).getLabelByKey('key1')).toBe('Label1')
+    expect(dict.expose(['key1']).getLabelByValue('key1')).toBe('Label1')
     expect(dict.expose(['key1']).getDescriptionByKey('key1')).toBe('Description1')
-    expect(dict.expose(['key1']).getLabelByKey('key2')).toBeUndefined()
+    expect(dict.expose(['key1']).getLabelByValue('key2')).toBeUndefined()
     expect(dict.expose(['key1']).getDescriptionByKey('key2')).toBeUndefined()
   })
 })
