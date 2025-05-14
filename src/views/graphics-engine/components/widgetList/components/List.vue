@@ -5,11 +5,14 @@
       :key="item"
       :header="WidgetCategoryDict.getLabelByValue(item)"
     >
-      <div class="relative h-full p-2.5 overflow-hidden transition-all duration-300 ease-in-out" style="background-color: var(--body-color);">
+      <div
+        class="relative h-full p-2.5 overflow-hidden transition-all duration-300 ease-in-out"
+        :style="[{ 'background-color': 'var(--body-color)' }, getCategoryContainerStyle(item)]"
+      >
         <div
           v-for="(widget, index) in renderMap[item]"
           :key="widget.name"
-          class="relative flex flex-col cursor-grab backdrop-blur-md border px-2.5 transition-all duration-300 ease-in-out shadow-md"
+          class=" absolute flex flex-col cursor-grab backdrop-blur-md border px-2.5 transition-all duration-300 ease-in-out shadow-md"
           :style="getItemStyle(index)"
           @mousedown="onMousedown($event, widget)"
         >
@@ -85,6 +88,26 @@ function getItemStyle(index: number) {
     'background-color': 'var(--table-color)',
     'border-color': 'var(--border-color)',
     'border-radius': 'var(--any-border-radius)',
+  }
+}
+
+function getCategoryContainerStyle(category: IWidget['category']) {
+  const items = renderMap.value[category] || []
+  const gap = 10 // 间隙大小
+
+  if (items.length === 0)
+    return { height: '0px' }
+
+  // 计算行数
+  const rows = Math.ceil(items.length / props.columns)
+
+  // 计算容器高度：考虑每行高度和间隙
+  const widgetFilterWidth = 'var(--widget-filter-width)'
+  const widgetItemWidth = `((${widgetFilterWidth} - ${gap}px) / ${props.columns} - ${gap}px)`
+  const widgetItemHeight = `${widgetItemWidth} * 1.25`
+
+  return {
+    height: `calc((${widgetItemHeight} + ${gap}px) * ${rows} + ${gap}px)`,
   }
 }
 </script>

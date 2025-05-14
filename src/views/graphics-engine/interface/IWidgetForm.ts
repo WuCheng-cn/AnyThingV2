@@ -1,11 +1,6 @@
 import type { EWigetFormConfigType } from '@/enum/EWigetFormConfigType'
 
-import type { AsyncComponentLoader } from 'vue'
-
-/**
- * # 画布配置表单接口
- */
-export interface IWidgetFormConfig {
+export interface IWidgetForm {
   /** # 表单名称 */
   title: string
 
@@ -14,7 +9,4 @@ export interface IWidgetFormConfig {
 
   /** # 表单类型 */
   type: EWigetFormConfigType
-
-  /** # 表单组件 */
-  component: AsyncComponentLoader
 }

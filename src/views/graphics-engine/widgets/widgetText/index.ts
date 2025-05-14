@@ -5,15 +5,15 @@ import { WidgetCategory } from '../../interface/IWidget'
 
 const { resgistAsyncComponent } = useComponent()
 
-class WidgetImage implements IWidget {
-  name = '图片'
-  nodeShape = NodeShape.IMAGE
+class WidgetText implements IWidget {
+  name = '文本'
+  nodeShape = NodeShape.TEXT
   width = 100
-  height = 100
+  height = 20
   image = image
   category = WidgetCategory.Basic
   component = resgistAsyncComponent(() => import('./index.vue'))
   widgetData = {}
 }
 
-export default new WidgetImage()
+export default new WidgetText()

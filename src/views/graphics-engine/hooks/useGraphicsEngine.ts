@@ -25,11 +25,11 @@ export function useGraphicsEngine(container: HTMLElement) {
 
   Registry.forEach((item) => {
     register({
-      shape: item.nodeShape,
+      shape: item.nodeShape.toString(),
       width: item.width,
       height: item.height,
       component: item.component,
-      data: item.widgetOption,
+      data: item.widgetData,
     })
   })
 
@@ -77,7 +77,9 @@ export function useGraphicsEngine(container: HTMLElement) {
   })
 
   return {
+    /** # 画布实例 */
     graphInstance: graph,
+    /** # 拖拽插件实例 */
     dndInstance: dnd,
   }
 }

@@ -1,6 +1,9 @@
+import type { ClassConstructor } from '@/anyThing/types/ClassConstructor'
 import type { Component } from 'vue'
-import type { IWidgetOption } from './IWidgetOption'
+import type { NodeShape } from '../config/NodeShapeConfig'
+import type { WidgetFormBase } from '../entity/WidgetFormBase'
 import { AnyDictionaryHelper } from '@/anyThing/helper/AnyDictionaryHelper'
+
 /**
  * # 组件分类
  * - 基础组件
@@ -42,8 +45,8 @@ export interface IWidget {
   /** # 组件名称 */
   name: string
 
-  /** # 组件自定义节点名称 */
-  nodeShape: string
+  /** # 自定义组件注册名称 */
+  nodeShape: NodeShape
 
   /** # 组件初始宽度 */
   width: number
@@ -57,9 +60,15 @@ export interface IWidget {
   /** # 组件分类 */
   category: WidgetCategory
 
+  /** # 是否作为可嵌套父级组件 */
+  isParent?: boolean
+
   /** # 组件渲染内容 */
   component: Component
 
-  /** # 组件默认配置 */
-  widgetOption?: IWidgetOption
+  /** # 组件表单配置 */
+  formConfig?: ClassConstructor<WidgetFormBase>[]
+
+  /** # 组件绑定数据 */
+  widgetData?: Record<string, any>
 }

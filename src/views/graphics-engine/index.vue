@@ -54,12 +54,11 @@ const TeleportContainer = getTeleport()
 /** # 画布自适应 */
 function resize(e: ResizeObserverEntry[]) {
   if (!graph) {
-    console.warn('图表实例不存在')
     return
   }
   const { inlineSize: boxWidth, blockSize: boxHeight } = e[0].devicePixelContentBoxSize[0]
   graph.resize(boxWidth, boxHeight)
-  graph.zoomToFit({ padding: 20 })
+  // graph.zoomToFit({ padding: 20 })
 }
 
 /** # 处理组件拖拽事件 */
@@ -68,7 +67,8 @@ function onMousedown(e: MouseEvent, item: IWidget) {
     console.warn('图表实例或拖拽插件实例不存在')
     return
   }
-  const node = graph.createNode({ shape: item.nodeShape })
+  const { width, height } = item
+  const node = graph.createNode({ shape: item.nodeShape.toString(), width, height })
   dnd.start(node, e)
 }
 
