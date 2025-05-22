@@ -34,7 +34,22 @@ export const EFontFamilyDict = AnyDictionaryHelper.createDictionaryArray([
   { value: EFontFamily.MICROSOFT_YAHEI_UI_GOTHIC, label: '微软雅黑 UI Gothic' },
 ])
 
-@CustomClass({ name: '字体样式' })
+export enum ETextAlign {
+  LEFT = 'left',
+  CENTER = 'center',
+  RIGHT = 'right',
+}
+
+export const ETextAlignDict = AnyDictionaryHelper.createDictionaryArray([
+  { value: ETextAlign.LEFT, label: '左对齐' },
+  { value: ETextAlign.CENTER, label: '居中对齐' },
+  { value: ETextAlign.RIGHT, label: '右对齐' },
+])
+
+/**
+ * # 文本元件的样式配置entity
+ */
+@CustomClass({ name: '样式' })
 export class WidgetTextStyleEntity extends WidgetFormBase {
   type = EWigetFormConfigType.STYLE
 
@@ -44,7 +59,7 @@ export class WidgetTextStyleEntity extends WidgetFormBase {
 
   @FormField()
   @CustomField('字体颜色')
-  textColor = '#000'
+  color = '#000'
 
   @FormField({ formType: EFormItemType.RADIO })
   @CustomField('字体粗细', EFontWeightDict)
@@ -53,4 +68,8 @@ export class WidgetTextStyleEntity extends WidgetFormBase {
   @FormField({ formType: EFormItemType.SELECT })
   @CustomField('字体样式', EFontFamilyDict)
   fontFamily = EFontFamily.DEFAULT
+
+  @FormField({ formType: EFormItemType.RADIO })
+  @CustomField('对齐方式', ETextAlignDict)
+  textAlign = ETextAlign.LEFT
 }

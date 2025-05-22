@@ -1,4 +1,4 @@
-import type { IWidget } from '../interface/IWidget'
+import type { IWidgetUnknown } from '../interface/IWidget'
 
 export const Registry = Object.entries(import.meta.glob('./*/index.ts', {
   eager: true,
@@ -9,5 +9,5 @@ export const Registry = Object.entries(import.meta.glob('./*/index.ts', {
   return markRaw({
     name: folderName,
     ...(module as any).default,
-  }) as IWidget
+  }) as IWidgetUnknown
 })

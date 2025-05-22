@@ -8,6 +8,7 @@
     :placeholder="placeholder"
     :options="configInstance.getOptions(field)"
     :disabled="disabled"
+    :form-field-config="formFieldConfig"
     @change="(e:any) => emits('change', e)"
   />
 </template>

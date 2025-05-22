@@ -1,3 +1,4 @@
+import { getCustomClassConfig } from '../decorator/CustomClass'
 import { getCustomFieldDictionaryArray, getCustomFieldName } from '../decorator/CustomField'
 import { getFormFieldConfigObj, getFormFieldList } from '../decorator/FormField'
 import { getSearchFileldConfigObj, getSearchFileldList } from '../decorator/SearchField'
@@ -207,6 +208,21 @@ export class AnyBaseModel {
   }
 
   /**
+   * # 获取类的配置名称
+   */
+  getCustomClassName() {
+    return getCustomClassConfig(this)?.name || ''
+  }
+
+  /**
+   * # 获取类的配置名称
+   * @returns 静态方法调用，返回实例方法调用
+   */
+  static getCustomClassName() {
+    return new this().getCustomClassName()
+  }
+
+  /**
    * # 从json数据中解析出实体对象(实例调用)
    * @param json
    */
@@ -275,5 +291,29 @@ export class AnyBaseModel {
       }
     })
     return instance
+  }
+
+  /**
+   * # 将实例转为普通对象
+   */
+  toJSON() {
+    const json = {} as Record<string, any>
+    const fieldList = Object.keys(this)
+    fieldList.forEach((field) => {
+      json[field] = this[field]
+      const fieldData = this[field]
+      if (Array.isArray(fieldData)) {
+        json[field] = fieldData.map((item) => {
+          if (item instanceof AnyBaseModel) {
+            return item.toJSON()
+          }
+          return item
+        })
+      }
+      if (fieldData instanceof AnyBaseModel) {
+        json[field] = fieldData.toJSON()
+      }
+    })
+    return json
   }
 }

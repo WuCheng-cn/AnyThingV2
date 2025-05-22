@@ -11,5 +11,5 @@ export class WidgetTextBaseEntity extends WidgetFormBase {
 
   @FormField({ formType: EFormItemType.TEXTAREA })
   @CustomField('文本内容')
-  text?: string
+  text = ''
 }

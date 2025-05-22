@@ -1,6 +1,6 @@
 /**
  * # 类包装
  */
-export type ClassConstructor<T> = {
-  new(...args: any[]): T;
-};
+export interface ClassConstructor<T> {
+  new(...args: any[]): T
+}

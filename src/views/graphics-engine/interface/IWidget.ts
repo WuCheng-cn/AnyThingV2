@@ -39,9 +39,9 @@ export const WidgetCategoryDict = AnyDictionaryHelper.createDictionaryArray([
 ])
 
 /**
- * 画布组件注册接口
+ * 画布组件实现接口
  */
-export interface IWidget {
+export interface IWidget<T extends ClassConstructor<WidgetFormBase>[]> {
   /** # 组件名称 */
   name: string
 
@@ -67,8 +67,20 @@ export interface IWidget {
   component: Component
 
   /** # 组件表单配置 */
-  formConfig?: ClassConstructor<WidgetFormBase>[]
+  formConfig?: T
 
-  /** # 组件绑定数据 */
-  widgetData?: Record<string, any>
+  /** # 组件绑定数据 - 运行时使用类名作为key */
+  widgetData: Record<string, InstanceType<T[number]>>
+
+  /**
+   * 获取特定类的实例数据
+   * @param classConstructor 类构造器
+   * @returns 对应类的实例
+   */
+  getWidgetDataByClass: <C extends T[number]>(
+    classConstructor: C
+  ) => InstanceType<C>
 }
+
+/** # 未知画布组件类型 */
+export type IWidgetUnknown = IWidget<ClassConstructor<WidgetFormBase>[]>

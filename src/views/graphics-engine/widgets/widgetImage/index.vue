@@ -6,5 +6,5 @@
 </template>
 
 <script setup lang="ts">
-import image from '../../assets/amilia.gif'
+import image from '../../assets/ILIS-Logo.jpg'
 </script>

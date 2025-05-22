@@ -13,12 +13,14 @@
     </a-layout>
     <a-layout-sider
       v-model:collapsed="collapsed"
-      class="h-full"
+      class="h-full "
       collapsible
       collapsed-width="0"
+      width="400"
+      theme="light"
     >
       <template v-if="currentNode">
-        <ConfigurationForm :current-node="currentNode" />
+        <ConfigurationForm />
       </template>
     </a-layout-sider>
   </a-layout>
@@ -27,7 +29,7 @@
 <script lang="ts" setup>
 import type { Graph, Node } from '@antv/x6'
 import type { Dnd } from '@antv/x6-plugin-dnd'
-import type { IWidget } from './interface/IWidget'
+import type { IWidgetUnknown } from './interface/IWidget'
 import { useGraphicsEngine } from '@/views/graphics-engine/hooks/useGraphicsEngine'
 import { getTeleport } from '@antv/x6-vue-shape'
 import ConfigurationForm from './components/configurationForm/index.vue'
@@ -39,7 +41,7 @@ let dnd: Dnd | undefined
 
 const collapsed = ref(false)
 
-const currentNode = ref<Node<Node.Properties> | null>(null)
+const currentNode = ref<Node | null>(null)
 
 const container = ref<HTMLElement | null>(null)
 
@@ -62,7 +64,7 @@ function resize(e: ResizeObserverEntry[]) {
 }
 
 /** # 处理组件拖拽事件 */
-function onMousedown(e: MouseEvent, item: IWidget) {
+function onMousedown(e: MouseEvent, item: IWidgetUnknown) {
   if (!graph || !dnd) {
     console.warn('图表实例或拖拽插件实例不存在')
     return
@@ -85,6 +87,7 @@ onMounted(() => {
   // 选中节点事件
   graph.on('node:selected', ({ node }) => {
     currentNode.value = node
+    collapsed.value = false
   })
 
   // 点击空白区域清除选中节点，并折叠侧边栏

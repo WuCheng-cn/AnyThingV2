@@ -29,7 +29,7 @@ export function useGraphicsEngine(container: HTMLElement) {
       width: item.width,
       height: item.height,
       component: item.component,
-      data: item.widgetData,
+      data: item,
     })
   })
 

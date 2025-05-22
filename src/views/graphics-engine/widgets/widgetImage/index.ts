@@ -1,11 +1,16 @@
-import type { IWidget } from '../../interface/IWidget'
-import image from '../../assets/amilia.gif'
+import type { ClassConstructor } from '@/anyThing/types/ClassConstructor'
+import type { WidgetFormBase } from '../../entity/WidgetFormBase'
+import image from '../../assets/ILIS-Logo.jpg'
 import { NodeShape } from '../../config/NodeShapeConfig'
+import { WidgetBaseEntity } from '../../entity/WidgetBase'
 import { WidgetCategory } from '../../interface/IWidget'
 
 const { resgistAsyncComponent } = useComponent()
 
-class WidgetImage implements IWidget {
+const fromConfig = [
+] as ClassConstructor<WidgetFormBase>[]
+
+class WidgetImage extends WidgetBaseEntity<typeof fromConfig> {
   name = '图片'
   nodeShape = NodeShape.IMAGE
   width = 100
@@ -13,7 +18,6 @@ class WidgetImage implements IWidget {
   image = image
   category = WidgetCategory.Basic
   component = resgistAsyncComponent(() => import('./index.vue'))
-  widgetData = {}
 }
 
-export default new WidgetImage()
+export default new WidgetImage(fromConfig)

@@ -1,11 +1,18 @@
-import type { IWidget } from '../../interface/IWidget'
-import image from '../../assets/amilia.gif'
+import image from '../../assets/ILIS-Logo.jpg'
 import { NodeShape } from '../../config/NodeShapeConfig'
+import { WidgetBaseEntity } from '../../entity/WidgetBase'
 import { WidgetCategory } from '../../interface/IWidget'
+import { WidgetTextBaseEntity } from './configEntity/WidgetTextBaseEntity'
+import { WidgetTextStyleEntity } from './configEntity/WidgetTextStyleEntity'
 
 const { resgistAsyncComponent } = useComponent()
 
-class WidgetText implements IWidget {
+export const widgetTextFromConfig = [
+  WidgetTextBaseEntity,
+  WidgetTextStyleEntity,
+]
+
+class WidgetText extends WidgetBaseEntity<typeof widgetTextFromConfig> {
   name = '文本'
   nodeShape = NodeShape.TEXT
   width = 100
@@ -13,7 +20,6 @@ class WidgetText implements IWidget {
   image = image
   category = WidgetCategory.Basic
   component = resgistAsyncComponent(() => import('./index.vue'))
-  widgetData = {}
 }
 
-export default new WidgetText()
+export default new WidgetText(widgetTextFromConfig)
