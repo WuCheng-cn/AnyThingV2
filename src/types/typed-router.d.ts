@@ -23,6 +23,8 @@ declare module 'vue-router/auto-routes' {
     '/demo/': RouteRecordInfo<'/demo/', '/demo', Record<never, never>, Record<never, never>>,
     '/graphics-engine/': RouteRecordInfo<'/graphics-engine/', '/graphics-engine', Record<never, never>, Record<never, never>>,
     '/graphics-engine/components/configurationForm/': RouteRecordInfo<'/graphics-engine/components/configurationForm/', '/graphics-engine/components/configurationForm', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/components/toolBar/': RouteRecordInfo<'/graphics-engine/components/toolBar/', '/graphics-engine/components/toolBar', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/components/toolBar/components/ScaleTool': RouteRecordInfo<'/graphics-engine/components/toolBar/components/ScaleTool', '/graphics-engine/components/toolBar/components/ScaleTool', Record<never, never>, Record<never, never>>,
     '/graphics-engine/components/widgetList/': RouteRecordInfo<'/graphics-engine/components/widgetList/', '/graphics-engine/components/widgetList', Record<never, never>, Record<never, never>>,
     '/graphics-engine/components/widgetList/components/List': RouteRecordInfo<'/graphics-engine/components/widgetList/components/List', '/graphics-engine/components/widgetList/components/List', Record<never, never>, Record<never, never>>,
     '/graphics-engine/components/widgetList/components/Search': RouteRecordInfo<'/graphics-engine/components/widgetList/components/Search', '/graphics-engine/components/widgetList/components/Search', Record<never, never>, Record<never, never>>,

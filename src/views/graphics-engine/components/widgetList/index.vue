@@ -1,7 +1,7 @@
 <template>
   <div
     v-onResize:0="resize"
-    class="h-full flex flex-col "
+    class="flex flex-col "
     :style="{
       '--widget-filter-width': `${widgetFilterWidth}px`,
     }"
@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import type { PropType } from 'vue'
-import type { IWidget } from '../../interface/IWidget'
+import type { IWidgetUnknown } from '../../interface/IWidget'
 import { computed, ref } from 'vue'
 import { Registry } from '../../widgets'
 import List from './components/List.vue'
@@ -33,7 +33,7 @@ defineProps({
    * # 拖拽事件
    */
   onMousedown: {
-    type: Function as PropType<(e: MouseEvent, item: IWidget) => void>,
+    type: Function as PropType<(e: MouseEvent, item: IWidgetUnknown) => void>,
     default: () => () => ({}),
   },
 })

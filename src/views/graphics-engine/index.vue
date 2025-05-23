@@ -1,14 +1,17 @@
 <template>
   <a-layout class="h-full">
-    <a-layout class="h-full">
-      <WidgetSearch
+    <a-layout class="h-full flex flex-col">
+      <WidgetFilter
         class="absolute left-0 top-0 z-50 w-[280px]"
         :on-mousedown="onMousedown"
       />
 
-      <div v-onResize:100="resize" class="h-full overflow-hidden">
+      <div v-onResize:100="resize" class="flex-1 h-0 overflow-hidden">
         <div ref="container" class="w-full h-full transition-all" />
         <TeleportContainer />
+      </div>
+      <div class="p-2">
+        <ToolBar v-if="graph" class="w-full" />
       </div>
     </a-layout>
     <a-layout-sider
@@ -33,15 +36,16 @@ import type { IWidgetUnknown } from './interface/IWidget'
 import { useGraphicsEngine } from '@/views/graphics-engine/hooks/useGraphicsEngine'
 import { getTeleport } from '@antv/x6-vue-shape'
 import ConfigurationForm from './components/configurationForm/index.vue'
-import WidgetSearch from './components/widgetList/index.vue'
+import ToolBar from './components/toolBar/index.vue'
+import WidgetFilter from './components/widgetList/index.vue'
 
-let graph: Graph | undefined
+const graph = shallowRef<Graph | undefined>(undefined)
 
 let dnd: Dnd | undefined
 
 const collapsed = ref(false)
 
-const currentNode = ref<Node | null>(null)
+const currentNode = shallowRef<Node | null>(null)
 
 const container = ref<HTMLElement | null>(null)
 
@@ -55,22 +59,22 @@ const TeleportContainer = getTeleport()
 
 /** # 画布自适应 */
 function resize(e: ResizeObserverEntry[]) {
-  if (!graph) {
+  if (!graph.value) {
     return
   }
   const { inlineSize: boxWidth, blockSize: boxHeight } = e[0].devicePixelContentBoxSize[0]
-  graph.resize(boxWidth, boxHeight)
+  graph.value.resize(boxWidth, boxHeight)
   // graph.zoomToFit({ padding: 20 })
 }
 
 /** # 处理组件拖拽事件 */
 function onMousedown(e: MouseEvent, item: IWidgetUnknown) {
-  if (!graph || !dnd) {
+  if (!graph.value || !dnd) {
     console.warn('图表实例或拖拽插件实例不存在')
     return
   }
   const { width, height } = item
-  const node = graph.createNode({ shape: item.nodeShape.toString(), width, height })
+  const node = graph.value.createNode({ shape: item.nodeShape.toString(), width, height })
   dnd.start(node, e)
 }
 
@@ -81,17 +85,17 @@ onMounted(() => {
     return
   }
   const { graphInstance, dndInstance } = useGraphicsEngine(container.value)
-  graph = graphInstance
+  graph.value = graphInstance
   dnd = dndInstance
 
   // 选中节点事件
-  graph.on('node:selected', ({ node }) => {
+  graph.value.on('node:selected', ({ node }) => {
     currentNode.value = node
     collapsed.value = false
   })
 
   // 点击空白区域清除选中节点，并折叠侧边栏
-  graph.on('blank:click', () => {
+  graph.value.on('blank:click', () => {
     currentNode.value = null
     collapsed.value = true
   })
@@ -99,7 +103,7 @@ onMounted(() => {
 
 // 清理事件监听器
 onUnmounted(() => {
-  graph?.dispose()
+  graph.value?.dispose()
 })
 </script>
 
