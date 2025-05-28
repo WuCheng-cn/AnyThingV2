@@ -15,28 +15,15 @@
       :search-value="searchValue"
       :columns="columns"
       :widget-list="list"
-      :on-mousedown="onMousedown"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue'
-import type { IWidgetUnknown } from '../../interface/IWidget'
 import { computed, ref } from 'vue'
 import { Registry } from '../../widgets'
 import List from './components/List.vue'
 import Search from './components/Search.vue'
-
-defineProps({
-  /**
-   * # 拖拽事件
-   */
-  onMousedown: {
-    type: Function as PropType<(e: MouseEvent, item: IWidgetUnknown) => void>,
-    default: () => () => ({}),
-  },
-})
 
 const columns = ref<number>(1)
 

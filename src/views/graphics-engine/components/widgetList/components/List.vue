@@ -1,7 +1,7 @@
 <template>
   <a-collapse v-model:active-key="active">
     <a-collapse-panel
-      v-for="item in (Object.keys(renderMap) as IWidget['category'][])"
+      v-for="item in (Object.keys(renderMap) as IWidgetUnknown['category'][])"
       :key="item"
       :header="WidgetCategoryDict.getLabelByValue(item)"
     >
@@ -34,17 +34,22 @@
 </template>
 
 <script lang="ts" setup>
-import type { IWidget } from '@/views/graphics-engine/interface/IWidget'
+import type { IWidgetUnknown } from '@/views/graphics-engine/interface/IWidget'
+import type { Graph } from '@antv/x6'
+import type { Dnd } from '@antv/x6-plugin-dnd'
+import type { ShallowRef } from 'vue'
 import { WidgetCategoryDict } from '@/views/graphics-engine/interface/IWidget'
 
 const props = defineProps<{
   /** # 组件列表 */
-  widgetList: IWidget[]
+  widgetList: IWidgetUnknown[]
   /** # 列数 */
   columns: number
-  /** # 拖拽事件 */
-  onMousedown: (e: MouseEvent, item: IWidget) => void
 }>()
+
+const graph = inject<ShallowRef<Graph>>('graph')
+
+const dnd = inject<ShallowRef<Dnd>>('dnd')
 
 const renderMap = computed(() => {
   return props.widgetList.reduce((acc, cur) => {
@@ -54,10 +59,21 @@ const renderMap = computed(() => {
     }
     acc[category].push(cur)
     return acc
-  }, {} as Record<IWidget['category'], IWidget[]>)
+  }, {} as Record<IWidgetUnknown['category'], IWidgetUnknown[]>)
 })
 
 const active = ref(Object.keys(renderMap.value))
+
+/** # 处理组件拖拽事件 */
+function onMousedown(e: MouseEvent, item: IWidgetUnknown) {
+  if (!graph?.value || !dnd?.value) {
+    console.warn('图表实例或拖拽插件实例不存在')
+    return
+  }
+  const { width, height } = item
+  const node = graph.value.createNode({ shape: item.nodeShape.toString(), width, height })
+  dnd.value.start(node, e)
+}
 
 function getItemStyle(index: number) {
   const gap = 10 // 间隙大小
@@ -91,7 +107,7 @@ function getItemStyle(index: number) {
   }
 }
 
-function getCategoryContainerStyle(category: IWidget['category']) {
+function getCategoryContainerStyle(category: IWidgetUnknown['category']) {
   const items = renderMap.value[category] || []
   const gap = 10 // 间隙大小
 

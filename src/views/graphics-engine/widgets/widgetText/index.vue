@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-full bg-red-500 "
+    class="w-full h-full bg-blue-500 "
     :style="{
       ...widgetData?.[WidgetTextStyleEntity.name],
       fontSize: `${widgetData?.[WidgetTextStyleEntity.name]?.fontSize}px`,

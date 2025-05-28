@@ -1,7 +1,7 @@
 // import {NodeView} from '@antv/x6'
 import type { Cell, Graph, Node } from '@antv/x6'
 import type { Options } from '@antv/x6/lib/graph/options'
-import type { IWidgetOption } from '../interface/IWidgetOption'
+import type { IWidgetUnknown } from '../interface/IWidget'
 
 export const GraphOption: Partial<Options.Manual> = {
   // 启用滚轮缩放画布
@@ -9,8 +9,15 @@ export const GraphOption: Partial<Options.Manual> = {
     enabled: true,
     modifiers: ['ctrl', 'meta'],
   },
+  // 启用拖拽
+  panning: {
+    enabled: true,
+    eventTypes: ['rightMouseDown'],
+  },
+  // 自动调整画布大小
+  autoResize: true,
+  // 画布背景颜色
   background: {
-    // 画布背景颜色
     color: 'var(--body-color)',
   },
   grid: {
@@ -24,7 +31,7 @@ export const GraphOption: Partial<Options.Manual> = {
     findParent({ node }: { node: Node }): Cell[] {
       const bbox = node.getBBox()
       return (this as unknown as Graph).getNodes().filter((node: Cell) => {
-        const data = node.getData<IWidgetOption>()
+        const data = node.getData<IWidgetUnknown>()
         if (data?.isParent) {
           const targetBBox = node.getBBox()
           return bbox.isIntersectWithRect(targetBBox)
@@ -39,7 +46,7 @@ export const GraphOption: Partial<Options.Manual> = {
       args: {
         padding: -1,
         attrs: {
-          stroke: 'var(--primary-color)',
+          stroke: 'var(--primary)',
           strokeWidth: 2,
           strokeDasharray: '6 4',
         },
