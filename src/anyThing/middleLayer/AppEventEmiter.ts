@@ -31,11 +31,11 @@ type EventName = (typeof _Events)[number]
 
 /**
  * # 应用级事件集散中心 😎
- * 你可以在这里注册事件、触发、移除、中断、获取事件。以达到模块间解耦的目的。
+ * 你可以在这里注册、触发、移除、中断、获取事件。以达到模块间解耦的目的。
  */
 class AppEventEmiter {
   /** # 事件 */
-  private eventMap: Map<EventName, ((...args: any[]) => void)[]> = new Map()
+  private eventMap: Map<EventName, Set<((...args: any[]) => void)>> = new Map()
 
   /**
    * # 注册事件
@@ -43,8 +43,8 @@ class AppEventEmiter {
    * @param callback 回调函数
    */
   on(event: EventName, callback: (...args: any[]) => void) {
-    const callbacks = this.eventMap.get(event) || []
-    callbacks.push(callback)
+    const callbacks = this.eventMap.get(event) || new Set()
+    callbacks.add(callback)
     this.eventMap.set(event, callbacks)
   }
 
@@ -54,7 +54,7 @@ class AppEventEmiter {
    * @param args 参数
    */
   emit(event: EventName, ...args: any[]) {
-    const callbacks = this.eventMap.get(event) || []
+    const callbacks = this.eventMap.get(event) || new Set()
     callbacks.forEach((callback) => {
       callback(...args)
     })
@@ -66,8 +66,9 @@ class AppEventEmiter {
    * @param callback 回调函数
    */
   off(event: EventName, callback: (...args: any[]) => void) {
-    const callbacks = this.eventMap.get(event) || []
-    this.eventMap.set(event, callbacks.filter(cb => cb !== callback))
+    const callbacks = this.eventMap.get(event) || new Set()
+    callbacks.delete(callback)
+    this.eventMap.set(event, callbacks)
   }
 
   /**
