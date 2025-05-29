@@ -1,46 +1,54 @@
 .x6-widget-transform {
+  --long-bar-size: 60px;
+  --short-bar-size: 20px;
   border: unset;
-    & &-cursor{
-    &-n{
-      width: 60px !important;
-      transform: translate(-23px,0);
+
+  /* 方向控制柄公共样式 */
+  & &-cursor {
+    &-n, &-s {
+      margin: unset !important;
+      width: var(--long-bar-size) !important;
+      transform: translateX(-50%);
     }
-    &-s{
-      width: 60px !important;
-      transform: translate(-23px,5px);
+    &-e, &-w {
+      margin: unset !important;
+      height: var(--long-bar-size) !important;
+      transform: translateY(-50%);
     }
-    &-e{
-      height: 60px !important;
-      transform: translate(5px,-23px);
+
+    /* 位置偏移 */
+    &-n { top: -10px !important; }
+    &-s { bottom: -10px !important; }
+    &-e { right: -10px !important; }
+    &-w { left: -10px !important; }
+
+    /* 四角公共样式 */
+    &-sw, &-se, &-ne, &-nw {
+      margin: unset !important;
+      width: var(--short-bar-size);
+      height: var(--short-bar-size);
+      z-index: 1;
     }
-    &-w{
-      height: 60px !important;
-      transform: translate(0,-23px);
-    }
-    &-sw{
-      transform: translate(0,5px);
-    }
-    &-se{
-      transform: translate(5px,5px);
-    }
-    &-ne{
-      transform: translate(5px,0);
-    }
+    &-sw { bottom: -10px; left: -10px; }
+    &-se { bottom: -10px; right: -10px; }
+    &-ne { top: -10px; right: -10px; }
+    &-nw { top: -10px; left: -10px; }
   }
 
   & &-resize {
-    width: 20px;
-    height: 20px;
-    border: 4px solid var(--primary);
+    width: var(--short-bar-size);
+    height: var(--short-bar-size);
+    border: 4px solid var(--colorPrimary);
 
     &:hover {
-      background-color: var(--primary-hover);
+      background-color: var(--colorPrimaryHover);
+      z-index: 2;
     }
   }
 
   &-active {
     & &-handle {
-      background-color: var(--primary-hover);
+      background-color: var(--colorPrimaryHover);
     }
   }
 }

@@ -2,7 +2,7 @@ import type { Selection } from '@antv/x6-plugin-selection'
 
 export const SelectionOption: Partial<Selection.Options> = {
   enabled: true,
-  // modifiers: ['ctrl', 'meta'],
+  modifiers: ['ctrl', 'meta'],
   className: 'any-selection', // 选框的自定义 class 名称
   multiple: true, // 是否启用点击多选，启用后按住 ctrl 或 command 键点击节点实现多选
   rubberband: true, // 是否启用框选节点功能

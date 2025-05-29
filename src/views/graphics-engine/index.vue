@@ -66,6 +66,10 @@ onMounted(() => {
 
   // 选中节点事件
   graph.value.on('node:selected', ({ node }) => {
+    const cellsNum = graph.value?.getSelectedCellCount() || 0
+    if (cellsNum > 1) {
+      return
+    }
     currentNode.value = node
     collapsed.value = false
   })

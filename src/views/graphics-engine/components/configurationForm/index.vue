@@ -29,7 +29,7 @@ import type { IWidgetUnknown } from '../../interface/IWidget'
 
 const currentNode = inject('currentNode') as Ref<Node>
 
-const widget = ref(currentNode.value?.getData() as IWidgetUnknown)
+const widget = computed(() => currentNode.value?.getData() as IWidgetUnknown)
 
 const activeKey = ref(widget.value.formConfig?.map((_item, index) => index))
 
@@ -37,10 +37,12 @@ const initData = ref<Record<string, any>>({})
 
 const formRefs = ref<Record<string, any>>({})
 
-if (widget.value?.widgetData && widget.value?.formConfig) {
-  const entries = widget.value.formConfig.map(Entity => [Entity.name, (Entity as any).fromJSON(widget.value.widgetData[Entity.name] || {})])
-  initData.value = Object.fromEntries(entries) as Record<string, InstanceType<ClassConstructor<AnyBaseModel>>>
-}
+watch(widget, () => {
+  if (widget.value?.widgetData && widget.value?.formConfig) {
+    const entries = widget.value.formConfig.map(Entity => [Entity.name, (Entity as any).fromJSON(widget.value.widgetData[Entity.name] || {})])
+    initData.value = Object.fromEntries(entries) as Record<string, InstanceType<ClassConstructor<AnyBaseModel>>>
+  }
+}, { deep: true })
 
 function setFormRef(el: any, entity: ClassConstructor<WidgetFormBase>) {
   formRefs.value[entity.name] = el

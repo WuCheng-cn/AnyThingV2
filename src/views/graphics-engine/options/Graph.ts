@@ -46,7 +46,7 @@ export const GraphOption: Partial<Options.Manual> = {
       args: {
         padding: -1,
         attrs: {
-          stroke: 'var(--primary)',
+          stroke: 'var(--colorPrimary)',
           strokeWidth: 2,
           strokeDasharray: '6 4',
         },

@@ -206,12 +206,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@antv/x6-plugin-selection@npm:2.1.5":
-  version: 2.1.5
-  resolution: "@antv/x6-plugin-selection@npm:2.1.5"
+"@antv/x6-plugin-selection@npm:2.2.1":
+  version: 2.2.1
+  resolution: "@antv/x6-plugin-selection@npm:2.2.1"
   peerDependencies:
     "@antv/x6": ^2.x
-  checksum: 10c0/678c91a385ae0b6af60f04a910f202ea1eb67258b3e9543ed60fd14e4b1f4954761431cfb22e884339c13a90634300588d5885ed0805305bd5a4c24963af1a6f
+  checksum: 10c0/3d64873cdd2905146952830ebca7acf658fb205efb429b6eed1ce1945683f207d135a80bd4ce6a461138744dd00f6b306ccfe757bc6c0919de39c5cfa7f15e49
   languageName: node
   linkType: hard
 
@@ -4757,7 +4757,7 @@ __metadata:
     "@antv/x6-plugin-dnd": "npm:^2.1.1"
     "@antv/x6-plugin-history": "npm:^2.2.4"
     "@antv/x6-plugin-keyboard": "npm:^2.2.3"
-    "@antv/x6-plugin-selection": "npm:2.1.5"
+    "@antv/x6-plugin-selection": "npm:2.2.1"
     "@antv/x6-plugin-snapline": "npm:^2.1.7"
     "@antv/x6-plugin-transform": "npm:^2.1.8"
     "@antv/x6-vue-shape": "npm:^2.1.2"
