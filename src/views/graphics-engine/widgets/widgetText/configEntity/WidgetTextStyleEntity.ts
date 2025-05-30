@@ -61,7 +61,7 @@ export class WidgetTextStyleEntity extends WidgetFormBase {
   @CustomField('字体颜色')
   color = '#000'
 
-  @FormField({ formType: EFormItemType.RADIO })
+  @FormField({ formType: EFormItemType.INPUT_SEGMENTED })
   @CustomField('字体粗细', EFontWeightDict)
   fontWeight = EFontWeight.NORMAL
 
@@ -69,7 +69,7 @@ export class WidgetTextStyleEntity extends WidgetFormBase {
   @CustomField('字体样式', EFontFamilyDict)
   fontFamily = EFontFamily.DEFAULT
 
-  @FormField({ formType: EFormItemType.RADIO })
+  @FormField({ formType: EFormItemType.INPUT_SEGMENTED })
   @CustomField('对齐方式', ETextAlignDict)
   textAlign = ETextAlign.LEFT
 }

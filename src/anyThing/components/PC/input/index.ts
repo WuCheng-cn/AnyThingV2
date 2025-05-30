@@ -7,6 +7,7 @@ import InputDateTime from './InputDateTime.vue'
 import InputDateTimeRange from './InputDateTimeRange.vue'
 import InputNumber from './InputNumber.vue'
 import InputRadio from './InputRadio.vue'
+import InputSegmented from './InputSegmented.vue'
 import InputSelect from './InputSelect.vue'
 import InputString from './InputString.vue'
 import InputSwitch from './InputSwitch.vue'
@@ -39,4 +40,5 @@ export const componentsMap: FormItemTypeMapping = {
   [EFormItemType.DATETIME]: InputDateTime,
   [EFormItemType.DATE_RANGE]: InputDateRange,
   [EFormItemType.DATETIME_RANGE]: InputDateTimeRange,
+  [EFormItemType.INPUT_SEGMENTED]: InputSegmented,
 }
