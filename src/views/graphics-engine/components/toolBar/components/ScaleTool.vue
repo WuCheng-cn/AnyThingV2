@@ -29,10 +29,15 @@
       </a-input-number>
     </a-col>
     <a-col flex="0 1 32px">
-      <a-button
-        :icon="h(lockScale ? LockOpen : Lock, { size: 16, strokewidth: 3 })"
-        @click="lockScale = !lockScale"
-      />
+      <a-popover trigger="hover">
+        <template #content>
+          {{ lockScale ? '已解锁' : '已锁定' }}
+        </template>
+        <a-button
+          :icon="h(lockScale ? LockOpen : Lock, { size: 16, strokewidth: 3 })"
+          @click="lockScale = !lockScale"
+        />
+      </a-popover>
     </a-col>
   </a-row>
 </template>

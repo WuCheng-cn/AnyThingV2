@@ -176,6 +176,5 @@ defineExpose({ getValidatedFormData, checkedFormKeys, getFormData })
 <style scoped>
 :deep(.ant-form-item .ant-form-item-label > label) {
   width: 100%;
-  justify-content: flex-end;
 }
 </style>

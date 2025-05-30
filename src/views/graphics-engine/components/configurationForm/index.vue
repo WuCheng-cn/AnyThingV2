@@ -60,7 +60,7 @@ function handleChange() {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 :deep(.ant-form-item){
   margin: unset !important;
 }
