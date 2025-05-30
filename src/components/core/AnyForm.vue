@@ -11,7 +11,11 @@
     @finish="props.onFinish"
   >
     <div>
-      <a-checkbox-group v-model:value="checkedFormKeys" class="grid gap-x-3" :class="[`grid-cols-${cols}`]">
+      <a-checkbox-group
+        v-model:value="checkedFormKeys"
+        class="grid gap-x-6"
+        :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }"
+      >
         <slot name="form-before" :data="formState" />
         <div
           v-for="field in formFieldList"
@@ -28,7 +32,7 @@
             <slot :name="field" :data="formState">
               <AnyInput
                 v-model="formState[field]"
-                class="w-full min-w-[200px]"
+                class="w-full"
                 :entity="entity"
                 :field="field"
                 :form-data="formState"

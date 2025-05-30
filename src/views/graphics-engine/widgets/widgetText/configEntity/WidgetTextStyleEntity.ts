@@ -49,27 +49,27 @@ export const ETextAlignDict = AnyDictionaryHelper.createDictionaryArray([
 /**
  * # 文本元件的样式配置entity
  */
-@CustomClass({ name: '样式' })
+@CustomClass({ name: '样式', formCols: 2, formLabelVertical: true })
 export class WidgetTextStyleEntity extends WidgetFormBase {
   type = EWigetFormConfigType.STYLE
 
   @FormField({ formType: EFormItemType.INPUT_NUMBER })
-  @CustomField('字体大小')
+  @CustomField('大小')
   fontSize = 16
 
-  @FormField({ formType: EFormItemType.COLOR_PICKER })
-  @CustomField('字体颜色')
-  color = '#000'
+  @FormField({ formType: EFormItemType.SELECT })
+  @CustomField('字体', EFontFamilyDict)
+  fontFamily = EFontFamily.DEFAULT
 
   @FormField({ formType: EFormItemType.INPUT_SEGMENTED })
-  @CustomField('字体粗细', EFontWeightDict)
+  @CustomField('粗细', EFontWeightDict)
   fontWeight = EFontWeight.NORMAL
-
-  @FormField({ formType: EFormItemType.SELECT })
-  @CustomField('字体样式', EFontFamilyDict)
-  fontFamily = EFontFamily.DEFAULT
 
   @FormField({ formType: EFormItemType.INPUT_SEGMENTED })
   @CustomField('对齐方式', ETextAlignDict)
   textAlign = ETextAlign.LEFT
+
+  @FormField({ formType: EFormItemType.COLOR_PICKER })
+  @CustomField('颜色')
+  color = '#000'
 }

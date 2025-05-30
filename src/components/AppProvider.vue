@@ -11,6 +11,7 @@
         size: 12,
         fontSize: 12,
       },
+      algorithm: [theme.compactAlgorithm],
     }"
   >
     <section class="h-full w-full" :style="{ ...tokenMap }">

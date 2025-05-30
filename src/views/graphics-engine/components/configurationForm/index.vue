@@ -13,7 +13,9 @@
         :ref="(el) => setFormRef(el, item)"
         :init-data="initData[item.name]"
         :entity="item"
-        :cols="1"
+        :cols="(item?.prototype as AnyBaseModel)?.getCustomClassConfig()?.formCols || 1"
+        :label-col="(item?.prototype as AnyBaseModel)?.getCustomClassConfig()?.formLabelVertical ? { span: 24 } : undefined"
+        label-align="left"
         @change="handleChange"
       />
     </a-collapse-panel>
@@ -57,3 +59,9 @@ function handleChange() {
   })
 }
 </script>
+
+<style scoped>
+:deep(.ant-form-item){
+  margin: unset !important;
+}
+</style>

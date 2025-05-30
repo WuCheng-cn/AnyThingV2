@@ -7,7 +7,7 @@
     />
     <Copy
       v-if="isSupported"
-      :size="16"
+      :size="12"
       :stroke-width="3"
       class="cursor-pointer hover:opacity-70"
       @click="copy(value);message.success('复制成功')"

@@ -223,6 +223,21 @@ export class AnyBaseModel {
   }
 
   /**
+   * # 获取类的配置
+   */
+  getCustomClassConfig() {
+    return getCustomClassConfig(this)
+  }
+
+  /**
+   * # 获取类的配置
+   * @returns 静态方法调用，返回实例方法调用
+   */
+  static getCustomClassConfig() {
+    return new this().getCustomClassConfig()
+  }
+
+  /**
    * # 从json数据中解析出实体对象(实例调用)
    * @param json
    */
