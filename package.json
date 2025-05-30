@@ -60,7 +60,7 @@
     "@unhead/vue": "^2.0.2",
     "@vant/touch-emulator": "^1.4.0",
     "@vant/use": "^1.6.0",
-    "@vueuse/core": "^13.0.0",
+    "@vueuse/core": "^13.3.0",
     "ant-design-vue": "^4.2.6",
     "axios": "^1.8.4",
     "dayjs": "^1.11.13",
@@ -78,7 +78,8 @@
     "vooks": "^0.2.12",
     "vue": "^3.5.13",
     "vue-i18n": "^11.1.2",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "vue3-colorpicker": "^2.3.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",

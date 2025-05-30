@@ -3,14 +3,7 @@
     v-model:value.trim="value"
     v-bind="$attrs"
     @change="onChange"
-  >
-    <template v-if="$slots.addonBefore" #addonBefore>
-      <slot name="addonBefore" />
-    </template>
-    <template v-if="$slots.addonAfter" #addonAfter>
-      <slot name="addonAfter" />
-    </template>
-  </a-input>
+  />
 </template>
 
 <script lang="ts" setup>

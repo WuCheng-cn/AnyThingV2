@@ -26,4 +26,6 @@ export enum EFormItemType {
   TEXTAREA,
   /** # 开关 */
   SWITCH,
+  /** # 颜色选择器 */
+  COLOR_PICKER,
 }

@@ -1,6 +1,7 @@
 import { EFormItemType } from '../../../enum/EFormItemType'
 import InputArea from './InputArea.vue'
 import InputCheckBox from './InputCheckBox.vue'
+import InputColorPicker from './InputColorPicker.vue'
 import InputDate from './InputDate.vue'
 import InputDateRange from './InputDateRange.vue'
 import InputDateTime from './InputDateTime.vue'
@@ -41,4 +42,5 @@ export const componentsMap: FormItemTypeMapping = {
   [EFormItemType.DATE_RANGE]: InputDateRange,
   [EFormItemType.DATETIME_RANGE]: InputDateTimeRange,
   [EFormItemType.INPUT_SEGMENTED]: InputSegmented,
+  [EFormItemType.COLOR_PICKER]: InputColorPicker,
 }

@@ -57,7 +57,7 @@ export class WidgetTextStyleEntity extends WidgetFormBase {
   @CustomField('字体大小')
   fontSize = 16
 
-  @FormField()
+  @FormField({ formType: EFormItemType.COLOR_PICKER })
   @CustomField('字体颜色')
   color = '#000'
 
