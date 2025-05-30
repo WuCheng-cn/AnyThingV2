@@ -28,4 +28,6 @@ export enum EFormItemType {
   SWITCH,
   /** # 颜色选择器 */
   COLOR_PICKER,
+  /** # 上传组件 */
+  UPLOAD,
 }

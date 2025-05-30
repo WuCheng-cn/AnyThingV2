@@ -12,6 +12,7 @@ import InputSegmented from './InputSegmented.vue'
 import InputSelect from './InputSelect.vue'
 import InputString from './InputString.vue'
 import InputSwitch from './InputSwitch.vue'
+import InputUpload from './InputUpload.vue'
 
 type FormItemTypeMapping = {
   [K in EFormItemType]: any;
@@ -43,4 +44,5 @@ export const componentsMap: FormItemTypeMapping = {
   [EFormItemType.DATETIME_RANGE]: InputDateTimeRange,
   [EFormItemType.INPUT_SEGMENTED]: InputSegmented,
   [EFormItemType.COLOR_PICKER]: InputColorPicker,
+  [EFormItemType.UPLOAD]: InputUpload,
 }

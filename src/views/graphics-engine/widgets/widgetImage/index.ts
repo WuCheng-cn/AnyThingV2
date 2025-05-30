@@ -4,10 +4,12 @@ import image from '../../assets/ILIS-Logo.jpg'
 import { NodeShape } from '../../config/NodeShapeConfig'
 import { WidgetBaseEntity } from '../../entity/WidgetBase'
 import { WidgetCategory } from '../../interface/IWidget'
+import { widgetImageBaseEntity } from './configEntity/widgetImageBaseEntity'
 
 const { resgistAsyncComponent } = useComponent()
 
 const fromConfig = [
+  widgetImageBaseEntity,
 ] as ClassConstructor<WidgetFormBase>[]
 
 class WidgetImage extends WidgetBaseEntity<typeof fromConfig> {

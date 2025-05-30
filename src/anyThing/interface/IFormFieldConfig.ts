@@ -94,4 +94,28 @@ export interface IFormFieldConfig extends IFieldBaseConfig {
    * 适用{@link EFormItemType.INPUT_SELECTOR}
    */
   selectorConfig?: IInputSelectorConfig
+
+  /**
+   * # 上传地址（post）
+   * 适用{@link EFormItemType.UPLOAD}
+   */
+  action?: string
+
+  /**
+   * # 上传文件类型（默认不限）
+   * 适用{@link EFormItemType.UPLOAD}
+   */
+  accept?: string[]
+
+  /**
+   * # 上传文件大小限制（系统默认50M）
+   * 适用{@link EFormItemType.UPLOAD}
+   */
+  maxSize?: number
+
+  /**
+   * # 上传文件数量限制（系统默认5个）
+   * 适用{@link EFormItemType.UPLOAD}
+   */
+  maxCount?: number
 }
