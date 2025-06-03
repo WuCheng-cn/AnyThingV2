@@ -1,7 +1,7 @@
 <template>
   <div
     v-onResize:0="resize"
-    class="flex flex-col "
+    class="flex flex-col bg-[var(--colorBgBase)] shadow-md rounded-md"
     :style="{
       '--widget-filter-width': `${widgetFilterWidth}px`,
     }"

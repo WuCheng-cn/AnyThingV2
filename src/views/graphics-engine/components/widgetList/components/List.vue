@@ -12,19 +12,22 @@
         <div
           v-for="(widget, index) in renderMap[item]"
           :key="widget.name"
-          class=" absolute flex flex-col cursor-grab backdrop-blur-md border px-2.5 transition-all duration-300 ease-in-out shadow-md"
+          class=" absolute flex flex-col cursor-grab backdrop-blur-md transition-all duration-300 ease-in-out shadow-md rounded-md overflow-hidden"
           :style="getItemStyle(index)"
           @mousedown="onMousedown($event, widget)"
         >
-          <div class="py-1.5">
-            <div class="text-sm tracking-wider transition-all duration-300 ease-in-out">
+          <div class="p-1.5 bg-[var(--colorBgLayout)]">
+            <div
+              class="text-sm tracking-wider transition-all duration-300 ease-in-out font-bold"
+              :style="{ fontSize: 'var(--fontSize)px' }"
+            >
               {{ widget.name }}
             </div>
           </div>
-          <div class="flex-1 h-0">
+          <div class="flex-1 h-0 p-1.5">
             <img
               :src="widget.image"
-              class="w-full h-full object-contain"
+              class="w-full h-full bg-[var(--colorBgLayout)] rounded-md"
             >
           </div>
         </div>
@@ -91,7 +94,7 @@ function getItemStyle(index: number) {
   // 计算顶部位置
   const widgetFilterWidth = 'var(--widget-filter-width)'
   const widgetItemWidth = `((${widgetFilterWidth} - ${gap}px) / ${props.columns} - ${gap}px)`
-  const widgetItemHeight = `${widgetItemWidth} * 1.25`
+  const widgetItemHeight = `${widgetItemWidth} * 0.9`
   const top = isFirstRow
     ? `${gap}px`
     : `calc((${widgetItemHeight} + ${gap}px) * ${Math.floor(index / props.columns)} + ${gap}px)`
@@ -100,7 +103,7 @@ function getItemStyle(index: number) {
     width,
     left,
     top,
-    'aspect-ratio': '1/1.25',
+    'aspect-ratio': '1/0.9',
     'background-color': 'var(--table-color)',
     'border-color': 'var(--border-color)',
     'border-radius': 'var(--any-border-radius)',
@@ -120,7 +123,7 @@ function getCategoryContainerStyle(category: IWidgetUnknown['category']) {
   // 计算容器高度：考虑每行高度和间隙
   const widgetFilterWidth = 'var(--widget-filter-width)'
   const widgetItemWidth = `((${widgetFilterWidth} - ${gap}px) / ${props.columns} - ${gap}px)`
-  const widgetItemHeight = `${widgetItemWidth} * 1.25`
+  const widgetItemHeight = `${widgetItemWidth} * 0.9`
 
   return {
     height: `calc((${widgetItemHeight} + ${gap}px) * ${rows} + ${gap}px)`,

@@ -1,10 +1,10 @@
 <template>
-  <div class="flex items-center gap-2.5 w-full justify-between p-[5px_10px] bg-[var(--table-color)] backdrop-blur-lg rounded-t-[10px] shadow-[var(--box-shadow-2)] border-b border-[var(--border-color)] transition-all duration-300 ease-[var(--cubic-bezier-ease-in-out)]">
-    <div class="flex items-center text-white">
+  <div class="flex items-center gap-2.5 w-full justify-between p-[5px_10px] bg-[var(--colorBgLayout)] backdrop-blur-lg rounded-t-[10px] transition-all duration-300">
+    <div class="flex items-center gap-1">
       <span>组件</span>
-      <FilterIcon :size="14" :stroke-width="3" />
+      <FilterIcon :size="12" :stroke-width="3" />
     </div>
-    <div class="flex flex-1 gap-2.5 w-full overflow-hidden justify-between">
+    <div class="flex flex-1 w-full overflow-hidden justify-between">
       <div class="flex-1">
         <a-input
           v-model:value="searchValue"
@@ -14,8 +14,8 @@
           @input="emits('change', searchValue)"
         />
       </div>
-      <a-tooltip>
-        <template #title>
+      <a-popover>
+        <template #content>
           {{ columns === 1 ? '列表' : '网格' }}
         </template>
         <a-button
@@ -26,7 +26,7 @@
           :icon="columns === 1 ? h(LayoutList) : h(LayoutGrid) "
           @click="handleGridChange"
         />
-      </a-tooltip>
+      </a-popover>
     </div>
   </div>
 </template>
