@@ -10,4 +10,6 @@ export enum NodeShape {
   CHART_XY,
   /** # 垂直柱状图组件 */
   CHART_VERTICAL_BAR,
+  /** # 某种关系图 */
+  CHART_PARALLEL_COORDINATE_POLT,
 }
