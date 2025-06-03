@@ -6,4 +6,6 @@ export enum NodeShape {
   TEXT,
   /** # 图片组件 */
   IMAGE,
+  /** # XY图表组件 */
+  CHART_XY,
 }

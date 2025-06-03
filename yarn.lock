@@ -4870,6 +4870,7 @@ __metadata:
     vitest: "npm:^3.1.1"
     vooks: "npm:^0.2.12"
     vue: "npm:^3.5.13"
+    vue-data-ui: "npm:^2.9.6"
     vue-i18n: "npm:^11.1.2"
     vue-router: "npm:^4.5.0"
     vue-tsc: "npm:^2.2.8"
@@ -14324,6 +14325,19 @@ __metadata:
   version: 2.2.8
   resolution: "vue-component-type-helpers@npm:2.2.8"
   checksum: 10c0/c1dfd755ddee15d38057404f101ee607757f88de18e0dd03ad2677be7b0688d86e79e9dab54df9800347abe9826246fc4abbcb54e7827d9289808ba288347bfd
+  languageName: node
+  linkType: hard
+
+"vue-data-ui@npm:^2.9.6":
+  version: 2.9.6
+  resolution: "vue-data-ui@npm:2.9.6"
+  peerDependencies:
+    jspdf: ^3.0.1
+    vue: ">=3.3.0"
+  peerDependenciesMeta:
+    jspdf:
+      optional: true
+  checksum: 10c0/9a0247a7bbf67fe34a8340493b03e0df69f5044a5193ed47ebddd69ec75f2b2e218f415ab11357c573777e7be3c2823a996387b8ae8c92e6283f55b73f48dbbd
   languageName: node
   linkType: hard
 
