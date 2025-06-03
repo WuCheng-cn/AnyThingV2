@@ -16,4 +16,6 @@ export enum NodeShape {
   CHART_FLOW,
   /** # K线图（烛台图） */
   CHART_CANDLESTICK,
+  /** # 堆叠条形图 */
+  CHART_STACK_BAR,
 }
