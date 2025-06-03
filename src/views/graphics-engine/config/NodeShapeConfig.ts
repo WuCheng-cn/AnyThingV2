@@ -14,4 +14,6 @@ export enum NodeShape {
   CHART_PARALLEL_COORDINATE_POLT,
   /** # 桑基图 */
   CHART_FLOW,
+  /** # K线图（烛台图） */
+  CHART_CANDLESTICK,
 }
