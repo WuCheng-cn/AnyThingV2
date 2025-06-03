@@ -8,4 +8,6 @@ export enum NodeShape {
   IMAGE,
   /** # XY图表组件 */
   CHART_XY,
+  /** # 垂直柱状图组件 */
+  CHART_VERTICAL_BAR,
 }
