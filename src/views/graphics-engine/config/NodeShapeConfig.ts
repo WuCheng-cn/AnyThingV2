@@ -12,4 +12,6 @@ export enum NodeShape {
   CHART_VERTICAL_BAR,
   /** # 某种关系图 */
   CHART_PARALLEL_COORDINATE_POLT,
+  /** # 桑基图 */
+  CHART_FLOW,
 }
