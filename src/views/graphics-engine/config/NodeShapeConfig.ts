@@ -40,4 +40,6 @@ export enum NodeShape {
   CHART_WORLD_3D,
   /** # 3D柱状图 */
   CHART_3D_BAR,
+  /** # 轮播表 */
+  CHART_CAROUSEL_TABLE,
 }

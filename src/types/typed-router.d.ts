@@ -45,6 +45,7 @@ declare module 'vue-router/auto-routes' {
     '/graphics-engine/widgets/widgetChartWorld/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartWorld/', '/graphics-engine/widgets/widgetChartWorld', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartXY/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartXY/', '/graphics-engine/widgets/widgetChartXY', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetImage/': RouteRecordInfo<'/graphics-engine/widgets/widgetImage/', '/graphics-engine/widgets/widgetImage', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/widgets/widgetTableCarouselTable/': RouteRecordInfo<'/graphics-engine/widgets/widgetTableCarouselTable/', '/graphics-engine/widgets/widgetTableCarouselTable', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetText/': RouteRecordInfo<'/graphics-engine/widgets/widgetText/', '/graphics-engine/widgets/widgetText', Record<never, never>, Record<never, never>>,
   }
 }
