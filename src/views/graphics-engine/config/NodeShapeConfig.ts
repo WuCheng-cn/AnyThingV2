@@ -24,4 +24,6 @@ export enum NodeShape {
   CHART_TREE,
   /** # 气泡图 */
   CHART_CIRCLE_PACK,
+  /** # 轮状百分比图 */
+  CHART_WHEEL,
 }

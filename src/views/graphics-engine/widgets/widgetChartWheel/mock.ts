@@ -1,0 +1,6 @@
+import type { VueUiWheelConfig, VueUiWheelDataset } from 'vue-data-ui'
+
+export const mockDataset: VueUiWheelDataset = {
+  percentage: 66.5,
+}
+export const mockConfig: VueUiWheelConfig = { responsive: true, style: { fontFamily: 'inherit', chart: { backgroundColor: '#1A1A1A', color: '#CCCCCC', animation: { use: true, speed: 0.5, acceleration: 1 }, layout: { wheel: { ticks: { rounded: true, inactiveColor: '#3A3A3A', activeColor: '#5f8bee', sizeRatio: 0.9, gradient: { show: true, shiftHueIntensity: 100 } } }, innerCircle: { show: true, stroke: '#3A3A3A', strokeWidth: 1 }, percentage: { show: true, fontSize: 48, rounding: 1, bold: true } }, title: { text: 'Title', color: '#FAFAFA', fontSize: 20, bold: true, textAlign: 'center', paddingLeft: 0, paddingRight: 0, subtitle: { color: '#A1A1A1', text: 'Subtitle', fontSize: 16, bold: false } } } }, userOptions: { show: true, showOnChartHover: false, keepStateOnChartLeave: true, position: 'right', buttons: { pdf: true, img: true, fullscreen: true, annotator: true }, buttonTitles: { open: 'Open options', close: 'Close options', pdf: 'Download PDF', img: 'Download PNG', fullscreen: 'Toggle fullscreen', annotator: 'Toggle annotator' }, print: { scale: 2 } } }
