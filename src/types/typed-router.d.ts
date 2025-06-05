@@ -32,6 +32,7 @@ declare module 'vue-router/auto-routes' {
     '/graphics-engine/widgets/widgetChartCirclePack/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartCirclePack/', '/graphics-engine/widgets/widgetChartCirclePack', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartDonut/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartDonut/', '/graphics-engine/widgets/widgetChartDonut', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartFlow/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartFlow/', '/graphics-engine/widgets/widgetChartFlow', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/widgets/widgetChartGauge/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartGauge/', '/graphics-engine/widgets/widgetChartGauge', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartParallelCoordinatePlot/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartParallelCoordinatePlot/', '/graphics-engine/widgets/widgetChartParallelCoordinatePlot', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartStackbar/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartStackbar/', '/graphics-engine/widgets/widgetChartStackbar', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartThermometer/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartThermometer/', '/graphics-engine/widgets/widgetChartThermometer', Record<never, never>, Record<never, never>>,

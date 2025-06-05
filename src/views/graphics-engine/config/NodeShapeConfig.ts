@@ -28,4 +28,6 @@ export enum NodeShape {
   CHART_WHEEL,
   /** # 温度计图 */
   CHART_THERMOMETER,
+  /** # 仪表盘图 */
+  CHART_GAUGE,
 }
