@@ -20,4 +20,6 @@ export enum NodeShape {
   CHART_STACK_BAR,
   /** # 环形图 */
   CHART_DONUT,
+  /** # 分层树形结构图 */
+  CHART_TREE,
 }
