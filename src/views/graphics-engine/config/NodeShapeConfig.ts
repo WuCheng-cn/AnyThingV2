@@ -22,4 +22,6 @@ export enum NodeShape {
   CHART_DONUT,
   /** # 分层树形结构图 */
   CHART_TREE,
+  /** # 气泡图 */
+  CHART_CIRCLE_PACK,
 }
