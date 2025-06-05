@@ -1,5 +1,5 @@
 <template>
-  <a-collapse v-model:active-key="active">
+  <a-collapse v-model:active-key="active" :bordered="false">
     <a-collapse-panel
       v-for="item in (Object.keys(renderMap) as IWidgetUnknown['category'][])"
       :key="item"
@@ -18,7 +18,7 @@
         >
           <div class="p-1.5 bg-[var(--colorBgLayout)]">
             <div
-              class="text-sm tracking-wider transition-all duration-300 ease-in-out font-bold"
+              class="text-sm tracking-wider transition-all duration-300 ease-in-out font-bold text-ellipsis whitespace-nowrap overflow-hidden"
               :style="{ fontSize: 'var(--fontSize)px' }"
             >
               {{ widget.name }}
@@ -27,7 +27,7 @@
           <div class="flex-1 h-0 p-1.5">
             <img
               :src="widget.image"
-              class="w-full h-full bg-[var(--colorBgLayout)] rounded-md"
+              class="w-full h-full bg-[#1a1a1a] rounded-md object-contain"
             >
           </div>
         </div>

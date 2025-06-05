@@ -47,7 +47,7 @@ const columns = ref(1)
 const searchValue = ref('')
 
 function handleGridChange() {
-  columns.value >= 2
+  columns.value >= 3
     ? columns.value = 1
     : columns.value += 1
   emits('columnsChange', columns.value)

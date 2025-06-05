@@ -12,7 +12,7 @@
     />
     <List
       v-show="widgetFilterWidth"
-      class=" max-h-[calc(100vh-90px)] overflow-auto"
+      class=" max-h-[calc(100vh-105px)] overflow-auto"
       :search-value="searchValue"
       :columns="columns"
       :widget-list="list"
