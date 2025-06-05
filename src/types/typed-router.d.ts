@@ -28,6 +28,7 @@ declare module 'vue-router/auto-routes' {
     '/graphics-engine/components/widgetList/': RouteRecordInfo<'/graphics-engine/components/widgetList/', '/graphics-engine/components/widgetList', Record<never, never>, Record<never, never>>,
     '/graphics-engine/components/widgetList/components/List': RouteRecordInfo<'/graphics-engine/components/widgetList/components/List', '/graphics-engine/components/widgetList/components/List', Record<never, never>, Record<never, never>>,
     '/graphics-engine/components/widgetList/components/Search': RouteRecordInfo<'/graphics-engine/components/widgetList/components/Search', '/graphics-engine/components/widgetList/components/Search', Record<never, never>, Record<never, never>>,
+    '/graphics-engine/widgets/widgetChart3dBar/': RouteRecordInfo<'/graphics-engine/widgets/widgetChart3dBar/', '/graphics-engine/widgets/widgetChart3dBar', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartCandlestick/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartCandlestick/', '/graphics-engine/widgets/widgetChartCandlestick', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartCirclePack/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartCirclePack/', '/graphics-engine/widgets/widgetChartCirclePack', Record<never, never>, Record<never, never>>,
     '/graphics-engine/widgets/widgetChartDonut/': RouteRecordInfo<'/graphics-engine/widgets/widgetChartDonut/', '/graphics-engine/widgets/widgetChartDonut', Record<never, never>, Record<never, never>>,

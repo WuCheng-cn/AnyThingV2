@@ -38,4 +38,6 @@ export enum NodeShape {
   CHART_SCATTER,
   /** # 世界地图3D */
   CHART_WORLD_3D,
+  /** # 3D柱状图 */
+  CHART_3D_BAR,
 }
