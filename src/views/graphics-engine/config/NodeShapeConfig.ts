@@ -30,4 +30,8 @@ export enum NodeShape {
   CHART_THERMOMETER,
   /** # 仪表盘图 */
   CHART_GAUGE,
+  /** # 词云图 */
+  CHART_WORD_CLOUD,
+  /** # 雷达图 */
+  CHART_RADAR,
 }
