@@ -34,4 +34,6 @@ export enum NodeShape {
   CHART_WORD_CLOUD,
   /** # 雷达图 */
   CHART_RADAR,
+  /** # 散点图 */
+  CHART_SCATTER,
 }
