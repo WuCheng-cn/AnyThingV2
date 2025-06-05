@@ -26,4 +26,6 @@ export enum NodeShape {
   CHART_CIRCLE_PACK,
   /** # 轮状百分比图 */
   CHART_WHEEL,
+  /** # 温度计图 */
+  CHART_THERMOMETER,
 }
