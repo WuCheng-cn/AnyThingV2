@@ -18,4 +18,6 @@ export enum NodeShape {
   CHART_CANDLESTICK,
   /** # 堆叠条形图 */
   CHART_STACK_BAR,
+  /** # 环形图 */
+  CHART_DONUT,
 }

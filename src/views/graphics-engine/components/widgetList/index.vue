@@ -1,7 +1,7 @@
 <template>
   <div
     v-onResize:0="resize"
-    class="flex flex-col bg-[var(--colorBgBase)] shadow-md rounded-md"
+    class="flex flex-col bg-[var(--colorBgBase)] shadow-md rounded-md m-2"
     :style="{
       '--widget-filter-width': `${widgetFilterWidth}px`,
     }"
@@ -12,6 +12,7 @@
     />
     <List
       v-show="widgetFilterWidth"
+      class=" max-h-[calc(100vh-90px)] overflow-auto"
       :search-value="searchValue"
       :columns="columns"
       :widget-list="list"
