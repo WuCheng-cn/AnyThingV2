@@ -36,4 +36,6 @@ export enum NodeShape {
   CHART_RADAR,
   /** # 散点图 */
   CHART_SCATTER,
+  /** # 世界地图3D */
+  CHART_WORLD_3D,
 }
