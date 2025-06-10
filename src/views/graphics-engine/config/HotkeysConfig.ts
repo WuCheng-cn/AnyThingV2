@@ -36,5 +36,5 @@ export const HotKeysDict = AnyDictionaryHelper.createDictionaryArray([
   { value: HotKeys.PASTE, label: '粘贴', shortcut: `${command}+${HotKeys.PASTE}` },
   { value: HotKeys.UNDO, label: '撤销', shortcut: `${command}+${HotKeys.UNDO}` },
   { value: HotKeys.REDO, label: '重做', shortcut: `${command}+${HotKeys.REDO}` },
-  { value: HotKeys.DELETE, label: '删除', shortcut: `${command}+${HotKeys.DELETE}` },
+  { value: HotKeys.DELETE, label: '删除', shortcut: `${HotKeys.DELETE}` },
 ])

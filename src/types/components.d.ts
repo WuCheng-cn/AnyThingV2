@@ -25,6 +25,7 @@ declare module 'vue' {
     ALayout: typeof import('ant-design-vue/es')['Layout']
     ALayoutSider: typeof import('ant-design-vue/es')['LayoutSider']
     AnyForm: typeof import('./../components/core/AnyForm.vue')['default']
+    AnyFormMobile: typeof import('./../components/core/AnyFormMobile.vue')['default']
     APopover: typeof import('ant-design-vue/es')['Popover']
     AppProvider: typeof import('./../components/AppProvider.vue')['default']
     ARadioGroup: typeof import('ant-design-vue/es')['RadioGroup']
