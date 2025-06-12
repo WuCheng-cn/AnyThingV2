@@ -33,6 +33,16 @@ export class MobileDemoEntity extends AnyDataBaseEntity {
   string?: string
 
   @FormField({
+    formType: EFormItemType.TEXTAREA,
+    required: true,
+  })
+  @TableField({
+    width: 120,
+  })
+  @CustomField('文本域')
+  area?: string
+
+  @FormField({
     formType: EFormItemType.RADIO,
     required: true,
   })

@@ -7,10 +7,25 @@
     type="textarea"
     show-word-limit
     @update:model-value="onChange"
-  />
+  >
+    <template #right-icon>
+      <Transition
+        enter-active-class="animate-in fade-in zoom-in"
+        leave-active-class="animate-out fade-out zoom-out"
+      >
+        <CircleX
+          v-show="value"
+          :size="16"
+          @click="value = undefined"
+        />
+      </Transition>
+    </template>
+  </van-field>
 </template>
 
 <script lang="ts" setup>
+import { CircleX } from 'lucide-vue-next'
+
 const props = defineProps<{
   modelValue: string | undefined
 }>()
