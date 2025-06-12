@@ -10,6 +10,7 @@ dist
 # Other files and folders
 .settings/
 vite.config.ts.timestamp*
+components.d.ts
 
 # yarn
 .yarn/*
