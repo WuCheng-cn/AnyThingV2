@@ -50,19 +50,19 @@ const formFieldConfig = computed(() => {
 
 const value = computed({
   get: () => {
-    if ([EFormItemType.DATE, EFormItemType.DATE_RANGE, EFormItemType.DATETIME, EFormItemType.DATETIME_RANGE].includes(formFieldConfig.value?.formType) && !formFieldConfig.value?.dateFormat) {
+    if ([EFormItemType.DATE, EFormItemType.DATE_RANGE, EFormItemType.TIME, EFormItemType.TIME_RANGE].includes(formFieldConfig.value?.formType) && !formFieldConfig.value?.dateFormat) {
       console.error(`Field(${props.field}):标记了日期类型${formFieldConfig.value.formType}，但未传入dateFormat`)
     }
-    if ([EFormItemType.DATE, EFormItemType.DATETIME].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
+    if ([EFormItemType.DATE, EFormItemType.TIME].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
       return AnyDateTimeHelper.format(props.modelValue, formFieldConfig.value.dateFormat)
     }
-    if ([EFormItemType.DATE_RANGE, EFormItemType.DATETIME_RANGE].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
-      const transfromDate = Array.from({ length: 2 })
+    if ([EFormItemType.DATE_RANGE, EFormItemType.TIME_RANGE].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
+      const transformDate = Array.from({ length: 2 })
       if (props.modelValue?.length === 2) {
-        transfromDate[0] = AnyDateTimeHelper.format(props.modelValue?.[0], formFieldConfig.value.dateFormat)
-        transfromDate[1] = AnyDateTimeHelper.format(props.modelValue?.[1], formFieldConfig.value.dateFormat)
+        transformDate[0] = AnyDateTimeHelper.format(props.modelValue?.[0], formFieldConfig.value.dateFormat)
+        transformDate[1] = AnyDateTimeHelper.format(props.modelValue?.[1], formFieldConfig.value.dateFormat)
       }
-      return transfromDate
+      return transformDate
     }
     return props.modelValue
   },
@@ -91,10 +91,10 @@ const placeholder = computed(() => {
       return `请输入${label}`
     case EFormItemType.SELECT:
     case EFormItemType.DATE:
-    case EFormItemType.DATETIME:
+    case EFormItemType.TIME:
       return `请选择${label}`
     case EFormItemType.DATE_RANGE:
-    case EFormItemType.DATETIME_RANGE:
+    case EFormItemType.TIME_RANGE:
       return [`${label}开始`, `${label}结束`]
     default:
       return '请输入...'

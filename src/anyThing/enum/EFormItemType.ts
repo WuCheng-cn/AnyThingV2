@@ -13,11 +13,11 @@ export enum EFormItemType {
   /** # 日期选择框 */
   DATE,
   /** # 日期时间选择框 */
-  DATETIME,
+  TIME,
   /** # 日期范围选择框 */
   DATE_RANGE,
   /** # 日期时间范围选择框 */
-  DATETIME_RANGE,
+  TIME_RANGE,
   /** # 单选框 */
   RADIO,
   /** # 多选框 */

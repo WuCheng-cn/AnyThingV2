@@ -29,4 +29,7 @@ export interface IFormProps {
 
   /** # 是否可选(开启后，无效化表单项的必填验证) */
   isOptional?: boolean
+
+  /** # 是否禁用表单 */
+  disabled?: boolean
 }

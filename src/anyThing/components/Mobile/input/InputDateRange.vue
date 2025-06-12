@@ -3,7 +3,8 @@
     v-model="fieldValue"
     v-bind="$attrs"
     is-link
-    readonly
+    clear-trigger="always"
+    clearable
     @click="showPicker = true"
   />
   <van-popup
@@ -17,6 +18,7 @@
       next-step-text="下一步"
       :tabs="['开始日期', '结束日期']"
       @confirm="onChange"
+      @cancel="onCancel"
     >
       <van-date-picker v-model="startDate" />
       <van-date-picker v-model="endDate" />
@@ -52,6 +54,13 @@ const fieldValue = ref('')
 
 const startDate = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD).split('-'))
 const endDate = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD).split('-'))
+
+function onCancel() {
+  showPicker.value = false
+  fieldValue.value = ''
+  value.value = [] as any
+  emits('change', value.value)
+}
 
 function onChange() {
   showPicker.value = false

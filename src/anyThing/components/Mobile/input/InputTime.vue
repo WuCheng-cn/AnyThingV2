@@ -13,11 +13,11 @@
     position="bottom"
   >
     <van-time-picker
-      v-model="value"
       v-bind="$attrs"
       title="选择时间"
       :formatter="formatter"
       @confirm="onChange"
+      @cancel="onCancel"
     />
   </van-popup>
 </template>
@@ -56,9 +56,17 @@ function formatter(type: string, option: any) {
   return option
 }
 
+function onCancel() {
+  showPicker.value = false
+  fieldValue.value = ''
+  value.value = []
+  emits('change', value.value)
+}
+
 function onChange({ selectedValues }: any) {
   showPicker.value = false
   fieldValue.value = selectedValues?.join(':')
+  value.value = selectedValues
   emits('change', selectedValues)
 }
 </script>

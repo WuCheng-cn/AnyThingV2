@@ -10,9 +10,6 @@
     :form-field-config="formFieldConfig"
     :selector-config="formFieldConfig.selectorConfig"
     :options="configInstance.getOptions(field)"
-    :value-format="formFieldConfig.dateFormat"
-    :checked-value="formFieldConfig.checkedValue"
-    :unchecked-value="formFieldConfig.unCheckedValue"
     @update:model-value="value = $event"
     @change="(e:any) => emits('change', e)"
   />
@@ -53,44 +50,79 @@ const formFieldConfig = computed(() => {
 
 const value = computed({
   get: () => {
-    if ([EFormItemType.DATE, EFormItemType.DATETIME].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
-      const formatData = AnyDateTimeHelper.format(props.modelValue, formFieldConfig.value.dateFormat)
-        ?.replace(/[:\-/\s]/g, '-')
-        ?.split('-')
-        ?.filter(i => i)
-      if (formatData?.length) {
-        return formatData
+    switch (formFieldConfig.value?.formType) {
+      case EFormItemType.DATE:
+      case EFormItemType.TIME:{
+        const formatData = AnyDateTimeHelper.format(props.modelValue, formFieldConfig.value.dateFormat)
+          ?.replace(/[:\-/\s]/g, '-')
+          ?.split('-')
+          ?.filter(Boolean)
+        if (formatData?.length) {
+          return formatData
+        }
+        return []
       }
-      else if (!formatData?.length && formFieldConfig.value.formType === EFormItemType.DATETIME) {
-        return ['00', '00']
-      }
-      return []
+      case EFormItemType.DATE_RANGE:
+        if (props.modelValue?.length === 2) {
+          const transformDate = []
+          transformDate[0] = AnyDateTimeHelper.format(props.modelValue?.[0], formFieldConfig.value.dateFormat)
+          transformDate[1] = AnyDateTimeHelper.format(props.modelValue?.[1], formFieldConfig.value.dateFormat)
+          return transformDate
+        }
+        return []
+      case EFormItemType.TIME_RANGE:
+        if (props.modelValue?.length === 2) {
+          const transformDate = []
+          transformDate[0] = props.modelValue?.[0]?.split(':')
+          transformDate[1] = props.modelValue?.[1]?.split(':')
+        }
+        return []
+      default:
+        return props.modelValue
     }
-    else if ([EFormItemType.DATE_RANGE, EFormItemType.DATETIME_RANGE].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
-      if (props.modelValue?.length === 2) {
-        const transfromDate = []
-        transfromDate[0] = AnyDateTimeHelper.format(props.modelValue?.[0], formFieldConfig.value.dateFormat)
-        transfromDate[1] = AnyDateTimeHelper.format(props.modelValue?.[1], formFieldConfig.value.dateFormat)
-        return transfromDate
-      }
-    }
-    return props.modelValue
   },
   set: (value: any) => {
-    if ([EFormItemType.DATE, EFormItemType.DATETIME].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
-      emits('update:modelValue', AnyDateTimeHelper.format(value?.join('-'), formFieldConfig.value.dateFormat))
-      return
-    }
-    else if ([EFormItemType.DATE_RANGE, EFormItemType.DATETIME_RANGE].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
-      if (value?.length === 2) {
-        const transfromDate = []
-        transfromDate[0] = AnyDateTimeHelper.format(value?.[0]?.join('-'), formFieldConfig.value.dateFormat)
-        transfromDate[1] = AnyDateTimeHelper.format(value?.[1]?.join('-'), formFieldConfig.value.dateFormat)
-        emits('update:modelValue', transfromDate)
+    switch (formFieldConfig.value.formType) {
+      case EFormItemType.DATE:
+        emits('update:modelValue', AnyDateTimeHelper.format(
+          new Date(value[0], value[1] - 1, value[2], value?.[3] || 0, value?.[4] || 0),
+          formFieldConfig.value.dateFormat,
+        ))
         return
-      }
+      case EFormItemType.TIME:
+        emits('update:modelValue', value?.join(':'))
+        return
+      case EFormItemType.DATE_RANGE:
+        if (value?.length === 2) {
+          const transformDate = []
+          transformDate[0] = AnyDateTimeHelper.format(
+            new Date(value[0][0], value[0][1] - 1, value[0][2], value[0]?.[3] || 0, value[0]?.[4] || 0),
+            formFieldConfig.value.dateFormat,
+          )
+          transformDate[1] = AnyDateTimeHelper.format(
+            new Date(value[1][0], value[1][1] - 1, value[1][2], value[1]?.[3] || 0, value[1]?.[4] || 0),
+            formFieldConfig.value.dateFormat,
+          )
+          emits('update:modelValue', transformDate)
+        }
+        else {
+          emits('update:modelValue', [])
+        }
+        return
+      case EFormItemType.TIME_RANGE:
+        if (value?.length === 2) {
+          const transformDate = []
+          transformDate[0] = value?.[0]?.join(':')
+          transformDate[1] = value?.[1]?.join(':')
+          emits('update:modelValue', transformDate)
+        }
+        else {
+          emits('update:modelValue', [])
+        }
+        return
+      default:
+        emits('update:modelValue', value)
     }
-    emits('update:modelValue', value)
   },
 })
 
@@ -114,10 +146,10 @@ const placeholder = computed(() => {
       return `请输入${label}`
     case EFormItemType.SELECT:
     case EFormItemType.DATE:
-    case EFormItemType.DATETIME:
+    case EFormItemType.TIME:
       return `请选择${label}`
     case EFormItemType.DATE_RANGE:
-    case EFormItemType.DATETIME_RANGE:
+    case EFormItemType.TIME_RANGE:
       return `${label}开始-${label}结束`
     default:
       return '请输入...'

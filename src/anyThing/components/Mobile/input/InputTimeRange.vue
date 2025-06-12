@@ -17,6 +17,7 @@
       next-step-text="下一步"
       :tabs="['开始时间', '结束时间']"
       @confirm="onChange"
+      @cancel="onCancel"
     >
       <van-time-picker v-model="startTime" />
       <van-time-picker v-model="endTime" />
@@ -52,6 +53,13 @@ const fieldValue = ref('')
 
 const startTime = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD_HH_MM).split(' ')?.[1]?.split(':'))
 const endTime = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD_HH_MM).split(' ')?.[1]?.split(':'))
+
+function onCancel() {
+  showPicker.value = false
+  fieldValue.value = ''
+  value.value = [] as any
+  emits('change', value.value)
+}
 
 function onChange() {
   showPicker.value = false

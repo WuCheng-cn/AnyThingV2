@@ -3,19 +3,19 @@ import InputArea from './InputArea.vue'
 import InputCheckBox from './InputCheckBox.vue'
 import InputDate from './InputDate.vue'
 import InputDateRange from './InputDateRange.vue'
-import InputDateTime from './InputDateTime.vue'
-import InputDateTimeRange from './InputDateTimeRange.vue'
 import InputNumber from './InputNumber.vue'
 import InputRadio from './InputRadio.vue'
 import InputSelect from './InputSelect.vue'
 import InputString from './InputString.vue'
 import InputSwitch from './InputSwitch.vue'
+import InputTime from './InputTime.vue'
+import InputTimeRange from './InputTimeRange.vue'
 
 type FormItemTypeMapping = {
   [K in EFormItemType]: any;
 }
 
-export const componentsMobileMap: FormItemTypeMapping = {
+export const componentsMobileMap: Partial<FormItemTypeMapping> = {
   [EFormItemType.INPUT]: InputString,
   [EFormItemType.INPUT_NUMBER]: InputNumber,
   [EFormItemType.SELECT]: InputSelect,
@@ -24,7 +24,7 @@ export const componentsMobileMap: FormItemTypeMapping = {
   [EFormItemType.RADIO]: InputRadio,
   [EFormItemType.SWITCH]: InputSwitch,
   [EFormItemType.DATE]: InputDate,
-  [EFormItemType.DATETIME]: InputDateTime,
+  [EFormItemType.TIME]: InputTime,
   [EFormItemType.DATE_RANGE]: InputDateRange,
-  [EFormItemType.DATETIME_RANGE]: InputDateTimeRange,
+  [EFormItemType.TIME_RANGE]: InputTimeRange,
 }

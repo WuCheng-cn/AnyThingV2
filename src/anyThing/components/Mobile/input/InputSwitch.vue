@@ -5,8 +5,8 @@
         v-model="value"
         v-bind="$attrs"
         size="20px"
-        :active-value="checkedValue"
-        :inactive-value="uncheckedValue"
+        :active-value="formFieldConfig.checkedValue"
+        :inactive-value="formFieldConfig.unCheckedValue"
         @change="onChange"
       />
     </template>
@@ -14,12 +14,14 @@
 </template>
 
 <script lang="ts" setup>
+import type { IFormFieldConfig } from '@/anyThing/interface/IFormFieldConfig'
+
 type ValueType = number | string | boolean | undefined
 
 const props = defineProps<{
   modelValue: ValueType
-  checkedValue?: ValueType
-  uncheckedValue?: ValueType
+  /** # 表单配置 */
+  formFieldConfig: IFormFieldConfig
 }>()
 
 const emits = defineEmits<{

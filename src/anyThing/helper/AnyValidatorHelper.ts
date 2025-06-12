@@ -43,12 +43,12 @@ export class AnyValidatorHelper {
       case EFormItemType.SWITCH:
       case EFormItemType.SELECT:
       case EFormItemType.DATE:
-      case EFormItemType.DATETIME:
+      case EFormItemType.TIME:
         return [
           ...(config?.required ? [{ required: true, message: `请选择${field}`, trigger: config.trigger ?? 'blur' }] : []),
         ] as Rule[]
       case EFormItemType.DATE_RANGE:
-      case EFormItemType.DATETIME_RANGE:
+      case EFormItemType.TIME_RANGE:
         return [
           ...(config?.required ? [{ type: 'array' as const, required: true, message: `请选择${field}`, trigger: config.trigger ?? 'blur' }] : []),
         ] as Rule[]
