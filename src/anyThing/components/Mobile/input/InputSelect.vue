@@ -5,7 +5,20 @@
     is-link
     readonly
     @click="showPicker = true"
-  />
+  >
+    <template #right-icon>
+      <Transition
+        enter-active-class="animate-in fade-in zoom-in"
+        leave-active-class="animate-out fade-out zoom-out"
+        @click.stop="fieldValue = '';value = ['']"
+      >
+        <CircleX
+          v-show="fieldValue"
+          :size="16"
+        />
+      </Transition>
+    </template>
+  </van-field>
   <van-popup
     v-model:show="showPicker"
     destroy-on-close
@@ -25,6 +38,7 @@
 <script lang="ts" setup>
 import type { Numeric } from 'vant/lib/utils'
 import type { IDictionary } from '../../../interface/IDictionary'
+import { CircleX } from 'lucide-vue-next'
 
 const props = defineProps<{
   modelValue: Numeric

@@ -5,7 +5,20 @@
     is-link
     readonly
     @click="showPicker = true"
-  />
+  >
+    <template #right-icon>
+      <Transition
+        enter-active-class="animate-in fade-in zoom-in"
+        leave-active-class="animate-out fade-out zoom-out"
+        @click.stop="onClear()"
+      >
+        <CircleX
+          v-show="fieldValue"
+          :size="16"
+        />
+      </Transition>
+    </template>
+  </van-field>
   <van-popup
     v-model:show="showPicker"
     destroy-on-close
@@ -17,12 +30,14 @@
       title="选择时间"
       :formatter="formatter"
       @confirm="onChange"
-      @cancel="onCancel"
+      @cancel="showPicker = false"
     />
   </van-popup>
 </template>
 
 <script lang="ts" setup>
+import { CircleX } from 'lucide-vue-next'
+
 const props = defineProps<{
   modelValue: string[] | undefined
 }>()
@@ -56,17 +71,16 @@ function formatter(type: string, option: any) {
   return option
 }
 
-function onCancel() {
-  showPicker.value = false
-  fieldValue.value = ''
-  value.value = []
-  emits('change', value.value)
-}
-
 function onChange({ selectedValues }: any) {
   showPicker.value = false
   fieldValue.value = selectedValues?.join(':')
   value.value = selectedValues
   emits('change', selectedValues)
+}
+
+function onClear() {
+  fieldValue.value = ''
+  value.value = []
+  emits('change', value.value)
 }
 </script>

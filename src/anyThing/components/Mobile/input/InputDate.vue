@@ -4,9 +4,21 @@
     v-bind="$attrs"
     is-link
     readonly
-    clearable
     @click="showPicker = true"
-  />
+  >
+    <template #right-icon>
+      <Transition
+        enter-active-class="animate-in fade-in zoom-in"
+        leave-active-class="animate-out fade-out zoom-out"
+        @click.stop="onClear()"
+      >
+        <CircleX
+          v-show="fieldValue"
+          :size="16"
+        />
+      </Transition>
+    </template>
+  </van-field>
   <van-popup
     v-model:show="showPicker"
     destroy-on-close
@@ -19,7 +31,7 @@
       next-step-text="下一步"
       :tabs="['选择日期', '选择时间']"
       @confirm="onDateTimeChange"
-      @cancel="onDateTimeCancel"
+      @cancel="showPicker = false"
     >
       <van-date-picker v-model="date" />
       <van-time-picker v-model="time" />
@@ -28,7 +40,7 @@
       v-else
       title="选择日期"
       @confirm="onChange"
-      @cancel="onCancel"
+      @cancel="showPicker = false"
     />
   </van-popup>
 </template>
@@ -36,6 +48,7 @@
 <script lang="ts" setup>
 import type { IFormFieldConfig } from '@/anyThing/interface/IFormFieldConfig'
 import { AnyDateTimeHelper } from '@/anyThing/helper/AnyDateTimeHelper'
+import { CircleX } from 'lucide-vue-next'
 
 const props = defineProps<{
   modelValue: string[] | undefined
@@ -65,26 +78,11 @@ const date = ref<string[]>([])
 
 const time = ref<string[]>([])
 
-function onCancel() {
-  showPicker.value = false
-  fieldValue.value = ''
-  value.value = []
-  emits('change', value.value)
-}
-
 function onChange({ selectedValues }: any) {
   showPicker.value = false
   fieldValue.value = selectedValues.join('-')
   value.value = selectedValues
   emits('change', value.value)
-}
-
-function onDateTimeCancel() {
-  showPicker.value = false
-  fieldValue.value = ''
-  date.value = []
-  time.value = []
-  emits('change', [])
 }
 
 function onDateTimeChange() {
@@ -93,5 +91,19 @@ function onDateTimeChange() {
   fieldValue.value = AnyDateTimeHelper.format(dateTime, props.formFieldConfig.dateFormat)
   value.value = [...date.value, ...time.value]
   emits('change', value.value)
+}
+
+function onClear() {
+  if (props.showTime) {
+    fieldValue.value = ''
+    date.value = []
+    time.value = []
+    emits('change', [])
+  }
+  else {
+    fieldValue.value = ''
+    value.value = []
+    emits('change', value.value)
+  }
 }
 </script>

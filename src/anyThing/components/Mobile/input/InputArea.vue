@@ -12,11 +12,11 @@
       <Transition
         enter-active-class="animate-in fade-in zoom-in"
         leave-active-class="animate-out fade-out zoom-out"
+        @click="value = undefined"
       >
         <CircleX
           v-show="value"
           :size="16"
-          @click="value = undefined"
         />
       </Transition>
     </template>
