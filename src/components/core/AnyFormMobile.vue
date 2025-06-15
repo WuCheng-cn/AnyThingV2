@@ -1,25 +1,31 @@
 <template>
-  <van-form>
-    <template v-for="(field, index) in formFieldList" :key="index">
-      <slot :name="field" :data="formState">
-        <AnyInputMobile
-          :key="field"
-          v-model="formState[field]"
-          required
-          :rules="rules[field]"
-          class="w-full"
-          :entity="entity"
-          :field="field"
-          :form-data="formState"
-          :selector-config="getFieldConfig(field, 'selectorConfig')"
-          :disabled="props.disabled || getFieldConfig(field, 'disabled')"
-          :options="formState.getOptions(field)"
-          :checked-value="getFieldConfig(field, 'checkedValue')"
-          :un-checked-value="getFieldConfig(field, 'unCheckedValue')"
-          @change="handleChange($event, field)"
-        />
-      </slot>
-    </template>
+  <van-form
+    ref="formRef"
+    required
+  >
+    <van-cell-group inset>
+      <template v-for="(field, index) in formFieldList" :key="index">
+        <slot :name="field" :data="formState">
+          <AnyInputMobile
+            :key="field"
+            v-model="formState[field]"
+            required
+            class="w-full"
+            :label="formState.getFormFieldLabel(field)"
+            :entity="entity"
+            :field="field"
+            :rules="rules[field]"
+            :form-data="formState"
+            :selector-config="getFieldConfig(field, 'selectorConfig')"
+            :disabled="props.disabled || getFieldConfig(field, 'disabled')"
+            :options="formState.getOptions(field)"
+            :checked-value="getFieldConfig(field, 'checkedValue')"
+            :un-checked-value="getFieldConfig(field, 'unCheckedValue')"
+            @change="handleChange($event, field)"
+          />
+        </slot>
+      </template>
+    </van-cell-group>
   </van-form>
 </template>
 
@@ -59,14 +65,13 @@ function handleChange(e: unknown, field: string) {
   emit('change', formState.value)
 }
 
-async function getValidatedFormData(): Promise<AnyBaseModel> {
+async function getValidatedFormData(): Promise<AnyBaseModel | undefined> {
   try {
     await formRef.value?.validate()
     return formState.value
   }
   catch (error) {
-    console.error('表单验证失败:', error)
-    return Promise.reject(error)
+    console.warn('表单验证失败:', error)
   }
 }
 
