@@ -36,7 +36,10 @@
     "cz": "cz",
     "release": "release-it",
     "publish": "npm publish",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "config": {
     "commitizen": {
@@ -122,6 +125,7 @@
     "vite-plugin-sitemap": "^0.7.1",
     "vite-plugin-vconsole": "^2.1.1",
     "vite-plugin-vue-devtools": "^7.7.2",
+    "vitepress": "^1.6.3",
     "vitest": "^3.1.1",
     "vue-tsc": "^2.2.8"
   },

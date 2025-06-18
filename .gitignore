@@ -6,6 +6,8 @@ bin-release/
 node_modules
 dist
 /lib/
+docs/.vitepress/dist
+docs/.vitepress/cache
 
 # Other files and folders
 .settings/

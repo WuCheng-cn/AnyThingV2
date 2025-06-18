@@ -4,7 +4,7 @@
 
 本项目实现了一个自动注册 Vue 指令的机制，无需手动导入和注册每个指令。这种方式使得添加新指令变得非常简便，只需在 `src/directives` 目录下创建新文件即可。
 
-### 工作原理
+## 工作原理
 
 项目通过 Vite 的 `import.meta.glob` API 自动导入和注册指令，核心实现位于 `src/directives/index.ts` 文件：
 
@@ -35,7 +35,7 @@ export const directivePlugin = {
 }
 ```
 
-### 指令文件规范
+## 指令文件规范
 
 为了使这个自动注册机制正常工作，所有指令文件需要遵循以下规范：
 
@@ -43,7 +43,7 @@ export const directivePlugin = {
 2. **导出方式**：每个指令文件必须使用 `export default` 导出一个指令对象
 3. **指令结构**：导出的对象应符合 Vue 的 `ObjectDirective` 类型定义
 
-### 示例指令文件
+## 示例指令文件
 
 一个典型的指令文件结构如下（以 `permission.ts` 为例）：
 
@@ -67,7 +67,7 @@ export default {
 } as ObjectDirective
 ```
 
-### 如何添加新指令
+## 如何添加新指令
 
 添加新指令只需三个简单步骤：
 
@@ -75,7 +75,7 @@ export default {
 2. 实现指令逻辑并使用 `export default` 导出
 3. 无需修改任何其他文件，系统将自动注册该指令为 `v-highlight`
 
-### 指令使用方式
+## 指令使用方式
 
 注册的指令可在任何组件模板中直接使用：
 
@@ -90,7 +90,7 @@ export default {
 </template>
 ```
 
-### 优势
+## 优势
 
 这种自动注册指令的方式有以下优势：
 

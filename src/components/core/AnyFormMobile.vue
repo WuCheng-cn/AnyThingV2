@@ -1,7 +1,6 @@
 <template>
   <van-form
     ref="formRef"
-    required
   >
     <van-cell-group inset>
       <template v-for="(field, index) in formFieldList" :key="index">
@@ -9,11 +8,11 @@
           <AnyInputMobile
             :key="field"
             v-model="formState[field]"
-            required
             class="w-full"
             :label="formState.getFormFieldLabel(field)"
             :entity="entity"
             :field="field"
+            :required="getFieldConfig(field, 'required')"
             :rules="rules[field]"
             :form-data="formState"
             :selector-config="getFieldConfig(field, 'selectorConfig')"
