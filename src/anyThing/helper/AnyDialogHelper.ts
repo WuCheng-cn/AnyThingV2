@@ -1,12 +1,8 @@
 import type { App, Component } from 'vue'
 import type { IDialogPropsParam, IDialogPropsSelector } from '../interface/IDialogProps'
-import Dialog from '@/anyThing/components/PC/dialog/index.vue'
 import AppProvider from '@/components/AppProvider.vue'
-import { directivePlugin } from '@/directives'
 import { createApp } from 'vue'
-import 'ant-design-vue/dist/reset.css'
-// 导入项目的主样式文件
-import '@/assets/styles/index.css'
+import { directivePlugin } from '../../directives'
 
 /**
  * 对话框帮助类
@@ -24,7 +20,7 @@ export abstract class AnyDialogHelper {
    * @param param 对话框内组件的参数
    * @returns 对话框的Promise
    */
-  private static bulid<RES>(view: Component, param: Record<string, any>): Promise<RES> {
+  private static build<RES>(view: Component, param: Record<string, any>): Promise<RES> {
     const parentNode = document.createElement('div')
     const domId = `any_dialog_${Math.random()}`
     parentNode.setAttribute('id', domId)
@@ -52,19 +48,8 @@ export abstract class AnyDialogHelper {
         const renderApp = {
           render: () => h(
             AppProvider,
-            {},
-            {
-              default: () => h(
-                Dialog,
-                dialogParam,
-                {
-                  default: () => h(
-                    view,
-                    dialogParam,
-                  ),
-                },
-              ),
-            },
+            { },
+            { default: () => h(view, dialogParam) },
           ),
         }
         app = createApp(renderApp, dialogParam)
@@ -87,7 +72,7 @@ export abstract class AnyDialogHelper {
    * @returns 对话框的异步结果
    */
   static showModel<T, RES>(view: Component, param?: Omit<IDialogPropsParam<T, RES>, 'onConfirm' | 'onClosed'>): Promise<RES> {
-    return this.bulid(view, param || {})
+    return this.build(view, param || {})
   }
 
   /**
@@ -98,6 +83,6 @@ export abstract class AnyDialogHelper {
    * @returns 选择器的异步结果（数组）
    */
   static showSelector<T>(view: Component, param?: Omit<IDialogPropsSelector<T>, 'onConfirm' | 'onClosed'>): Promise<T[]> {
-    return this.bulid(view, param || {})
+    return this.build(view, param || {})
   }
 }

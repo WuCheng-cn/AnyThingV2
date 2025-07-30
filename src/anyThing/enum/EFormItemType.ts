@@ -6,6 +6,8 @@ export enum EFormItemType {
   INPUT,
   /** # 数字输入框 */
   INPUT_NUMBER,
+  /** # 选择器输入框 */
+  INPUT_SELECTOR,
   /** # 分段输入框 */
   INPUT_SEGMENTED,
   /** # 选择框 */
@@ -30,4 +32,6 @@ export enum EFormItemType {
   COLOR_PICKER,
   /** # 上传组件 */
   UPLOAD,
+  /** # 签名组件 */
+  SIGN,
 }

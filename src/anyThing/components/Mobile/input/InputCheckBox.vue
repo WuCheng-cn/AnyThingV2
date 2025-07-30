@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IDictionary } from '@/anyThing/interface/IDictionary'
+import type { IDictionary } from '../../../interface/IDictionary'
 
 const props = defineProps<{
   modelValue: number[] | string[] | undefined

@@ -10,10 +10,7 @@
         leave-active-class="animate-out fade-out zoom-out"
         @click="value = undefined"
       >
-        <CircleX
-          v-show="value"
-          :size="16"
-        />
+        <CircleX v-show="!$attrs.disabled && value" />
       </Transition>
     </template>
   </van-field>

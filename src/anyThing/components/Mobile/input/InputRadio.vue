@@ -9,7 +9,7 @@
         <div class="radio-group">
           <van-radio
             v-for="item in options"
-            :key="item.value"
+            :key="item.value.toString()"
             :name="item.value"
           >
             {{ item.label }}
@@ -21,11 +21,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { IOption } from '~/interface/IOption'
+import type { IDictionary } from '../../../interface/IDictionary'
 
 const props = defineProps<{
   modelValue: number | string | undefined
-  options: IOption[]
+  options: IDictionary[]
 }>()
 
 const emits = defineEmits<{

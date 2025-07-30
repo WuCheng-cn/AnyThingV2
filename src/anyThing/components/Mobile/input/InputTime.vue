@@ -2,9 +2,8 @@
   <van-field
     v-model="fieldValue"
     v-bind="$attrs"
-    is-link
     readonly
-    @click="showPicker = true"
+    @click="!$attrs.disabled && (showPicker = true)"
   >
     <template #right-icon>
       <Transition
@@ -12,10 +11,7 @@
         leave-active-class="animate-out fade-out zoom-out"
         @click.stop="onClear()"
       >
-        <CircleX
-          v-show="fieldValue"
-          :size="16"
-        />
+        <CircleX v-show="!$attrs.disabled && fieldValue" />
       </Transition>
     </template>
   </van-field>
@@ -56,7 +52,9 @@ const value = computed({
 
 const showPicker = ref(false)
 
-const fieldValue = ref('')
+const fieldValue = computed(() => {
+  return value.value?.join(':')
+})
 
 function formatter(type: string, option: any) {
   if (type === 'hour') {
@@ -73,13 +71,12 @@ function formatter(type: string, option: any) {
 
 function onChange({ selectedValues }: any) {
   showPicker.value = false
-  fieldValue.value = selectedValues?.join(':')
   value.value = selectedValues
+
   emits('change', selectedValues)
 }
 
 function onClear() {
-  fieldValue.value = ''
   value.value = []
   emits('change', value.value)
 }

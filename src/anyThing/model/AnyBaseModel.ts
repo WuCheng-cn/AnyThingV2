@@ -195,7 +195,7 @@ export class AnyBaseModel {
         label: item.label,
         value: item.value,
       }
-    })
+    }) || []
   }
 
   /**

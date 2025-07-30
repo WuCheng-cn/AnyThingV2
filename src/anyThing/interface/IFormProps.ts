@@ -1,4 +1,3 @@
-import type { Rule } from 'ant-design-vue/es/form'
 import type { AnyBaseModel } from '../model/AnyBaseModel'
 import type { ClassConstructor } from '../types/ClassConstructor'
 
@@ -19,7 +18,7 @@ export interface IFormProps {
   fieldOrder?: string[]
 
   /** 额外的验证规则（会与实体的配置合并） */
-  mixinRules?: Record<string, Rule[]>
+  mixinRules?: Record<string, any[]>
 
   /** # 表单label布局 */
   labelCol?: object

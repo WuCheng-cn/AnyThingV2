@@ -5659,6 +5659,7 @@ __metadata:
     postcss: "npm:^8.5.3"
     postcss-mobile-forever: "npm:^5.0.0"
     release-it: "npm:^18.1.2"
+    smooth-signature: "npm:^1.1.0"
     tailwindcss: "npm:^4.1.5"
     tw-animate-css: "npm:^1.2.9"
     typescript: "npm:^5.8.2"
@@ -13838,6 +13839,13 @@ __metadata:
   version: 1.5.0
   resolution: "smob@npm:1.5.0"
   checksum: 10c0/a1067f23265812de8357ed27312101af49b89129eb973e3f26ab5856ea774f88cace13342e66e32470f933ccfa916e0e9d0f7ca8bbd4f92dfab2af45c15956c2
+  languageName: node
+  linkType: hard
+
+"smooth-signature@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "smooth-signature@npm:1.1.0"
+  checksum: 10c0/52e4a4a52f790924e51e31686b9dea0d44069414c4cebecf5ba33bf1d935b833c19ae4c73704eb5062bef7f188f598f11385ccaf7522ad16182b52ef9ae8aae1
   languageName: node
   linkType: hard
 

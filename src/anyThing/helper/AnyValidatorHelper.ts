@@ -1,9 +1,13 @@
-import type { Rule } from 'ant-design-vue/es/form'
 import type { IFormFieldConfig } from '../interface/IFormFieldConfig'
 import type { AnyBaseModel } from '../model/AnyBaseModel'
 import { AppConfig } from '../config/AppConfig'
 import { EFormItemType } from '../enum/EFormItemType'
 
+interface Rule {
+  required?: boolean
+  message?: string
+  trigger?: 'change' | 'blur'
+}
 /**
  * # 表单验证规则辅助类
  */
@@ -19,9 +23,9 @@ export class AnyValidatorHelper {
     const formFieldList = target.getFormFieldList()
     const formFieldConfigObj = target.getFormFieldConfigObj()
     return formFieldList.reduce((acc, cur) => {
-      let config = formFieldConfigObj[cur]
-      if (isOptional) {
-        config = { ...config, required: false }
+      const config = formFieldConfigObj[cur] as IFormFieldConfig
+      if (isOptional && config) {
+        config.required = false
       }
       return {
         ...acc,
@@ -44,13 +48,15 @@ export class AnyValidatorHelper {
       case EFormItemType.SELECT:
       case EFormItemType.DATE:
       case EFormItemType.TIME:
+      case EFormItemType.UPLOAD:
         return [
           ...(config?.required ? [{ required: true, message: `请选择${field}`, trigger: config.trigger ?? 'blur' }] : []),
         ] as Rule[]
       case EFormItemType.DATE_RANGE:
       case EFormItemType.TIME_RANGE:
+      case EFormItemType.INPUT_SELECTOR:
         return [
-          ...(config?.required ? [{ type: 'array' as const, required: true, message: `请选择${field}`, trigger: config.trigger ?? 'blur' }] : []),
+          ...(config?.required ? [{ required: true, message: `请选择${field}`, trigger: config.trigger ?? 'blur' }] : []),
         ] as Rule[]
       case EFormItemType.INPUT:
         return [

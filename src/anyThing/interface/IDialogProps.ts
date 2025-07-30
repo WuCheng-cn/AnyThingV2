@@ -1,3 +1,5 @@
+import type { AnyBaseModel } from '../model/AnyBaseModel'
+import type { ClassConstructor } from '../types/ClassConstructor'
 import type { IAction } from './IAction'
 
 /**
@@ -45,6 +47,15 @@ export interface IDialogPropsParam<T, P> extends IDialogProps<P> {
  * @param T 选择器返回的数据类型
  */
 export interface IDialogPropsSelector<T> extends IDialogProps<T[]> {
+  /** # 弹窗标题 */
+  title?: string
+
+  /** # 值字段名（默认id） */
+  valueKey?: string
+
+  /** # 展示字段名（默认name） */
+  labelKey?: string
+
   /** # 是否可以多选 */
   multiple?: boolean
 
@@ -54,9 +65,12 @@ export interface IDialogPropsSelector<T> extends IDialogProps<T[]> {
   /** # 是否缓存选中数据 */
   isCacheSelect?: boolean
 
-  /** # 查询时额外携带的参数 */
+  /** # 初始化查询条件 （如需常驻条件请使用payload） */
+  initData?: InstanceType<ClassConstructor<AnyBaseModel>>
+
+  /** # 查询时额外携带的参数 （如仅为初始化条件，请使用initData） */
   payload?: Record<string, any>
 
-  /** # 自定义参数（如果你需要标准选择器参数以外的参数，用这个） */
+  /**  # 自定义参数（如果你需要标准选择器参数以外的参数，用这个） */
   customParams?: Record<string, any>
 }

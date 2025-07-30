@@ -2,9 +2,8 @@
   <van-field
     v-model="fieldValue"
     v-bind="$attrs"
-    is-link
     readonly
-    @click="showPicker = true"
+    @click="!$attrs.disabled && (showPicker = true)"
   >
     <template #right-icon>
       <Transition
@@ -12,10 +11,7 @@
         leave-active-class="animate-out fade-out zoom-out"
         @click.stop="onClear()"
       >
-        <CircleX
-          v-show="fieldValue"
-          :size="16"
-        />
+        <CircleX v-show="!$attrs.disabled && fieldValue" />
       </Transition>
     </template>
   </van-field>
@@ -69,10 +65,16 @@ const value = computed({
 
 const showPicker = ref(false)
 
-const fieldValue = ref('')
+const startTime = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD_HH_MM).split(' ')[1]?.split(':') || [])
 
-const startTime = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD_HH_MM).split(' ')?.[1]?.split(':'))
-const endTime = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD_HH_MM).split(' ')?.[1]?.split(':'))
+const endTime = ref(AnyDateTimeHelper.format(Date.now(), EDateFormatType.YYYY_MM_DD_HH_MM).split(' ')[1]?.split(':') || [])
+
+const fieldValue = computed(() => {
+  if (value.value?.length === 2) {
+    return `${startTime.value.join(':')} - ${endTime.value.join(':')}`
+  }
+  return ''
+})
 
 function formatter(type: string, option: any) {
   if (type === 'hour') {
@@ -89,13 +91,11 @@ function formatter(type: string, option: any) {
 
 function onChange() {
   showPicker.value = false
-  fieldValue.value = `${startTime.value?.join(':')} - ${endTime.value?.join(':')}`
-  value.value = [startTime.value, endTime.value]
+  value.value = [startTime.value || [], endTime.value || []]
   emits('change', value.value)
 }
 
 function onClear() {
-  fieldValue.value = ''
   value.value = [] as any
   emits('change', value.value)
 }

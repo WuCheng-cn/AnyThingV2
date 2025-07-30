@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { IFormFieldConfig } from '@/anyThing/interface/IFormFieldConfig'
+import type { IFormFieldConfig } from '../../../interface/IFormFieldConfig'
 
 type ValueType = number | string | boolean | undefined
 

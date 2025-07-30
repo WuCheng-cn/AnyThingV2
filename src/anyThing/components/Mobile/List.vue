@@ -1,14 +1,14 @@
 <template>
-  <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+  <van-pull-refresh v-model="innerRefreshing" @refresh="handleRefresh">
     <van-list
-      v-model:loading="loading"
+      v-model:loading="innerLoading"
       :finished="finished"
       finished-text="没有更多了"
-      @load="onLoad"
+      @load="getList"
     >
-      <slot :data="list" />
+      <slot :data="sourceData" />
       <van-empty
-        v-if="list.length === 0 && !loading"
+        v-if="sourceData.length === 0 && !loading"
         image-size="100"
       />
       <van-back-top />
@@ -17,62 +17,27 @@
 </template>
 
 <script lang="ts" setup>
-import type { AxiosResponse } from 'axios'
-
 const props = defineProps<{
-  api: (q?: any) => Promise<AxiosResponse<any>>
-  query?: Record<string, any>
-  totalKey?: string
-  sizeKey?: string
+  handleRefresh: () => void
+  getList: () => void
+  sourceData: any
+  loading: boolean
+  finished: boolean
+  refreshing: boolean
 }>()
 
-const list = ref([] as any[])
-const loading = ref(false)
-const finished = ref(false)
-const refreshing = ref(false)
-const page = ref(1)
-const size = ref(10)
+const emits = defineEmits<{
+  (e: 'update:loading', data: boolean): void
+  (e: 'update:refreshing', data: boolean): void
+}>()
 
-async function onLoad() {
-  try {
-    const query = {
-      page: page.value,
-      [props.sizeKey || 'size']: size.value,
-      ...props.query,
-    }
+const innerLoading = computed({
+  get: () => props.loading,
+  set: val => emits('update:loading', val),
+})
 
-    const { data } = await props.api(query)
-
-    if (refreshing.value) {
-      list.value = []
-      refreshing.value = false
-    }
-
-    list.value = [...list.value, ...data.rows]
-    page.value++
-
-    loading.value = false
-
-    if (list.value.length >= data[props.totalKey || 'count']) {
-      finished.value = true
-    }
-  }
-  catch (error) {
-    finished.value = true
-    loading.value = false
-    throw error
-  }
-}
-
-function onRefresh() {
-  refreshing.value = true
-  finished.value = false
-  page.value = 1
-  loading.value = true
-  onLoad()
-}
-
-defineExpose({
-  onRefresh,
+const innerRefreshing = computed({
+  get: () => props.refreshing,
+  set: val => emits('update:refreshing', val),
 })
 </script>

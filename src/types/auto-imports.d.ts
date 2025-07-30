@@ -102,6 +102,7 @@ declare global {
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const showDialog: typeof import('vant/es')['showDialog']
+  const showToast: typeof import('vant/es')['showToast']
   const suite: typeof import('vitest')['suite']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']

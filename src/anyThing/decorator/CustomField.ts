@@ -1,6 +1,8 @@
+import type { IDictionary } from '../interface/IDictionary'
 import type { AnyDictionaryArrayModel } from '../model/AnyDictionaryArrayModel'
 import type { AnyDictionaryModel } from '../model/AnyDictionaryModel'
 import { AnyDecoratorHelper } from '../helper/AnyDecoratorHelper'
+import { AnyDictionaryHelper } from '../helper/AnyDictionaryHelper'
 
 export const CUSTOMFIELD_PROPERTY_KEY = 'CustomField'
 
@@ -9,11 +11,19 @@ export const CUSTOMFIELD_PROPERTY_KEY = 'CustomField'
  * @param name 字段名称
  * @param dictionaryArray 字典数组或者字典code(传入字典code自动调用字典接口)
  */
-export function CustomField(name: string, dictionaryArray?: AnyDictionaryArrayModel<AnyDictionaryModel>): any {
+export function CustomField(name: string, dictionaryArray?: AnyDictionaryArrayModel<AnyDictionaryModel> | (() => Promise<IDictionary[]>)): any {
   return async function (target: any, key: string) {
+    let data: AnyDictionaryArrayModel<AnyDictionaryModel> | undefined
+    if (typeof dictionaryArray === 'function') {
+      const res = await dictionaryArray()
+      data = AnyDictionaryHelper.createDictionaryArray(res)
+    }
+    else {
+      data = dictionaryArray
+    }
     AnyDecoratorHelper.setFieldConfig(target, key, CUSTOMFIELD_PROPERTY_KEY, {
       name,
-      dictionaryArray,
+      dictionaryArray: data || [],
     })
   }
 }

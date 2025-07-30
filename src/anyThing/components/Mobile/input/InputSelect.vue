@@ -2,21 +2,26 @@
   <van-field
     v-model="fieldValue"
     v-bind="$attrs"
-    is-link
     readonly
-    @click="showPicker = true"
+    @click="!canInput && !$attrs.disabled && (showPicker = true)"
   >
     <template #right-icon>
       <Transition
         enter-active-class="animate-in fade-in zoom-in"
         leave-active-class="animate-out fade-out zoom-out"
-        @click.stop="fieldValue = '';value = ['']"
+        @click.stop="value = [''];inputValue = ''"
       >
-        <CircleX
-          v-show="fieldValue"
-          :size="16"
-        />
+        <CircleX v-show="!$attrs.disabled && fieldValue" />
       </Transition>
+    </template>
+    <template v-if="canInput" #input>
+      <van-field
+        v-model="inputValue"
+        class="p-0!"
+        :placeholder="$attrs.placeholder as unknown as string"
+        @blur="handleBlur"
+      />
+      <van-icon name="arrow" @click="!$attrs.disabled && (showPicker = true)" />
     </template>
   </van-field>
   <van-popup
@@ -26,8 +31,7 @@
     position="bottom"
   >
     <van-picker
-      v-model="value"
-      :columns="(props.options as any)"
+      :columns="(options as any)"
       :columns-field-names="{ text: 'label' }"
       @cancel="showPicker = false"
       @confirm="onConfirm"
@@ -36,13 +40,15 @@
 </template>
 
 <script lang="ts" setup>
-import type { Numeric } from 'vant/lib/utils'
 import type { IDictionary } from '../../../interface/IDictionary'
 import { CircleX } from 'lucide-vue-next'
 
 const props = defineProps<{
-  modelValue: Numeric
+  modelValue: string | number | undefined
   options: IDictionary[]
+  canInput?: boolean
+  /** # 开启选项缓存需要该字段 */
+  cachefield?: string
 }>()
 
 const emits = defineEmits<{
@@ -51,7 +57,9 @@ const emits = defineEmits<{
 }>()
 
 const value = computed({
-  get: () => [props.modelValue],
+  get: () => {
+    return [props.modelValue]
+  },
   set: (val) => {
     emits('update:modelValue', val?.[0])
   },
@@ -59,11 +67,57 @@ const value = computed({
 
 const showPicker = ref(false)
 
-const fieldValue = ref('')
+const inputValue = ref('') // 手动输入的值
 
-function onConfirm({ selectedValues, selectedOptions }: any) {
+const options = ref([...props.options])
+
+watch(() => props.options, () => {
+  options.value = props.options
+  initByCacheOptions()
+}, { deep: true, immediate: true })
+
+const fieldValue = computed(() => {
+  const item = options.value?.find(item => String(item.value) === String(value.value?.[0]))
+  return item?.label || ''
+})
+
+/** # option缓存（仅缓存手动输入内容） */
+function setCacheOptions(option: IDictionary) {
+  if (!props.cachefield) {
+    console.warn('未传入cachefield，将不会缓存options')
+    return
+  }
+  const cached = localStorage.getItem(`options-${props.cachefield}`)
+  const cachedOptions = cached ? JSON.parse(cached) : []
+  const newData = [...cachedOptions, option]
+  localStorage.setItem(`options-${props.cachefield}`, JSON.stringify(newData))
+}
+
+function initByCacheOptions() {
+  if (!props.cachefield) {
+    console.warn('未传入cachefield，将不会获取缓存options')
+    return
+  }
+  const cached = localStorage.getItem(`options-${props.cachefield}`)
+  const cachedOptions = cached ? JSON.parse(cached) : []
+  options.value = [...options.value, ...cachedOptions]
+}
+
+function handleBlur() {
+  if (!options.value?.some(i => i.value === inputValue.value)) {
+    options.value?.push({
+      value: inputValue.value,
+      label: inputValue.value,
+    })
+  }
+  value.value = [inputValue.value]
+  setCacheOptions({ value: inputValue.value, label: inputValue.value })
+}
+
+function onConfirm({ selectedValues }: any) {
   showPicker.value = false
-  fieldValue.value = selectedOptions[0].label
+  value.value = selectedValues
+  inputValue.value = selectedValues[0]
   emits('change', selectedValues[0])
 }
 </script>

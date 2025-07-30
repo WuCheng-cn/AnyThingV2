@@ -2,9 +2,8 @@
   <van-field
     v-model="fieldValue"
     v-bind="$attrs"
-    is-link
     readonly
-    @click="showPicker = true"
+    @click="!$attrs.disabled && (showPicker = true)"
   >
     <template #right-icon>
       <Transition
@@ -12,10 +11,7 @@
         leave-active-class="animate-out fade-out zoom-out"
         @click.stop="onClear()"
       >
-        <CircleX
-          v-show="fieldValue"
-          :size="16"
-        />
+        <CircleX v-show="!$attrs.disabled && fieldValue" />
       </Transition>
     </template>
   </van-field>
@@ -38,6 +34,7 @@
     </van-picker-group>
     <van-date-picker
       v-else
+      v-model="datePickerBind"
       title="选择日期"
       @confirm="onChange"
       @cancel="showPicker = false"
@@ -46,9 +43,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { IFormFieldConfig } from '@/anyThing/interface/IFormFieldConfig'
-import { AnyDateTimeHelper } from '@/anyThing/helper/AnyDateTimeHelper'
+import type { IFormFieldConfig } from '../../../interface/IFormFieldConfig'
+import dayjs from 'dayjs'
 import { CircleX } from 'lucide-vue-next'
+import { AnyDateTimeHelper } from '../../../helper/AnyDateTimeHelper'
 
 const props = defineProps<{
   modelValue: string[] | undefined
@@ -63,6 +61,8 @@ const emits = defineEmits<{
   (event: 'change', value: string[] | undefined): void
 }>()
 
+const defaultDate = ref([dayjs().year().toString(), (dayjs().month() + 1).toString(), dayjs().date().toString()])
+
 const value = computed({
   get: () => props.modelValue,
   set: (newValue) => {
@@ -70,38 +70,53 @@ const value = computed({
   },
 })
 
+if (!props.modelValue?.length) {
+  value.value = defaultDate.value
+}
+
+const datePickerBind = ref(defaultDate.value)
+
 const showPicker = ref(false)
 
-const fieldValue = ref('')
-
-const date = ref<string[]>([])
+const date = ref<string[]>(defaultDate.value)
 
 const time = ref<string[]>([])
 
+const fieldValue = computed(() => {
+  if (props.showTime) {
+    const dateTime = [date.value.join('-'), time.value.join(':')].join(' ')
+    return AnyDateTimeHelper.format(dateTime, props.formFieldConfig.dateFormat)
+  }
+  else {
+    if (value.value?.length) {
+      return AnyDateTimeHelper.format(
+        new Date(Number(value.value[0]), Number(value.value[1]) - 1, Number(value.value[2]), Number(value.value?.[3]) || 0, Number(value.value?.[4]) || 0),
+        props.formFieldConfig.dateFormat,
+      )
+    }
+    return ''
+  }
+})
+
 function onChange({ selectedValues }: any) {
   showPicker.value = false
-  fieldValue.value = selectedValues.join('-')
   value.value = selectedValues
   emits('change', value.value)
 }
 
 function onDateTimeChange() {
   showPicker.value = false
-  const dateTime = [date.value.join('-'), time.value.join(':')].join(' ')
-  fieldValue.value = AnyDateTimeHelper.format(dateTime, props.formFieldConfig.dateFormat)
   value.value = [...date.value, ...time.value]
   emits('change', value.value)
 }
 
 function onClear() {
   if (props.showTime) {
-    fieldValue.value = ''
     date.value = []
     time.value = []
     emits('change', [])
   }
   else {
-    fieldValue.value = ''
     value.value = []
     emits('change', value.value)
   }

@@ -32,7 +32,7 @@ export function getFormFieldList(target: any) {
   const formFieldList = AnyDecoratorHelper.getFieldList(target, FORMFIELD_PROPERTY_KEY)
   const config = getFormFieldConfigObj(target, formFieldList)
   // 过滤配置中isOnlySearch为true的字段
-  const keys = Object.keys(config).filter(i => !config[i].isOnlySearch)
+  const keys = Object.keys(config).filter(i => !config[i]?.isOnlySearch)
   return keys
 }
 

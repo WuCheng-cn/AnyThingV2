@@ -15,7 +15,7 @@ export function useAnyFormHooks(props: IFormProps) {
     if (newVal) {
       formState.value = (props.entity as any).fromJSON(newVal) as InstanceType<ClassConstructor<AnyBaseModel>>
     }
-  })
+  }, { deep: true })
 
   const checkedFormKeys = ref<string[]>([])
 
@@ -42,8 +42,8 @@ export function useAnyFormHooks(props: IFormProps) {
    * @param configKey 配置键名
    * @returns 配置值
    */
-  function getFieldConfig(field: string, configKey: keyof IFormFieldConfig) {
-    return formFieldConfigObj.value?.[field]?.[configKey]
+  function getFieldConfig<key extends keyof IFormFieldConfig>(field: string, configKey: key) {
+    return formFieldConfigObj.value?.[field]?.[configKey] as IFormFieldConfig[key]
   }
 
   return {

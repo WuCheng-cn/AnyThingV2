@@ -1,4 +1,7 @@
 {
+  "vueCompilerOptions": {
+    "globalTypesPath": "./src/types/vue-global-types.d.ts" // 指定Vue全局类型定义文件路径（用于扩展Vue的全局类型）
+  },
   "compilerOptions": {
     "target": "esnext", // 指定ECMAScript目标版本为最新版本（esnext），即跟随ECMAScript最新提案
     "jsx": "preserve", // 设置JSX的处理方式为保留（preserve），即不转换JSX语法，用于后续由其他工具（如Babel）处理

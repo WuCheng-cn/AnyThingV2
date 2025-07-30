@@ -6,10 +6,13 @@ import InputDateRange from './InputDateRange.vue'
 import InputNumber from './InputNumber.vue'
 import InputRadio from './InputRadio.vue'
 import InputSelect from './InputSelect.vue'
+import InputSelector from './InputSelector.vue'
+import InputSign from './InputSign.vue'
 import InputString from './InputString.vue'
 import InputSwitch from './InputSwitch.vue'
 import InputTime from './InputTime.vue'
 import InputTimeRange from './InputTimeRange.vue'
+import InputUpload from './InputUpload.vue'
 
 type FormItemTypeMapping = {
   [K in EFormItemType]: any;
@@ -27,4 +30,7 @@ export const componentsMobileMap: Partial<FormItemTypeMapping> = {
   [EFormItemType.TIME]: InputTime,
   [EFormItemType.DATE_RANGE]: InputDateRange,
   [EFormItemType.TIME_RANGE]: InputTimeRange,
+  [EFormItemType.UPLOAD]: InputUpload,
+  [EFormItemType.SIGN]: InputSign,
+  [EFormItemType.INPUT_SELECTOR]: InputSelector,
 }

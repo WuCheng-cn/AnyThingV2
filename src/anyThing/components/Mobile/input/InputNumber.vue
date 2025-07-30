@@ -4,6 +4,9 @@
       <van-stepper
         v-model.trim="value"
         v-bind="$attrs"
+        default-value=""
+        :max="formFieldConfig.max ?? AppConfig.MAX_NUMBER"
+        :min="formFieldConfig.min ?? AppConfig.MIN_NUMBER"
         @change="onChange"
       />
     </template>
@@ -11,8 +14,13 @@
 </template>
 
 <script lang="ts" setup>
+import type { IFormFieldConfig } from '@/anyThing/interface/IFormFieldConfig'
+import { AppConfig } from '@/anyThing/config/AppConfig'
+
 const props = defineProps<{
   modelValue: number | undefined
+  /** # 表单配置 */
+  formFieldConfig: IFormFieldConfig
 }>()
 
 const emits = defineEmits<{
