@@ -33,14 +33,7 @@
               <AnyInput
                 v-model="formState[field]"
                 class="w-full"
-                :entity="entity"
-                :field="field"
-                :form-data="formState"
-                :selector-config="getFieldConfig(field, 'selectorConfig')"
-                :disabled="props.disabled || getFieldConfig(field, 'disabled')"
-                :options="formState.getOptions(field)"
-                :checked-value="getFieldConfig(field, 'checkedValue')"
-                :un-checked-value="getFieldConfig(field, 'unCheckedValue')"
+                v-bind="getInputProps(field)"
                 @change="handleChange($event, field)"
               />
             </slot>
@@ -75,9 +68,14 @@ const {
   formState,
   formFieldList,
   checkedFormKeys,
-  getFieldConfig,
+  getInputProps,
 } = useAnyFormHooks(props)
 
+/**
+ * 处理字段变化事件
+ * @param e 事件对象
+ * @param field 字段名
+ */
 function handleChange(e: unknown, field: string) {
   if (e) {
     checkedFormKeys.value = Array.from(new Set([...checkedFormKeys.value, field]))
@@ -93,6 +91,10 @@ function handleChange(e: unknown, field: string) {
   emit('change', formState.value)
 }
 
+/**
+ * 获取验证后的表单数据
+ * @returns 验证后的表单数据
+ */
 async function getValidatedFormData(): Promise<AnyBaseModel> {
   try {
     await formRef.value?.validate()
@@ -104,6 +106,10 @@ async function getValidatedFormData(): Promise<AnyBaseModel> {
   }
 }
 
+/**
+ * 获取表单数据
+ * @returns 表单数据
+ */
 function getFormData() {
   return formState.value
 }

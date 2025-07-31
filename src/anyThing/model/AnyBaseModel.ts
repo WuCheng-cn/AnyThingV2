@@ -241,7 +241,7 @@ export class AnyBaseModel {
    * # 从json数据中解析出实体对象(实例调用)
    * @param json
    */
-  fromJSON(json: Record<string, any>): this {
+  fromJSON(json: Record<string, any>) {
     return AnyBaseModel.parse(this, json)
   }
 
