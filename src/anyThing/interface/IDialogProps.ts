@@ -17,13 +17,13 @@ interface IDialogProps<T> {
   onConfirm: (param: T) => void
 
   /** # 关闭前的钩子 */
-  beforClose?: () => void
+  beforClose?: () => Promise<void>
 
   /**  # 弹窗的关闭事件（通过该事件关闭弹窗） */
   onClosed: () => void
 
   /** # 最小化前的钩子 */
-  beforMinimize?: () => void
+  beforMinimize?: () => Promise<void>
 
   /** # 最小化后的钩子 */
   onMinimized?: () => void

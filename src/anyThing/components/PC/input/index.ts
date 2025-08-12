@@ -45,4 +45,6 @@ export const componentsMap: FormItemTypeMapping = {
   [EFormItemType.INPUT_SEGMENTED]: InputSegmented,
   [EFormItemType.COLOR_PICKER]: InputColorPicker,
   [EFormItemType.UPLOAD]: InputUpload,
+  [EFormItemType.INPUT_SELECTOR]: undefined,
+  [EFormItemType.SIGN]: undefined,
 }

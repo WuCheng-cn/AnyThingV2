@@ -1,5 +1,5 @@
 <template>
-  <div ref="PositionProviderRef" class="w-full h-full" :style="positionProviderStyle">
+  <div ref="PositionProviderRef" class="w-full h-full " :style="positionProviderStyle">
     <Transition name="any-dialog" appear @after-leave="handleClose()">
       <div
         v-if="!isClose"
@@ -153,12 +153,12 @@ function handleModelClick() {
 }
 
 async function handleClose() {
-  props.beforClose?.()
+  await props.beforClose?.()
   props.onClosed()
 }
 
 async function onMinimize() {
-  props.beforMinimize?.()
+  await props.beforMinimize?.()
   isMinimized.value = true
 }
 
@@ -251,11 +251,11 @@ onMounted(async () => {
 <style scoped>
 /* 动画效果 */
 .any-dialog-enter-active {
-  animation: dialog-enter 1s;
+  animation: dialog-enter .3s;
 }
 
 .any-dialog-leave-active {
-  animation: dialog-enter 0.5s reverse;
+  animation: dialog-enter 0.4s reverse;
 }
 
 @keyframes dialog-enter {
@@ -271,13 +271,5 @@ onMounted(async () => {
     pointer-events: none;
   }
 
-  30% {
-    position: fixed;
-    width: 3px;
-    padding: 0;
-    overflow: hidden;
-    left: calc(var(--startX) - 5px);
-    pointer-events: none;
-  }
 }
 </style>

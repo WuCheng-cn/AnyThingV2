@@ -3,6 +3,7 @@ import type { IDialogPropsParam, IDialogPropsSelector } from '../interface/IDial
 import AppProvider from '@/components/AppProvider.vue'
 import { createApp } from 'vue'
 import { directivePlugin } from '../../directives'
+import Dialog from '../components/PC/dialog/index.vue'
 
 /**
  * 对话框帮助类
@@ -46,11 +47,11 @@ export abstract class AnyDialogHelper {
 
         // 创建App实例
         const renderApp = {
-          render: () => h(
-            AppProvider,
-            { },
-            { default: () => h(view, dialogParam) },
-          ),
+          render: () => h(AppProvider, { }, {
+            default: () => h(Dialog, dialogParam, {
+              default: () => h(view, dialogParam),
+            }),
+          }),
         }
         app = createApp(renderApp, dialogParam)
         // 指令注册
