@@ -5,7 +5,7 @@ bin-release/
 [Bb]in/
 node_modules
 dist
-lib/
+packages/lib
 docs/.vitepress/dist
 docs/.vitepress/cache
 
