@@ -1,7 +1,7 @@
 import { getCustomClassConfig } from '../decorator/CustomClass'
 import { getCustomFieldDictionaryArray, getCustomFieldName } from '../decorator/CustomField'
 import { getFormFieldConfigObj, getFormFieldList } from '../decorator/FormField'
-import { getSearchFileldConfigObj, getSearchFileldList } from '../decorator/SearchField'
+import { getSearchFieldList, getSearchFiledConfigObj } from '../decorator/SearchField'
 import { getTableFieldConfigObj, getTableFieldList } from '../decorator/TableField'
 
 /**
@@ -54,8 +54,8 @@ export class AnyBaseModel {
    * 优先返回``@SearchField``配置的label，其次返回``@CustomField``配置的值，否则返回字段key
    * @param field 当前字段key
    */
-  getSearchFileldLabel(field: string) {
-    const searchFieldConfig = this.getSearchFileldConfigObj()[field]
+  getSearchFieldLabel(field: string) {
+    const searchFieldConfig = this.getSearchFiledConfigObj()[field]
     return searchFieldConfig?.label || getCustomFieldName(this, field) || field
   }
 
@@ -65,8 +65,8 @@ export class AnyBaseModel {
    * @param field 当前字段key
    * @returns 静态方法调用，返回实例方法调用
    */
-  static getSearchFileldLabel(field: string) {
-    return new this().getSearchFileldLabel(field)
+  static getSearchFieldLabel(field: string) {
+    return new this().getSearchFieldLabel(field)
   }
 
   /**
@@ -105,16 +105,16 @@ export class AnyBaseModel {
   /**
    * # 获取搜索字段列表
    */
-  getSearchFileldList() {
-    return getSearchFileldList(this)
+  getSearchFieldList() {
+    return getSearchFieldList(this)
   }
 
   /**
    * # 获取搜索字段列表
    * @returns 静态方法调用，返回实例方法调用
    */
-  static getSearchFileldList() {
-    return new this().getSearchFileldList()
+  static getSearchFieldList() {
+    return new this().getSearchFieldList()
   }
 
   /**
@@ -122,8 +122,8 @@ export class AnyBaseModel {
    * 不传入字段列表，则获取所有标记了``@SearchField``的属性的配置
    * @param fieldList 字段列表
    */
-  getSearchFileldConfigObj(...fieldList: string[]) {
-    return getSearchFileldConfigObj(this, fieldList)
+  getSearchFiledConfigObj(...fieldList: string[]) {
+    return getSearchFiledConfigObj(this, fieldList)
   }
 
   /**
@@ -131,8 +131,8 @@ export class AnyBaseModel {
    * @param fieldList 字段列表
    * @returns 静态方法调用，返回实例方法调用
    */
-  static getSearchFileldConfigObj(...fieldList: string[]) {
-    return new this().getSearchFileldConfigObj(...fieldList)
+  static getSearchFiledConfigObj(...fieldList: string[]) {
+    return new this().getSearchFiledConfigObj(...fieldList)
   }
 
   /**

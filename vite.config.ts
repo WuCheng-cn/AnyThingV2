@@ -11,12 +11,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.join(__dirname, './src'),
+      'packages': path.join(__dirname, './packages'),
     },
     preserveSymlinks: true, // 关键配置！修复 Windows 符号链接问题
   },
   css: {
     postcss: {
-      plugins: createPostcssPlugins(),
+      plugins: createPostcssPlugins() as any[],
     },
   },
   build: {

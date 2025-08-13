@@ -17,7 +17,7 @@ export function SearchField(config?: ISearchFieldConfig) {
  * # 获取实例中配置了SearchField装饰器的字段列表
  * @param target
  */
-export function getSearchFileldList(target: any) {
+export function getSearchFieldList(target: any) {
   return AnyDecoratorHelper.getFieldList(target, SEARCHFIELD_PROPERTY_KEY)
 }
 
@@ -26,6 +26,6 @@ export function getSearchFileldList(target: any) {
  * @param target
  * @param fieldList 字段列表，不传时获取所有标记了``@SearchField``的属性的配置
  */
-export function getSearchFileldConfigObj(target: any, fieldList: string[] = []) {
+export function getSearchFiledConfigObj(target: any, fieldList: string[] = []) {
   return AnyDecoratorHelper.getFieldConfigList<ISearchFieldConfig>(target, SEARCHFIELD_PROPERTY_KEY, fieldList)
 }

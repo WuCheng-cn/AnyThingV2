@@ -16,27 +16,9 @@
       "@/*": ["src/*"] // 配置路径映射，`@/`前缀指向`src/`目录（用于简化模块导入路径）
     },
     "resolveJsonModule": true, // 允许导入JSON模块（如`import data from './data.json'`）
-    "types": [
-      "node", // 包含Node.js类型定义（用于Node环境API提示）
-      "unplugin-vue-router/client", // 包含unplugin-vue-router的客户端类型定义（Vue路由自动生成相关）
-      "vite-plugin-pwa/client", // 包含vite-plugin-pwa的客户端类型定义（渐进式Web应用相关）
-      "@intlify/unplugin-vue-i18n/messages" // 包含Vue国际化（i18n）的消息类型定义
-    ],
     "strict": true, // 启用严格类型检查模式（包含`noImplicitAny`、`strictNullChecks`等多个严格选项）
     "sourceMap": true, // 生成源映射文件（.map），用于调试时关联编译后的代码与原始TypeScript代码
     "esModuleInterop": true // 启用ES模块与CommonJS模块的互操作性（解决`import * as`与`require()`的兼容问题）
   },
-  "include": [
-    "src/App.vue", // 包含src目录下的App.vue文件
-    "src/**/*.ts", // 包含src目录及其子目录下所有.ts文件（**表示任意子目录，*表示任意文件名）
-    "src/**/*.d.ts", // 包含src目录及其子目录下所有类型声明文件（.d.ts）
-    "src/**/*.tsx", // 包含src目录及其子目录下所有TSX文件（React组件）
-    "src/**/*.vue", // 包含src目录及其子目录下所有Vue单文件组件
-    "tests/**/*.ts", // 包含tests目录及其子目录下所有.ts测试文件
-    "tests/**/*.tsx", // 包含tests目录及其子目录下所有TSX测试文件
-    "src/components.d.ts", // 包含src目录下的components.d.ts类型声明文件（Vue组件类型提示）
-    "src/auto-imports.d.ts", // 包含src目录下的auto-imports.d.ts自动导入类型声明（Vite插件生成）
-    "src/typed-router.d.ts", // 包含src目录下的typed-router.d.ts路由类型声明（Vue路由自动类型推导）
-    "tests/*.ts" // 包含tests目录下所有直接子级的.ts测试文件（不包含子目录）
-  ]
+  "exclude": ["dist"]
 }

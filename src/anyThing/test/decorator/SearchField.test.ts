@@ -1,5 +1,5 @@
-import { getSearchFileldConfigObj, getSearchFileldList, SearchField } from '@/anyThing/decorator/SearchField'
 import { describe, expect, it } from 'vitest'
+import { getSearchFieldList, getSearchFiledConfigObj, SearchField } from '@/anyThing/decorator/SearchField'
 
 class TestClass {
   @SearchField({
@@ -15,12 +15,12 @@ class TestClass {
   test3?: string
 }
 describe('searchField', () => {
-  it('getSearchFileldList', () => {
-    expect(getSearchFileldList(new TestClass())).toEqual(['test', 'test2'])
+  it('getSearchFieldList', () => {
+    expect(getSearchFieldList(new TestClass())).toEqual(['test', 'test2'])
   })
 
-  it('getSearchFileldConfigObj', () => {
-    expect(getSearchFileldConfigObj(new TestClass())).toEqual({
+  it('getSearchFiledConfigObj', () => {
+    expect(getSearchFiledConfigObj(new TestClass())).toEqual({
       test: {
         label: 'test',
       },

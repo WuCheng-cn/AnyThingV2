@@ -1,18 +1,11 @@
 {
-  "name": "any-core",
+  "name": "any-thing",
   "type": "module",
   "version": "1.0.0",
-  "description": "AnyCore ========= ## 简介 - 基于装饰器语法的快速开发框架。",
+  "packageManager": "yarn@4.9.2",
+  "description": "AnyThing ========= ## 简介 - 基于装饰器语法的快速开发框架。",
   "author": "WuCheng",
   "license": "ISC",
-  "homepage": "https://gitee.com/aragakki_yui/any-core",
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/aragakki_yui/any-core.git"
-  },
-  "bugs": {
-    "url": "https://gitee.com/aragakki_yui/any-core/issues"
-  },
   "keywords": [
     "typescript",
     "reflect",
@@ -21,11 +14,6 @@
     "frontend",
     "core",
     "any-core"
-  ],
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "lib/**/*"
   ],
   "scripts": {
     "s": "vite",
@@ -59,6 +47,7 @@
     "@antv/x6-plugin-snapline": "^2.1.7",
     "@antv/x6-plugin-transform": "^2.1.8",
     "@antv/x6-vue-shape": "^2.1.2",
+    "@anything/core": "workspace:*",
     "@tailwindcss/vite": "^4.1.5",
     "@unhead/vue": "^2.0.2",
     "@vant/touch-emulator": "^1.4.0",
@@ -141,5 +130,8 @@
   "volta": {
     "node": "23.11.0",
     "yarn": "4.9.2"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
