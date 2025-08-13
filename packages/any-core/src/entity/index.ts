@@ -1,1 +1,0 @@
-export { AnyDataBaseEntity } from './AnyDataBaseEntity'
