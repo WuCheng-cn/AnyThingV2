@@ -1,5 +1,5 @@
 {
-  "name": "@anything/core",
+  "name": "@arayui/core",
   "version": "1.0.0",
   "description": "基于装饰器语法的快速开发框架核心包",
   "author": "WuCheng-cn",
@@ -29,7 +29,8 @@
     "lib/**/*"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "scripts": {
     "build": "tsc",
