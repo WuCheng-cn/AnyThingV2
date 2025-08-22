@@ -1,8 +1,8 @@
-import type { ClassConstructor } from '@/anyThing/types/ClassConstructor'
+import type { ClassConstructor } from '@arayui/core'
 import type { Component } from 'vue'
 import type { NodeShape } from '../config/NodeShapeConfig'
 import type { WidgetFormBase } from '../entity/WidgetFormBase'
-import { AnyDictionaryHelper } from '@/anyThing/helper/AnyDictionaryHelper'
+import { AnyDictionaryHelper } from '@arayui/core'
 
 /**
  * # 组件分类

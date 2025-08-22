@@ -1,4 +1,4 @@
-import { AnyDictionaryHelper } from '@/anyThing/helper/AnyDictionaryHelper'
+import { AnyDictionaryHelper } from '@arayui/core'
 
 /**
  * graph 绑定事件

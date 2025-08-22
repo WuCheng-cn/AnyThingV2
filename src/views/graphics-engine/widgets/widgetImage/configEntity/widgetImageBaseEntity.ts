@@ -1,7 +1,4 @@
-import { CustomClass } from '@/anyThing/decorator/CustomClass'
-import { CustomField } from '@/anyThing/decorator/CustomField'
-import { FormField } from '@/anyThing/decorator/FormField'
-import { EFormItemType } from '@/anyThing/enum/EFormItemType'
+import { CustomClass, CustomField, EFormItemType, FormField } from '@arayui/core'
 import { EWigetFormConfigType } from '@/enum/EWigetFormConfigType'
 import { WidgetFormBase } from '../../../entity/WidgetFormBase'
 

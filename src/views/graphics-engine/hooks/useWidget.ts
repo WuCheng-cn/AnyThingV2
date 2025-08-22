@@ -1,5 +1,5 @@
-import type { ClassConstructor } from '@/anyThing/types/ClassConstructor'
 import type { Node } from '@antv/x6'
+import type { ClassConstructor } from '@arayui/core'
 import type { WidgetFormBase } from '../entity/WidgetFormBase'
 import type { IWidget } from '../interface/IWidget'
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue'

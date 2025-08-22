@@ -7,6 +7,8 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const FileSystemEntryType: typeof import('../hooks/useCordovaFileSystemHooks')['FileSystemEntryType']
+  const FileSystemError: typeof import('../hooks/useCordovaFileSystemHooks')['FileSystemError']
   const afterAll: typeof import('vitest')['afterAll']
   const afterEach: typeof import('vitest')['afterEach']
   const assert: typeof import('vitest')['assert']
@@ -126,6 +128,7 @@ declare global {
   const until: typeof import('@vueuse/core')['until']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
+  const useAnyFormHooks: typeof import('../hooks/useAnyFormHooks')['useAnyFormHooks']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
   const useArrayFilter: typeof import('@vueuse/core')['useArrayFilter']
@@ -154,6 +157,8 @@ declare global {
   const useColorMode: typeof import('@vueuse/core')['useColorMode']
   const useComponent: typeof import('../hooks/useComponent')['useComponent']
   const useConfirmDialog: typeof import('@vueuse/core')['useConfirmDialog']
+  const useCordovaCameraHooks: typeof import('../hooks/useCordovaCameraHooks')['useCordovaCameraHooks']
+  const useCordovaFileSystemHooks: typeof import('../hooks/useCordovaFileSystemHooks')['useCordovaFileSystemHooks']
   const useCountdown: typeof import('@vueuse/core')['useCountdown']
   const useCounter: typeof import('@vueuse/core')['useCounter']
   const useCssModule: typeof import('vue')['useCssModule']
@@ -276,6 +281,7 @@ declare global {
   const useThrottleFn: typeof import('@vueuse/core')['useThrottleFn']
   const useThrottledRefHistory: typeof import('@vueuse/core')['useThrottledRefHistory']
   const useTimeAgo: typeof import('@vueuse/core')['useTimeAgo']
+  const useTimeAgoIntl: typeof import('@vueuse/core')['useTimeAgoIntl']
   const useTimeout: typeof import('@vueuse/core')['useTimeout']
   const useTimeoutFn: typeof import('@vueuse/core')['useTimeoutFn']
   const useTimeoutPoll: typeof import('@vueuse/core')['useTimeoutPoll']
@@ -285,6 +291,7 @@ declare global {
   const useToString: typeof import('@vueuse/core')['useToString']
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useTransition: typeof import('@vueuse/core')['useTransition']
+  const useUploadHooks: typeof import('../hooks/useUploadHooks')['useUploadHooks']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
   const useVModel: typeof import('@vueuse/core')['useVModel']
@@ -321,6 +328,12 @@ declare global {
 // for type re-export
 declare global {
   // @ts-ignore
-  export type { Component, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
+  export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { FileSystemEntryType, FileSystemError, FileSystemEntry, ReadFileOptions, WriteFileOptions } from '../hooks/useCordovaFileSystemHooks'
+  import('../hooks/useCordovaFileSystemHooks')
+  // @ts-ignore
+  export type { UploadObject } from '../hooks/useUploadHooks'
+  import('../hooks/useUploadHooks')
 }

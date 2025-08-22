@@ -1,6 +1,6 @@
-import type { EWigetFormConfigType } from '@/enum/EWigetFormConfigType'
 import type { IWidgetForm } from '../interface/IWidgetForm'
-import { AnyBaseModel } from '@/anyThing/model/AnyBaseModel'
+import type { EWigetFormConfigType } from '@/enum/EWigetFormConfigType'
+import { AnyBaseModel } from '@arayui/core'
 
 /**
  * # 画布配置表单基类

@@ -10,7 +10,6 @@
 </template>
 
 <script lang="ts" setup>
-import { AnyDialogHelper } from '@/anyThing/helper/AnyDialogHelper'
 import Demo from '@/views/demo/index.vue'
 </script>
 

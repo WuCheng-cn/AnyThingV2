@@ -1,11 +1,4 @@
-import { CustomField } from '@/anyThing/decorator/CustomField'
-import { FormField } from '@/anyThing/decorator/FormField'
-import { SearchField } from '@/anyThing/decorator/SearchField'
-import { TableField } from '@/anyThing/decorator/TableField'
-import { AnyDataBaseEntity } from '@/anyThing/entity/AnyDataBaseEntity'
-import { EDateFormatType } from '@/anyThing/enum/EDateFormatType'
-import { EFormItemType } from '@/anyThing/enum/EFormItemType'
-import { AnyDictionaryHelper } from '@/anyThing/helper/AnyDictionaryHelper'
+import { AnyDataBaseEntity, AnyDictionaryHelper, CustomField, EDateFormatType, EFormItemType, FormField, SearchField, TableField } from '@arayui/core'
 
 export const MobileDemoOptionDict = AnyDictionaryHelper.createDictionaryArray([
   { label: '选项1', value: 1 },

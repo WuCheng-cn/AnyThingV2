@@ -1,4 +1,4 @@
-import type { ClassConstructor } from '@/anyThing/types/ClassConstructor'
+import type { ClassConstructor } from '@arayui/core'
 import type { NodeShape } from '../config/NodeShapeConfig'
 import type { IWidget, WidgetCategory } from '../interface/IWidget'
 import type { WidgetFormBase } from './WidgetFormBase'

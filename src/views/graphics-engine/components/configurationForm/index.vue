@@ -23,9 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import type { AnyBaseModel } from '@/anyThing/model/AnyBaseModel'
-import type { ClassConstructor } from '@/anyThing/types/ClassConstructor'
 import type { Node } from '@antv/x6'
+import type { AnyBaseModel, ClassConstructor } from '@arayui/core'
 import type { WidgetFormBase } from '../../entity/WidgetFormBase'
 import type { IWidgetUnknown } from '../../interface/IWidget'
 

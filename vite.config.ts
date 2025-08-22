@@ -1,12 +1,12 @@
 /// <reference types="vitest" />
 import path from 'node:path'
 import { defineConfig } from 'vite'
-import { createPostcssPlugins } from './build/postcss'
+import { createPostcssPlugins } from './plugin/postcss'
+import { createVitePlugins } from './plugin/vite'
 // vite打包压缩插件
-import { createVitePlugins } from './build/vite'
 
 export default defineConfig({
-  plugins: createVitePlugins(),
+  plugins: createVitePlugins() as any[],
 
   resolve: {
     alias: {

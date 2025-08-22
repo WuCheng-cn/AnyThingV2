@@ -20,8 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import AnyInputMobile from '@/anyThing/components/Mobile/input/Index.vue'
-import AnyFormMobile from '@/components/core/AnyFormMobile.vue'
+import AnyFormMobile from '@/components/core/Mobile/AnyFormMobile.vue'
+import AnyInputMobile from '@/components/core/Mobile/input/Index.vue'
 import { MobileDemoEntity } from './MobileDemoEntity'
 
 const anyFormMobileRef = ref()

@@ -1,4 +1,4 @@
-import type { ClassConstructor } from '@/anyThing/types/ClassConstructor'
+import type { ClassConstructor } from '@arayui/core'
 import type { WidgetFormBase } from '../../entity/WidgetFormBase'
 import image from '../../assets/chart_vertical_bar.png'
 import { NodeShape } from '../../config/NodeShapeConfig'
