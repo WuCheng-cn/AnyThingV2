@@ -1,4 +1,4 @@
-import type { ClassConstructor } from '@arayui/core'
+import type { ClassConstructorWithBaseModel } from '@arayui/core'
 import type { NodeShape } from '../config/NodeShapeConfig'
 import type { IWidget, WidgetCategory } from '../interface/IWidget'
 import type { WidgetFormBase } from './WidgetFormBase'
@@ -6,7 +6,7 @@ import type { WidgetFormBase } from './WidgetFormBase'
 /**
  * # 画布组件基类
  */
-export abstract class WidgetBaseEntity<T extends ClassConstructor<WidgetFormBase>[]> implements IWidget<T> {
+export abstract class WidgetBaseEntity<T extends ClassConstructorWithBaseModel<WidgetFormBase>[]> implements IWidget<T> {
   name!: string
   nodeShape!: NodeShape
   width!: number

@@ -52,26 +52,26 @@ export function useGraphicsEngine(container: HTMLElement) {
   graph.use(new Keyboard(KeyboardOption)) // 启用键盘
   graph.use(new History(HistoryOption)) // 启用历史
 
-  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.COPY)!.shortcut, () => {
+  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.COPY)!.payload!.shortcut, () => {
     const cells = graph.getSelectedCells()
     if (cells.length) {
       graph.copy(cells)
     }
   })
 
-  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.PASTE)!.shortcut, () => {
+  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.PASTE)!.payload!.shortcut, () => {
     graph.paste()
   })
 
-  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.UNDO)!.shortcut, () => {
+  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.UNDO)!.payload!.shortcut, () => {
     graph.undo()
   })
 
-  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.REDO)!.shortcut, () => {
+  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.REDO)!.payload!.shortcut, () => {
     graph.redo()
   })
 
-  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.DELETE)!.shortcut, () => {
+  graph.bindKey(HotKeysDict.getDictByValue(HotKeys.DELETE)!.payload!.shortcut, () => {
     const cells = graph.getSelectedCells()
     graph.removeCells(cells)
   })

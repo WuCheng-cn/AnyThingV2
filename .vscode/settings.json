@@ -5,5 +5,20 @@
   },
   "eslint.nodePath": ".yarn/sdks",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // 控制相关文件嵌套展示
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "$(capture).test.ts,$(capture).test-d.ts",
+    "*.tsx": "$(capture).test.ts,$(capture).test-d.ts",
+    "*.env": "$(capture).env.*",
+    "vite.config.ts": "vite.config.ts*",
+    "CHANGELOG.md": "CHANGELOG*",
+    "package.json": ".yarnrc.yml,yarn.lock,.pnp.*,components.json,LICENSE,.gitattributes,.gitignore,.gitpod.yml,CNAME,.npmrc,.npmignore,.browserslistrc,.release-it.*",
+    "eslint.config.mjs": ".eslint*,.prettier*,.stylelint*,commitlint*,.cz-config.*,",
+    "tsconfig.json": "tsconfig.*.json",
+    "README.md": "README*,CHANGELOG.md"
+  }
 }

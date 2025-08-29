@@ -1,4 +1,4 @@
-import type { ClassConstructor } from '@arayui/core'
+import type { ClassConstructorWithBaseModel } from '@arayui/core'
 import type { Component } from 'vue'
 import type { NodeShape } from '../config/NodeShapeConfig'
 import type { WidgetFormBase } from '../entity/WidgetFormBase'
@@ -41,7 +41,7 @@ export const WidgetCategoryDict = AnyDictionaryHelper.createDictionaryArray([
 /**
  * 画布组件实现接口
  */
-export interface IWidget<T extends ClassConstructor<WidgetFormBase>[]> {
+export interface IWidget<T extends ClassConstructorWithBaseModel<WidgetFormBase>[]> {
   /** # 组件名称 */
   name: string
 
@@ -83,4 +83,4 @@ export interface IWidget<T extends ClassConstructor<WidgetFormBase>[]> {
 }
 
 /** # 未知画布组件类型 */
-export type IWidgetUnknown = IWidget<ClassConstructor<WidgetFormBase>[]>
+export type IWidgetUnknown = IWidget<ClassConstructorWithBaseModel<WidgetFormBase>[]>

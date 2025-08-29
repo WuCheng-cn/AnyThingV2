@@ -18,7 +18,8 @@
     "resolveJsonModule": true, // 允许导入JSON模块（如`import data from './data.json'`）
     "strict": true, // 启用严格类型检查模式（包含`noImplicitAny`、`strictNullChecks`等多个严格选项）
     "sourceMap": true, // 生成源映射文件（.map），用于调试时关联编译后的代码与原始TypeScript代码
-    "esModuleInterop": true // 启用ES模块与CommonJS模块的互操作性（解决`import * as`与`require()`的兼容问题）
+    "esModuleInterop": true, // 启用ES模块与CommonJS模块的互操作性（解决`import * as`与`require()`的兼容问题）
+    "skipLibCheck": true // 跳过对声明文件的类型检查，避免第三方库类型冲突
   },
-  "exclude": ["dist"]
+  "exclude": ["dist", ".yarn"]
 }

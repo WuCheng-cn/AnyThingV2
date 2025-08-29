@@ -47,7 +47,7 @@
     "@antv/x6-plugin-snapline": "^2.1.7",
     "@antv/x6-plugin-transform": "^2.1.8",
     "@antv/x6-vue-shape": "^2.1.2",
-    "@arayui/core": "^1.0.7",
+    "@arayui/core": "^1.0.19",
     "@tailwindcss/vite": "^4.1.5",
     "@unhead/vue": "^2.0.2",
     "@vant/touch-emulator": "^1.4.0",
@@ -118,6 +118,7 @@
     "vite-plugin-vue-devtools": "^7.7.7",
     "vitepress": "^1.6.3",
     "vitest": "^3.1.1",
+    "vue-component-type-helpers": "^3.0.6",
     "vue-tsc": "^2.2.8"
   },
   "lint-staged": {

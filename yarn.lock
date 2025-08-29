@@ -480,10 +480,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arayui/core@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "@arayui/core@npm:1.0.7"
-  checksum: 10c0/03742c0c0cf2e2b7bdfb78d62fd57849bc04ffb2e6fa84d09fa81f81bb3a1bb130393c5db482ed93fd0bd09af171f9790c4505e9a7a18fa25565995b7584b0da
+"@arayui/core@npm:^1.0.19":
+  version: 1.0.19
+  resolution: "@arayui/core@npm:1.0.19"
+  checksum: 10c0/c5e65d635da53dbb0689a967f214f0048afd809b9743ddd89c198cdf54badb8e629fe97e90c2b025dec0c30eaaaabce6c321787a29a2046af13bf1f9d6240cac
   languageName: node
   linkType: hard
 
@@ -5175,7 +5175,7 @@ __metadata:
     "@antv/x6-plugin-snapline": "npm:^2.1.7"
     "@antv/x6-plugin-transform": "npm:^2.1.8"
     "@antv/x6-vue-shape": "npm:^2.1.2"
-    "@arayui/core": "npm:^1.0.7"
+    "@arayui/core": "npm:^1.0.19"
     "@intlify/unplugin-vue-i18n": "npm:^6.0.5"
     "@pinia/testing": "npm:^1.0.0"
     "@release-it/conventional-changelog": "npm:^10.0.1"
@@ -5239,6 +5239,7 @@ __metadata:
     vitest: "npm:^3.1.1"
     vooks: "npm:^0.2.12"
     vue: "npm:^3.5.19"
+    vue-component-type-helpers: "npm:^3.0.6"
     vue-data-ui: "npm:^2.9.6"
     vue-i18n: "npm:^11.1.2"
     vue-router: "npm:^4.5.0"
@@ -15178,6 +15179,13 @@ __metadata:
   version: 2.2.12
   resolution: "vue-component-type-helpers@npm:2.2.12"
   checksum: 10c0/ce15a2cdec4a57262a292ac1565aa18da9be73f3dfbcf28758a8a541199944bfff1aefb75802d6de5d955a5529c9667f1b651c659d14815c075e8965ac05175d
+  languageName: node
+  linkType: hard
+
+"vue-component-type-helpers@npm:^3.0.6":
+  version: 3.0.6
+  resolution: "vue-component-type-helpers@npm:3.0.6"
+  checksum: 10c0/6cf128532088cb9492db0b96d1eb8d8031d07095b4fcbf62f5ce8faecc47c6d77344540d98d1ec10b1bd972effba17ff04feedfb27df280dc0824513a50e9fea
   languageName: node
   linkType: hard
 

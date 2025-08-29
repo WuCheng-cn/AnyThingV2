@@ -3,7 +3,7 @@
     v-bind="$attrs"
     ref="formRef"
     :model="formState"
-    :rules="rules as any"
+    :rules="rules"
     :disabled="props.disabled"
     :label-col="labelCol"
     label-wrap
@@ -12,7 +12,7 @@
   >
     <div>
       <a-checkbox-group
-        v-model:value="checkedFormKeys"
+        v-model:value="(checkedFormKeys as string[])"
         class="grid gap-x-6"
         :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }"
       >
@@ -23,7 +23,7 @@
           class="flex items-center gap-3"
         >
           <a-checkbox v-if="showCheckbox" class="mb-[24px]" :value="field" />
-          <a-form-item :name="field" class="flex-1">
+          <a-form-item :name="field.toString()" class="flex-1">
             <template #label>
               <span class="max-w-[calc(100%-20px)] inline-block">
                 {{ formState.getFormFieldLabel(field) }}
@@ -45,19 +45,19 @@
   </a-form>
 </template>
 
-<script lang="ts" setup>
-import type { AnyBaseModel, ClassConstructor, IFormProps } from '@arayui/core'
+<script lang="ts" setup generic="T extends AnyBaseModel">
+import type { AnyBaseModel, ClassFieldNames, IFormProps } from '@arayui/core'
 import type { FormProps } from 'ant-design-vue'
 import AnyInput from '@/components/core/PC/input/Index.vue'
 import { useAnyFormHooks } from '@/hooks/useAnyFormHooks'
 
-const props = withDefaults(defineProps<IFormProps & FormProps>(), {
+const props = withDefaults(defineProps<IFormProps<T> & FormProps>(), {
   cols: 2,
   labelCol: () => ({ style: { width: '74px' } }),
 })
 
 const emit = defineEmits<{
-  (e: 'change', value: InstanceType<ClassConstructor<AnyBaseModel>>): void
+  (e: 'change', value: T): void
 }>()
 
 const {
@@ -74,14 +74,14 @@ const {
  * @param e 事件对象
  * @param field 字段名
  */
-function handleChange(e: unknown, field: string) {
+function handleChange(e: unknown, field: ClassFieldNames<T>) {
   if (e) {
     checkedFormKeys.value = Array.from(new Set([...checkedFormKeys.value, field]))
   }
   nextTick(() => {
-    formRef.value?.validate([field])
+    formRef.value?.validate([String(field)])
       .catch((err) => {
-        console.warn(`字段 ${field} 验证失败:`, err)
+        console.warn(`字段 ${String(field)} 验证失败:`, err)
       })
   })
 

@@ -9,26 +9,24 @@
     :disabled="disabled"
     :placeholder="placeholder"
     :form-field-config="formFieldConfig"
-    :selector-config="formFieldConfig.selectorConfig"
     :options="configInstance.getOptions(field)"
     @update:model-value="value = $event"
     @change="(e:any) => emits('change', e)"
   />
 </template>
 
-<script lang="ts" setup>
-import type { AnyBaseModel, ClassConstructor, IFormFieldConfig } from '@arayui/core'
+<script lang="ts" setup generic="T extends AnyBaseModel">
+import type { AnyBaseModel, ClassConstructorWithBaseModel, ClassFieldNames } from '@arayui/core'
 import { AnyDateTimeHelper, EFormItemType } from '@arayui/core'
-import { computed, ref } from 'vue'
 import { componentsMobileMap } from '.'
 
 const props = withDefaults(defineProps<{
   /** # 双向数据绑定 */
   modelValue: any
   /** # 配置实体 */
-  entity: ClassConstructor<AnyBaseModel>
+  entity: ClassConstructorWithBaseModel<T>
   /** # 表单项关联字段 */
-  field: string
+  field: ClassFieldNames<T>
   /** # 占位符 */
   placeholder?: string
   /** # 禁用 */
@@ -45,11 +43,13 @@ const emits = defineEmits<{
 }>()
 
 /** 配置实例 */
-const configInstance = ref(new props.entity!())
+const configInstance = computed(() => {
+  return new props.entity!()
+})
 
 /** 表单字段配置 */
 const formFieldConfig = computed(() => {
-  return configInstance.value.getFormFieldConfigObj(props.field)?.[props.field] || {} as IFormFieldConfig
+  return configInstance.value.getFormFieldConfigObj(props.field)?.[props.field]
 })
 
 const value = computed({

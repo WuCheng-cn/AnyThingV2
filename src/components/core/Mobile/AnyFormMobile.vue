@@ -21,13 +21,13 @@
   </van-form>
 </template>
 
-<script lang="ts" setup>
-import type { AnyBaseModel, ClassConstructor, IFormProps } from '@arayui/core'
+<script lang="ts" setup generic="T extends AnyBaseModel">
+import type { AnyBaseModel, ClassFieldNames, IFormProps } from '@arayui/core'
 import { nextTick } from 'vue'
 import AnyInputMobile from '@/components/core/Mobile/input/Index.vue'
 import { useAnyFormHooks } from '@/hooks/useAnyFormHooks'
 
-const props = withDefaults(defineProps<IFormProps & {
+const props = withDefaults(defineProps<IFormProps<T> & {
   /** # 是否卡片模式 */
   isCard?: boolean
   /** # 表单label显示方式 */
@@ -41,7 +41,7 @@ const props = withDefaults(defineProps<IFormProps & {
 })
 
 const emit = defineEmits<{
-  (e: 'change', value: InstanceType<ClassConstructor<AnyBaseModel>>): void
+  (e: 'change', value: T): void
 }>()
 
 const {
@@ -56,11 +56,11 @@ const {
  * @param _e 事件对象
  * @param field 字段名
  */
-function handleChange(_e: unknown, field: string) {
+function handleChange(_e: unknown, field: ClassFieldNames<T>) {
   nextTick(() => {
-    formRef.value?.validate([field])
+    formRef.value?.validate([String(field)])
       .catch((err: any) => {
-        console.warn(`字段 ${field} 验证失败:`, err)
+        console.warn(`字段 ${String(field)} 验证失败:`, err)
       })
   })
   emit('change', formState.value)
@@ -70,7 +70,7 @@ function handleChange(_e: unknown, field: string) {
  * 获取验证后的表单数据
  * @returns 验证后的表单数据
  */
-async function getValidatedFormData(): Promise<AnyBaseModel | undefined> {
+async function getValidatedFormData(): Promise<T | undefined> {
   await formRef.value?.validate()
   return formState.value
 }
@@ -79,7 +79,7 @@ async function getValidatedFormData(): Promise<AnyBaseModel | undefined> {
  * 直接获取表单当前数据
  * @returns 表单数据
  */
-async function getFormData() {
+async function getFormData(): Promise<T> {
   return new Promise((resolve, _reject) => {
     nextTick(() => {
       resolve(formState.value)

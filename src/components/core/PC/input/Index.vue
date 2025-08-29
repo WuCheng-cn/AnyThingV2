@@ -13,8 +13,8 @@
   />
 </template>
 
-<script lang="ts" setup>
-import type { AnyBaseModel, ClassConstructor } from '@arayui/core'
+<script lang="ts" setup generic="T extends AnyBaseModel">
+import type { AnyBaseModel, ClassConstructorWithBaseModel, ClassFieldNames } from '@arayui/core'
 import { AnyDateTimeHelper, EFormItemType } from '@arayui/core'
 import { componentsMap } from '.'
 
@@ -22,9 +22,9 @@ const props = defineProps<{
   /** # 双向数据绑定 */
   modelValue: any
   /** # 配置实体 */
-  entity: ClassConstructor<AnyBaseModel>
+  entity: ClassConstructorWithBaseModel<T>
   /** # 表单项关联字段 */
-  field: string
+  field: ClassFieldNames<T>
   /** # 占位符 */
   placeholder?: string
   /** # 禁用 */
@@ -49,7 +49,7 @@ const formFieldConfig = computed(() => {
 const value = computed({
   get: () => {
     if ([EFormItemType.DATE, EFormItemType.DATE_RANGE].includes(formFieldConfig.value?.formType) && !formFieldConfig.value?.dateFormat) {
-      console.error(`Field(${props.field}):标记了日期类型${formFieldConfig.value.formType}，但未传入dateFormat`)
+      console.error(`Field(${String(props.field)}):标记了日期类型${formFieldConfig.value.formType}，但未传入dateFormat`)
     }
     if ([EFormItemType.DATE].includes(formFieldConfig.value.formType) && formFieldConfig.value.dateFormat) {
       return AnyDateTimeHelper.format(props.modelValue, formFieldConfig.value.dateFormat)

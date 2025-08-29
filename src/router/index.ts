@@ -2,6 +2,7 @@ import type { EnhancedRouteLocation } from './types'
 import NProgress from 'nprogress'
 
 import { createRouter, createWebHashHistory } from 'vue-router'
+// @ts-expect-error 忽略路由自动导入错误
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 import 'nprogress/nprogress.css'
