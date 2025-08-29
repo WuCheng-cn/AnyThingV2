@@ -13,9 +13,9 @@ export abstract class WidgetBaseEntity<T extends ClassConstructorWithBaseModel<W
   height!: number
   image!: string
   category!: WidgetCategory
-  isParent?: boolean | undefined
-  component!: globalThis.Component
-  formConfig?: T | undefined
+  isParent?: boolean
+  component!: Component
+  formConfig?: T
   widgetData!: Record<string, InstanceType<T[number]>>
 
   constructor(fromConfig: T) {
