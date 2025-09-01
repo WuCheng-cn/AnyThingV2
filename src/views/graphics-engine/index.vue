@@ -28,8 +28,8 @@
 <script lang="ts" setup>
 import type { Graph, Node } from '@antv/x6'
 import type { Dnd } from '@antv/x6-plugin-dnd'
-import { useGraphicsEngine } from '@/views/graphics-engine/hooks/useGraphicsEngine'
 import { getTeleport } from '@antv/x6-vue-shape'
+import { useGraphicsEngine } from '@/views/graphics-engine/hooks/useGraphicsEngine'
 import ConfigurationForm from './components/configurationForm/index.vue'
 import ToolBar from './components/toolBar/index.vue'
 import WidgetFilter from './components/widgetList/index.vue'

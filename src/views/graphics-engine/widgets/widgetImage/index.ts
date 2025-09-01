@@ -1,4 +1,4 @@
-import type { ClassConstructor } from '@arayui/core'
+import type { ClassConstructorWithBaseModel } from '@arayui/core'
 import type { WidgetFormBase } from '../../entity/WidgetFormBase'
 import image from '../../assets/ILIS-Logo.jpg'
 import { NodeShape } from '../../config/NodeShapeConfig'
@@ -10,7 +10,7 @@ const { resgistAsyncComponent } = useComponent()
 
 const fromConfig = [
   widgetImageBaseEntity,
-] as ClassConstructor<WidgetFormBase>[]
+] as ClassConstructorWithBaseModel<WidgetFormBase>[]
 
 class WidgetImage extends WidgetBaseEntity<typeof fromConfig> {
   name = '图片'

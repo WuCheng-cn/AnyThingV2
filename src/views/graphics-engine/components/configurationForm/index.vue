@@ -4,17 +4,17 @@
     :bordered="false"
   >
     <a-collapse-panel
-      v-for="(item, index) in widget.formConfig"
+      v-for="(item, index) in widget?.formConfig"
       :key="index"
       :header="item?.prototype?.getCustomClassName()"
       :style="{ border: 0 }"
     >
       <AnyForm
-        :ref="(el) => setFormRef(el, item)"
+        :ref="(el:any) => setFormRef(el, item)"
         :init-data="initData[item.name]"
         :entity="item"
-        :cols="(item?.prototype as AnyBaseModel)?.getCustomClassConfig()?.formCols || 1"
-        :label-col="(item?.prototype as AnyBaseModel)?.getCustomClassConfig()?.formLabelVertical ? { span: 24 } : undefined"
+        :cols="item?.getCustomClassConfig()?.formCols || 1"
+        :label-col="item?.getCustomClassConfig()?.formLabelVertical ? { span: 24 } : undefined"
         label-align="left"
         @change="handleChange"
       />
@@ -24,35 +24,37 @@
 
 <script setup lang="ts">
 import type { Node } from '@antv/x6'
-import type { AnyBaseModel, ClassConstructor } from '@arayui/core'
+import type { AnyBaseModel, ClassConstructorWithBaseModel } from '@arayui/core'
+import type { ComponentExposed } from 'vue-component-type-helpers'
 import type { WidgetFormBase } from '../../entity/WidgetFormBase'
 import type { IWidgetUnknown } from '../../interface/IWidget'
+import AnyForm from '@/components/core/PC/AnyForm.vue'
 
-const currentNode = inject('currentNode') as Ref<Node>
+const currentNode = inject<Ref<Node>>('currentNode')
 
-const widget = computed(() => currentNode.value?.getData() as IWidgetUnknown)
+const widget = computed<IWidgetUnknown | undefined>(() => currentNode?.value?.getData())
 
-const activeKey = ref(widget.value.formConfig?.map((_item, index) => index))
+const activeKey = ref(widget.value?.formConfig?.map((_item, index) => index))
 
 const initData = ref<Record<string, any>>({})
 
-const formRefs = ref<Record<string, any>>({})
+const formRefs = ref({} as Record<string, ComponentExposed<typeof AnyForm<WidgetFormBase>>>)
 
 watch(widget, () => {
   if (widget.value?.widgetData && widget.value?.formConfig) {
-    const entries = widget.value.formConfig.map(Entity => [Entity.name, (Entity as any).fromJSON(widget.value.widgetData[Entity.name] || {})])
-    initData.value = Object.fromEntries(entries) as Record<string, InstanceType<ClassConstructor<AnyBaseModel>>>
+    const entries = widget.value.formConfig.map(Entity => [Entity.name, Entity.fromJSON(widget.value?.widgetData[Entity.name] || {})])
+    initData.value = Object.fromEntries(entries)
   }
 }, { deep: true })
 
-function setFormRef(el: any, entity: ClassConstructor<WidgetFormBase>) {
+function setFormRef(el: ComponentExposed<typeof AnyForm<WidgetFormBase>>, entity: ClassConstructorWithBaseModel<WidgetFormBase>) {
   formRefs.value[entity.name] = el
 }
 
 function handleChange() {
   const entries = Object.entries(formRefs.value).map(([key, el]) => [key, el.getFormData()?.toJSON()])
-  const newWidgetData = Object.fromEntries(entries) as Record<string, InstanceType<ClassConstructor<AnyBaseModel>>>
-  currentNode.value?.setData({
+  const newWidgetData = Object.fromEntries(entries) as Record<string, AnyBaseModel>
+  currentNode?.value?.setData({
     ...widget.value,
     widgetData: newWidgetData,
   })
