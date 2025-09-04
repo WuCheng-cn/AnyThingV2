@@ -26,6 +26,5 @@ declare module 'vue-router/auto-routes' {
     'demo-sub-menu-deep': RouteRecordInfo<'demo-sub-menu-deep', '/demo/sub-menu/deep-nested', Record<never, never>, Record<never, never>>,
     'test': RouteRecordInfo<'test', '/demo/test', Record<never, never>, Record<never, never>>,
     'graphics-engine': RouteRecordInfo<'graphics-engine', '/graphics-engine', Record<never, never>, Record<never, never>>,
-    'test': RouteRecordInfo<'test', '/test', Record<never, never>, Record<never, never>>,
   }
 }

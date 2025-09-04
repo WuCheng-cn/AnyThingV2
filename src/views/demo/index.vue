@@ -40,7 +40,8 @@ async function validateAndSubmit() {
   {
     "name": "demo",
     "meta": {
-      "title": "演示"
+      "title": "演示",
+      "icon": "MonitorPlay"
     }
   }
 </route>

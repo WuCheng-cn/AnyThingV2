@@ -1,4 +1,4 @@
-import type { VNode } from 'vue'
+import type * as icons from 'lucide-vue-next'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -11,7 +11,7 @@ declare module 'vue-router' {
     /** 隐藏页面的导航栏 */
     hiddenNavBar?: boolean
     /** 图标 */
-    icon?: () => VNode
+    icon?: keyof typeof icons
   }
 }
 export {}

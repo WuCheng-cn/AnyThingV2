@@ -1,8 +1,8 @@
 <template>
   <a-config-provider
     class="h-full"
-    :locale="zhCN"
     component-size="middle"
+    :locale="zhCN"
     :theme="{
       token: {
         colorPrimary: '#6e3ee6',

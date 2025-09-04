@@ -1,5 +1,6 @@
 <template>
   <a-card>
+    <LucideIcon name="House" />
     <a-button @click="AnyDialogHelper.showModel(Demo)">
       点击弹窗
     </a-button>
@@ -15,10 +16,11 @@ import Demo from '@/views/demo/index.vue'
 </script>
 
 <route lang="json">
-  {
-    "name": "home",
-    "meta": {
-      "title": "首页"
-    }
+{
+  "name": "home",
+  "meta": {
+    "title": "首页",
+    "icon": "House"
   }
+}
 </route>

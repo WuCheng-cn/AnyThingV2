@@ -96,7 +96,8 @@ onUnmounted(() => {
   {
     "name": "graphics-engine",
     "meta": {
-      "title": "图形引擎"
+      "title": "图形引擎",
+      "icon": "MonitorCog"
     }
   }
 </route>

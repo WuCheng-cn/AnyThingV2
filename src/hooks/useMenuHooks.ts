@@ -1,5 +1,6 @@
 import type { ItemType } from 'ant-design-vue'
 import type { RouteRecordNormalized } from 'vue-router'
+import LucideIcon from '@/components/UI/LucideIcon.vue'
 
 /** # 不渲染的菜单列表 */
 const excludeMenuList = ['login', '404', '401']
@@ -66,7 +67,9 @@ export function useMenuHooks() {
           return false
 
         const relativePath = normalizedRoute.substring(normalizedParent.length).replace(/^\//, '')
-        return relativePath && !relativePath.includes('/')
+
+        // 确保是相对路径，且只包含一级（不包含额外的/）
+        return relativePath && !relativePath.includes('/') && relativePath !== ''
       }
     })
 
@@ -99,8 +102,17 @@ export function useMenuHooks() {
         key: fullPath,
         label: route.meta?.title,
         path: fullPath,
-        children: children?.length ? children : undefined,
-        ...(route.meta?.icon ? { icon: route.meta?.icon } : {}),
+        children: children?.length
+          ? [
+              {
+                key: fullPath,
+                label: route.meta?.title,
+                path: fullPath,
+              },
+              ...children,
+            ]
+          : undefined,
+        ...(route.meta?.icon ? { icon: () => h(LucideIcon, { name: route.meta.icon!, color: 'var(--colorPrimary)' }) } : {}),
       }
     })
   }
