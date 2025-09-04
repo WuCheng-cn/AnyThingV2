@@ -35,3 +35,12 @@ async function validateAndSubmit() {
   return res
 }
 </script>
+
+<route lang="json">
+  {
+    "name": "demo",
+    "meta": {
+      "title": "演示"
+    }
+  }
+</route>

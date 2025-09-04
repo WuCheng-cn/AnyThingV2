@@ -29,10 +29,10 @@
 import type { Graph, Node } from '@antv/x6'
 import type { Dnd } from '@antv/x6-plugin-dnd'
 import { getTeleport } from '@antv/x6-vue-shape'
-import { useGraphicsEngine } from '@/views/graphics-engine/hooks/useGraphicsEngine'
 import ConfigurationForm from './components/configurationForm/index.vue'
 import ToolBar from './components/toolBar/index.vue'
 import WidgetFilter from './components/widgetList/index.vue'
+import { useGraphicsEngine } from './hooks/useGraphicsEngine'
 
 const graph = shallowRef<Graph | undefined>(undefined)
 
@@ -91,3 +91,12 @@ onUnmounted(() => {
 // 画布的覆盖样式文件
 @import url('./style/index.less');
 </style>
+
+<route lang="json">
+  {
+    "name": "graphics-engine",
+    "meta": {
+      "title": "图形引擎"
+    }
+  }
+</route>

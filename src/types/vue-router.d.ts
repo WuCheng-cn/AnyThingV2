@@ -1,3 +1,5 @@
+import type { VNode } from 'vue'
+
 declare module 'vue-router' {
   interface RouteMeta {
     /** page title */
@@ -8,6 +10,8 @@ declare module 'vue-router' {
     keepAlive?: boolean
     /** 隐藏页面的导航栏 */
     hiddenNavBar?: boolean
+    /** 图标 */
+    icon?: () => VNode
   }
 }
 export {}

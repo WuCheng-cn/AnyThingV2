@@ -1,11 +1,12 @@
 <template>
   <AppProvider>
     <div id="layout" class="h-full">
-      <router-view v-slot="{ Component, route }">
+      <!-- <router-view v-slot="{ Component, route }">
         <keep-alive :include="[]">
           <component :is="Component" :key="route.name" />
         </keep-alive>
-      </router-view>
+      </router-view> -->
+      <ClassicLayout />
     </div>
   </AppProvider>
 </template>
@@ -13,6 +14,7 @@
 <script setup lang="ts">
 import { setDialogDefaultOptions, setToastDefaultOptions } from 'vant'
 import { useClickPosition } from 'vooks'
+import ClassicLayout from '@/layout/Classic.vue'
 import useAppStore from './stores/modules/useAppStore'
 
 const { clickedPosition } = toRefs(useAppStore())

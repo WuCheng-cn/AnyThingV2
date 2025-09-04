@@ -37,11 +37,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { IWidgetUnknown } from '@/views/graphics-engine/interface/IWidget'
 import type { Graph } from '@antv/x6'
 import type { Dnd } from '@antv/x6-plugin-dnd'
 import type { ShallowRef } from 'vue'
-import { WidgetCategoryDict } from '@/views/graphics-engine/interface/IWidget'
+import type { IWidgetUnknown } from '../../../interface/IWidget'
+import { WidgetCategoryDict } from '../../../interface/IWidget'
 
 const props = defineProps<{
   /** # 组件列表 */

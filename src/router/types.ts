@@ -5,5 +5,7 @@ export type EnhancedRouteLocation = RouteLocationNormalized & {
     level?: number | unknown
     name?: string
     keepAlive?: boolean
+    title?: string
+    icon?: string
   }
 }

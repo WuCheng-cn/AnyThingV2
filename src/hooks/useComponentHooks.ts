@@ -24,8 +24,15 @@ export function useComponent() {
     })
   }
 
+  /** # 批量异步加载图片 */
+  async function loadImageBatch(srcList: string[]) {
+    const res = await Promise.all(srcList.map(loadImageAsync))
+    return res
+  }
+
   return {
     resgistAsyncComponent,
     loadImageAsync,
+    loadImageBatch,
   }
 }

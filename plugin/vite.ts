@@ -20,6 +20,7 @@ export function createVitePlugins() {
       extensions: ['.vue'],
       routesFolder: 'src/views',
       dts: 'src/types/typed-router.d.ts',
+      exclude: ['**/components/**', '**/graphics-engine/*/**'],
     }),
 
     vue(),
