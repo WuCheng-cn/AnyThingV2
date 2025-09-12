@@ -1,3 +1,5 @@
 1.项目的包管理基于yarn的pnp模式
 2.项目具备自动化导入功能，components目录下的组件和vue的相关导入都不需要手动引入
 3.项目具备自动化路由功能，views目录下的页面都不需要手动引入
+4.项目样式优先采用tailwindcss4编写，无特殊情况不写style
+5.项目UI库采用ant-design-vue4

@@ -5,9 +5,10 @@
         v-model:value="filter"
         placeholder="搜索菜单"
         clearable
+        @focus="collapsed = false"
       >
         <template #suffix>
-          <Search :size="14" />
+          <Search v-if="!collapsed" :size="14" />
         </template>
       </a-input>
     </template>
@@ -28,6 +29,8 @@ import { useMenuHooks } from '@/hooks/useMenuHooks'
 const router = useRouter()
 
 const { filter, filteredMenuItems } = useMenuHooks()
+
+const collapsed = inject<Ref<boolean>>('collapsed')
 
 const state = reactive({
   selectedKeys: [] as string[],
