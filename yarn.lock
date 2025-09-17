@@ -480,10 +480,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@arayui/core@npm:^1.0.19":
-  version: 1.0.19
-  resolution: "@arayui/core@npm:1.0.19"
-  checksum: 10c0/c5e65d635da53dbb0689a967f214f0048afd809b9743ddd89c198cdf54badb8e629fe97e90c2b025dec0c30eaaaabce6c321787a29a2046af13bf1f9d6240cac
+"@arayui/core@npm:^1.0.20":
+  version: 1.0.20
+  resolution: "@arayui/core@npm:1.0.20"
+  checksum: 10c0/a9bf5fc1a1f726abb553df4e4cd11ae86a7de79087cddcc02266e804a2ea9bc860ae2071afa9491010309b4a3ac5d2b0637e6968e984fc37a6e38427cf2f3ecc
   languageName: node
   linkType: hard
 
@@ -5184,7 +5184,7 @@ __metadata:
     "@antv/x6-plugin-snapline": "npm:^2.1.7"
     "@antv/x6-plugin-transform": "npm:^2.1.8"
     "@antv/x6-vue-shape": "npm:^2.1.2"
-    "@arayui/core": "npm:^1.0.19"
+    "@arayui/core": "npm:^1.0.20"
     "@arayui/rainy-day": "npm:^1.0.6"
     "@intlify/unplugin-vue-i18n": "npm:^6.0.5"
     "@pinia/testing": "npm:^1.0.0"

@@ -1,7 +1,7 @@
 <template>
   <a-card>
     <LucideIcon name="House" />
-    <a-button @click="AnyDialogHelper.showModel(Demo)">
+    <a-button @click="AnyDialogHelper.showModel(Demo, { isHideMask: false })">
       点击弹窗
     </a-button>
     <router-link to="/graphics-engine" class="text-blue-600 hover:underline">

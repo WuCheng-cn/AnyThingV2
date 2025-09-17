@@ -24,8 +24,8 @@ const useAppStore = defineStore('app', () => {
   const highestIndex = ref(0)
 
   const setHighestIndex = (dom: HTMLElement) => {
+    highestIndex.value += 2
     dom.style.zIndex = highestIndex.value.toString()
-    highestIndex.value++
   }
 
   return {

@@ -1,6 +1,9 @@
 import type { IDialogPropsParam, IDialogPropsSelector } from '@arayui/core'
 import type { App, Component } from 'vue'
+import type { IDialogPropsExtend } from '@/interface/IDialogPropsExtend'
 import { createApp, h } from 'vue'
+import AnyModal from '@/components/core/PC/AnyModal.vue'
+
 /**
  * 对话框帮助类
  * @description 用于创建对话框
@@ -36,14 +39,13 @@ export abstract class AnyDialogHelper {
           return
         }
         const dialogParam = {
-          onConfirm: async (p: RES) => resolve(p),
-          onClosed: () => unmount(),
+          confirm: async (p: RES) => resolve(p),
+          close: () => unmount(),
           ...param,
         }
-
         // 创建App实例
         const renderApp = {
-          render: () => h(view, dialogParam),
+          render: () => h(AnyModal, dialogParam, { default: () => h(view) }),
         }
         app = createApp(renderApp, dialogParam)
 
@@ -62,7 +64,7 @@ export abstract class AnyDialogHelper {
    * @param param 对话框内组件的参数
    * @returns 对话框的异步结果
    */
-  static showModel<T, RES>(view: Component, param?: Omit<IDialogPropsParam<T, RES>, 'onConfirm' | 'onClosed'>): Promise<RES> {
+  static showModel<T, RES>(view: Component, param?: Omit<IDialogPropsParam<T, RES> & IDialogPropsExtend, 'confirm' | 'close'>): Promise<RES> {
     return this.build(view, param || {})
   }
 
@@ -73,7 +75,7 @@ export abstract class AnyDialogHelper {
    * @param param 选择器组件的参数
    * @returns 选择器的异步结果（数组）
    */
-  static showSelector<T>(view: Component, param?: Omit<IDialogPropsSelector<T>, 'onConfirm' | 'onClosed'>): Promise<T[]> {
+  static showSelector<T>(view: Component, param?: Omit<IDialogPropsSelector<T> & IDialogPropsExtend, 'confirm' | 'close'>): Promise<T[]> {
     return this.build(view, param || {})
   }
 }

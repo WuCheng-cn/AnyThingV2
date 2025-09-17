@@ -1,0 +1,304 @@
+<template>
+  <div
+    ref="PositionProviderRef"
+    class="w-full h-full "
+    :style="positionProviderStyle"
+    :class="{ 'hidden!': isHidden }"
+  >
+    <!-- mask -->
+    <div
+      v-if="!isClose && !isHideMask"
+      class="fixed top-0 left-0 w-full h-full bg-black/25"
+      :style="{ zIndex: String(highestIndex - 1) }"
+    />
+    <Transition name="any-dialog" appear @after-leave="handleClose()">
+      <div
+        v-if="!isClose"
+        ref="AnyModelRef"
+        class="fixed flex flex-col bg-white rounded-lg shadow-lg select-none overflow-hidden transition-all duration-500 transform scale-100"
+        :class="{
+          'w-screen! h-screen! left-0! top-0! bottom-0! rounded-none!': isFullScreen,
+        }"
+        :style="{ ...modalPositionStyle }"
+        @mousedown.stop="handleModelClick"
+      >
+        <!-- 标题栏 -->
+        <div
+          class="h-10 bg-gray-100 rounded-t-lg grid grid-cols-3 items-center px-2.5 cursor-grab active:cursor-grabbing"
+          @mousedown="startDrag"
+          @dblclick.stop="onMaximize()"
+        >
+          <!-- 控制按钮区域 -->
+          <div class="flex gap-1">
+            <button
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-red-500 text-transparent! hover:text-white! "
+              @click.stop="isClose = true"
+            >
+              <X class="w-3.5 h-3.5" :stroke-width="3" />
+            </button>
+            <button
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-yellow-500 text-transparent! hover:text-white!"
+              @click.stop="onMinimize()"
+            >
+              <Minus class="w-3.5 h-3.5" :stroke-width="3" />
+            </button>
+            <button
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-green-500 text-transparent! hover:text-white!"
+              @click.stop="onMaximize()"
+            >
+              <Maximize class="w-3.5 h-3.5" :stroke-width="3" />
+            </button>
+          </div>
+
+          <!-- 标题 -->
+          <div class="text-sm font-medium text-gray-700 text-center">
+            {{ title }}
+          </div>
+
+          <!-- 占位 -->
+          <div />
+        </div>
+
+        <!-- 主体内容 -->
+        <div class="flex-1 p-2.5 overflow-auto">
+          <slot />
+        </div>
+      </div>
+    </Transition>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import type { IDialogPropsParam } from '@arayui/core'
+import type { IDialogPropsExtend } from '@/interface/IDialogPropsExtend'
+import { AnyResizeControllerHelper } from '@arayui/core'
+import { Maximize, Minus, X } from 'lucide-vue-next'
+import { computed, nextTick, onMounted, ref, toRefs } from 'vue'
+import useAppStore from '@/stores/modules/useAppStore'
+
+const props = withDefaults(defineProps<IDialogPropsParam<any, any> & IDialogPropsExtend>(), {
+  title: '弹窗标题',
+})
+
+const { clickedPosition, setHighestIndex } = useAppStore()
+const { highestIndex } = toRefs(useAppStore())
+
+const PositionProviderRef = ref<HTMLElement>()
+const AnyModelRef = ref<HTMLElement>()
+const isFullScreen = ref(false)
+const isClose = ref(false)
+const isMinimized = ref(false)
+const isHidden = ref(false)
+
+// 拖拽相关数据
+const dragData = ref({
+  width: 0,
+  height: 0,
+  offsetX: 0,
+  offsetY: 0,
+  transition: '',
+  customPosition: false,
+  left: '0px',
+  top: '0px',
+})
+
+// CSS变量
+const cssVars = ref({
+  startX: '0px',
+  startY: '0px',
+  minimizeToX: '0px',
+  minimizeToY: '0px',
+  scaleX: '1',
+  scaleY: '1',
+})
+
+// 计算属性：position provider的样式
+const positionProviderStyle = computed(() => ({
+  '--startX': cssVars.value.startX,
+  '--startY': cssVars.value.startY,
+  '--minimizeToX': cssVars.value.minimizeToX,
+  '--minimizeToY': cssVars.value.minimizeToY,
+  '--scaleX': cssVars.value.scaleX,
+  '--scaleY': cssVars.value.scaleY,
+}))
+
+// 计算属性：对话框位置样式
+const modalPositionStyle = computed(() => {
+  if (isMinimized.value) {
+    return {
+      padding: '0',
+      overflow: 'hidden',
+      left: `var(--minimizeToX)`,
+      bottom: `calc(100vh - var(--minimizeToY))`,
+      pointerEvents: 'none' as const,
+      transform: `scale(var(--scaleX), var(--scaleY))`,
+      transformOrigin: 'left bottom',
+      opacity: '0',
+    }
+  }
+
+  // 如果有自定义位置，使用自定义位置
+  if (dragData.value.customPosition) {
+    return {
+      width: `${dragData.value.width}px`,
+      height: `${dragData.value.height}px`,
+      top: dragData.value.top,
+      left: dragData.value.left,
+    }
+  }
+
+  const top = '12vh'
+  const left = '20vw'
+
+  return {
+    top,
+    left,
+    width: `calc(100vw - 2 * ${left})`,
+    height: `calc(100vh - 2 * ${top})`,
+  }
+})
+
+function handleModelClick() {
+  setHighestIndex(AnyModelRef.value as HTMLElement)
+}
+
+async function handleClose() {
+  isHidden.value = true
+  await props.beforeClose?.()
+  props.close()
+  await props.onClosed?.()
+}
+
+async function onMinimize() {
+  await props.beforeMinimize?.()
+  isMinimized.value = true
+  await props.onMinimized?.()
+}
+
+function setCssProperty() {
+  if (clickedPosition) {
+    cssVars.value.startX = `${clickedPosition.x}px`
+    cssVars.value.startY = `${clickedPosition.y}px`
+  }
+
+  nextTick(async () => {
+    const scaleRateX = 216 / 1920
+    const scaleRateY = 150 / 1080
+    cssVars.value.scaleX = `${scaleRateX}`
+    cssVars.value.scaleY = `${scaleRateY}`
+    cssVars.value.minimizeToX = `${0}px`
+    cssVars.value.minimizeToY = `${0}px`
+  })
+}
+
+function onMaximize() {
+  isFullScreen.value = !isFullScreen.value
+}
+
+function mousemove(e: MouseEvent) {
+  let { clientX, clientY } = e
+
+  // 限制移动范围
+  clientX = Math.max(0, Math.min(clientX, window.innerWidth))
+  clientY = Math.max(0, Math.min(clientY, window.innerHeight))
+
+  const x = clientX - dragData.value.offsetX
+  const y = clientY - dragData.value.offsetY
+
+  if (AnyModelRef.value) {
+    AnyModelRef.value.style.width = `${dragData.value.width}px`
+    AnyModelRef.value.style.height = `${dragData.value.height}px`
+    AnyModelRef.value.style.top = `${y}px`
+    AnyModelRef.value.style.left = `${x}px`
+    AnyModelRef.value.style.transition = 'unset'
+    AnyModelRef.value.style.zIndex = String(highestIndex.value)
+
+    // 标记为自定义位置
+    dragData.value.customPosition = true
+    dragData.value.left = `${x}px`
+    dragData.value.top = `${y}px`
+  }
+}
+
+function startDrag(e: MouseEvent) {
+  if (!props.isHideMask) {
+    e.stopPropagation()
+  }
+  if (isFullScreen.value)
+    return
+
+  const element = AnyModelRef.value
+  if (!element)
+    return
+
+  const { width, height, left, top } = element.getBoundingClientRect()
+  const { clientX, clientY } = e
+
+  dragData.value.transition = element.style.transition
+  dragData.value.width = width
+  dragData.value.height = height
+  dragData.value.offsetX = clientX - left
+  dragData.value.offsetY = clientY - top
+
+  document.addEventListener('mousemove', mousemove)
+  document.addEventListener('mouseup', stopDrag)
+}
+
+function stopDrag() {
+  // 即使没有移动，也保持当前的自定义位置
+  if (AnyModelRef.value) {
+    AnyModelRef.value.style.transition = dragData.value.transition
+    // 如果已有自定义位置，保持该位置
+    if (dragData.value.customPosition) {
+      AnyModelRef.value.style.width = `${dragData.value.width}px`
+      AnyModelRef.value.style.height = `${dragData.value.height}px`
+      AnyModelRef.value.style.top = dragData.value.top
+      AnyModelRef.value.style.left = dragData.value.left
+    }
+  }
+  document.removeEventListener('mousemove', mousemove)
+  document.removeEventListener('mouseup', stopDrag)
+}
+
+// 创建调整尺寸控制器实例并保存引用
+let _resizeController: AnyResizeControllerHelper | null = null
+
+onMounted(async () => {
+  if (props.onMounted && AnyModelRef.value) {
+    props.onMounted(AnyModelRef.value)
+  }
+
+  setCssProperty()
+
+  if (AnyModelRef.value) {
+    setHighestIndex(AnyModelRef.value)
+    _resizeController = new AnyResizeControllerHelper(AnyModelRef.value)
+  }
+})
+</script>
+
+<style scoped>
+/* 动画效果 */
+.any-dialog-enter-active {
+  animation: dialog-enter .5s;
+}
+
+.any-dialog-leave-active {
+  animation: dialog-enter 0.5s reverse;
+}
+
+@keyframes dialog-enter {
+  0% {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    top: calc(var(--startY) - 5px);
+    left: calc(var(--startX) - 5px);
+    pointer-events: none;
+  }
+
+}
+</style>
