@@ -11,7 +11,7 @@ export function createPostcssPlugins() {
       viewportWidth: 375,
       disableDesktop: true,
       disableMobile: true,
-      enableMediaQuery: true,
+      enableMediaQuery: false,
       rootContainingBlockSelectorList: [
         'van-tabbar',
         'van-popup',

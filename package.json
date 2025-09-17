@@ -48,6 +48,7 @@
     "@antv/x6-plugin-transform": "^2.1.8",
     "@antv/x6-vue-shape": "^2.1.2",
     "@arayui/core": "^1.0.19",
+    "@arayui/rainy-day": "^1.0.6",
     "@tailwindcss/vite": "^4.1.5",
     "@unhead/vue": "^2.0.2",
     "@vant/touch-emulator": "^1.4.0",
@@ -130,6 +131,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "volta": {
-    "node": "23.11.0"
+    "node": "23.11.0",
+    "yarn": "4.9.2"
   }
 }

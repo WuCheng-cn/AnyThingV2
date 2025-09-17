@@ -487,6 +487,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@arayui/rainy-day@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "@arayui/rainy-day@npm:1.0.6"
+  dependencies:
+    three: "npm:^0.175.0"
+  checksum: 10c0/03201904619b73b7ecb6bb76fbb7236a5b353a7a1b28dac9bbc1e044ae02dadcfc5b13984339afc8341fc3be42dba899d2e714d8650da386e22cf6a4a02f9258
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.26.2, @babel/code-frame@npm:^7.27.1":
   version: 7.27.1
   resolution: "@babel/code-frame@npm:7.27.1"
@@ -5176,6 +5185,7 @@ __metadata:
     "@antv/x6-plugin-transform": "npm:^2.1.8"
     "@antv/x6-vue-shape": "npm:^2.1.2"
     "@arayui/core": "npm:^1.0.19"
+    "@arayui/rainy-day": "npm:^1.0.6"
     "@intlify/unplugin-vue-i18n": "npm:^6.0.5"
     "@pinia/testing": "npm:^1.0.0"
     "@release-it/conventional-changelog": "npm:^10.0.1"
@@ -13983,6 +13993,13 @@ __metadata:
   version: 2.4.0
   resolution: "text-extensions@npm:2.4.0"
   checksum: 10c0/6790e7ee72ad4d54f2e96c50a13e158bb57ce840dddc770e80960ed1550115c57bdc2cee45d5354d7b4f269636f5ca06aab4d6e0281556c841389aa837b23fcb
+  languageName: node
+  linkType: hard
+
+"three@npm:^0.175.0":
+  version: 0.175.0
+  resolution: "three@npm:0.175.0"
+  checksum: 10c0/eb47d45aaee376cfbbe7334ec4e9f3ea9cb03f9ecce5a313a08f56a01834e7f514a0c657cf2c4abeff9956079721cd542e2913fede50553d935e7fa390921452
   languageName: node
   linkType: hard
 

@@ -1,6 +1,6 @@
 <template>
   <a-layout class="h-full">
-    <a-layout-header style="padding-inline: 12px;">
+    <a-layout-header style="padding-inline: 0px;">
       <!-- header -->
       <ClassicHeader />
     </a-layout-header>
