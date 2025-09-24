@@ -14,6 +14,18 @@ export const AppConfig = {
   /** # 数字输入最小值 */
   MIN_NUMBER: -999999999,
 
+  /** # 默认分页key */
+  DEFAULT_PAGE_KEY: 'page',
+
+  /** # 默认分页尺寸key */
+  DEFAULT_PAGE_SIZE_KEY: 'size',
+
+  /** # 默认行数据key */
+  DEFAULT_ROWS_DATA_KEY: 'rows',
+
+  /** # 默认总条数key */
+  DEFAULT_TOTAL_KEY: 'total',
+
   /** # 默认分页尺寸 */
   DEFAULT_PAGE_SIZE: 10,
 
