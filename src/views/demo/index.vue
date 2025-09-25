@@ -19,6 +19,17 @@
       校验后提交
     </van-button>
   </div>
+  <div class="w-full h-[100px]">
+    <AnyTable
+      :entity="MobileDemoEntity"
+      resizable
+      show-index
+    >
+      <template #headerCell="{ title }">
+        {{ title }}--
+      </template>
+    </AnyTable>
+  </div>
 </template>
 
 <script setup lang="ts">

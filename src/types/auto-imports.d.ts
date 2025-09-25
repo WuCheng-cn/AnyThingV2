@@ -130,6 +130,7 @@ declare global {
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useAnyFormHooks: typeof import('../hooks/useAnyFormHooks')['useAnyFormHooks']
   const useAnyTableHooks: typeof import('../hooks/useAnyTableHooks')['useAnyTableHooks']
+  const useAnyTableHooksByAnt: typeof import('../hooks/useAnyTableHooksByAnt')['useAnyTableHooksByAnt']
   const useArrayDifference: typeof import('@vueuse/core')['useArrayDifference']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
   const useArrayFilter: typeof import('@vueuse/core')['useArrayFilter']
