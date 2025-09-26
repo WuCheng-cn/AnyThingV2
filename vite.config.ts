@@ -1,3 +1,4 @@
+import type { ConfigEnv } from 'vite'
 /// <reference types="vitest" />
 import path from 'node:path'
 import { defineConfig } from 'vite'
@@ -5,8 +6,8 @@ import { createPostcssPlugins } from './plugin/postcss'
 import { createVitePlugins } from './plugin/vite'
 // vite打包压缩插件
 
-export default defineConfig({
-  plugins: createVitePlugins() as any[],
+export default defineConfig((env: ConfigEnv) => ({
+  plugins: createVitePlugins(env) as any[],
 
   resolve: {
     alias: {
@@ -34,4 +35,4 @@ export default defineConfig({
     cors: true, // 允许跨域
     hmr: true, // 热更新
   },
-})
+}))

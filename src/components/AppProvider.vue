@@ -1,3 +1,22 @@
+<script setup lang='ts'>
+import { theme } from 'ant-design-vue'
+import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+
+dayjs.locale('zh-cn')
+
+const { token } = theme.useToken()
+
+const tokenMap = computed(() => {
+  return Object.fromEntries(
+    Object.entries(token.value)?.map(([key, value]) => {
+      return [`--${key}`, value]
+    }),
+  )
+})
+</script>
+
 <template>
   <a-config-provider
     class="h-full"
@@ -19,22 +38,3 @@
     </section>
   </a-config-provider>
 </template>
-
-<script setup lang='ts'>
-import { theme } from 'ant-design-vue'
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
-
-dayjs.locale('zh-cn')
-
-const { token } = theme.useToken()
-
-const tokenMap = computed(() => {
-  return Object.fromEntries(
-    Object.entries(token.value)?.map(([key, value]) => {
-      return [`--${key}`, value]
-    }),
-  )
-})
-</script>
