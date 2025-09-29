@@ -1,6 +1,6 @@
 import type { ItemType } from 'ant-design-vue'
 import type { RouteRecordNormalized } from 'vue-router'
-import LucideIcon from '@/components/UI/LucideIcon.vue'
+import LucideIcon from '@/components/UI/AnyIcon.vue'
 
 /** # 不渲染的菜单列表 */
 const excludeMenuList = ['login', '404', '401']

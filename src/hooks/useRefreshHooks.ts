@@ -1,0 +1,15 @@
+import { useRouter } from 'vue-router'
+import { useTabbarStore } from '@/stores/modules/useTabbarStore'
+
+export function useRefreshHooks() {
+  const router = useRouter()
+  const tabbarStore = useTabbarStore()
+
+  async function refresh() {
+    await tabbarStore.refresh(router)
+  }
+
+  return {
+    refresh,
+  }
+}

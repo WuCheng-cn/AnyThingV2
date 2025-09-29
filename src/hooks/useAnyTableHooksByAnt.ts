@@ -4,7 +4,7 @@ import type { TableRowSelection } from 'ant-design-vue/es/table/interface'
 import type { ICustomRow } from '@/interface/ICustomRow'
 import type { ITableHookConfig } from '@/interface/ITableHookConfig'
 import { message, Modal } from 'ant-design-vue'
-import LucideIcon from '@/components/UI/LucideIcon.vue'
+import LucideIcon from '@/components/UI/AnyIcon.vue'
 import { AppConfig } from '@/config/AppConfig'
 import { OrderType } from '@/enum/EOrderType'
 

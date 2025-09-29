@@ -1,23 +1,3 @@
-<template>
-  <div ref="tableBoxRef" class="w-full h-full">
-    <a-table
-      v-model:expanded-row-keys="expandedRowKeys"
-      v-bind="$attrs"
-      :columns="columns"
-      :scroll="{
-        y: tableSize.tableHeight,
-        x: tableSize.tableWidth,
-      }"
-      @change="onChange"
-      @resize-column="handleResizeColumn"
-    >
-      <template v-for="(_value, key) in slots" :key="key" #[key]="slotProps">
-        <slot :name="key" v-bind="slotProps" />
-      </template>
-    </a-table>
-  </div>
-</template>
-
 <script lang="ts" setup generic="T extends AnyDataBaseEntity">
 import type { AnyDataBaseEntity, ClassConstructorWithBaseModel, ClassFieldNames } from '@arayui/core'
 import type { Table, TableProps } from 'ant-design-vue'
@@ -158,6 +138,26 @@ defineExpose({
   columns,
 })
 </script>
+
+<template>
+  <div ref="tableBoxRef" class="w-full h-full">
+    <a-table
+      v-model:expanded-row-keys="expandedRowKeys"
+      v-bind="$attrs"
+      :columns="columns"
+      :scroll="{
+        y: tableSize.tableHeight,
+        x: tableSize.tableWidth,
+      }"
+      @change="onChange"
+      @resize-column="handleResizeColumn"
+    >
+      <template v-for="(_value, key) in slots" :key="key" #[key]="slotProps">
+        <slot :name="key" v-bind="slotProps" />
+      </template>
+    </a-table>
+  </div>
+</template>
 
 <style>
 .ant-table-wrapper .ant-table-pagination.ant-pagination{

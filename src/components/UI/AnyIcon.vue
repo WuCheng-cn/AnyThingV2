@@ -1,13 +1,3 @@
-<template>
-  <component
-    :is="icon"
-    :size="size"
-    :color="color"
-    :stroke-width="strokeWidth"
-    :default-class="defaultClass"
-  />
-</template>
-
 <script setup lang="ts">
 import * as icons from 'lucide-vue-next'
 import { computed } from 'vue'
@@ -30,3 +20,13 @@ const props = withDefaults(defineProps<{
 
 const icon = computed<any>(() => icons[props.name as keyof typeof icons])
 </script>
+
+<template>
+  <component
+    :is="icon"
+    :size="size"
+    :color="color"
+    :stroke-width="strokeWidth"
+    :default-class="defaultClass"
+  />
+</template>
