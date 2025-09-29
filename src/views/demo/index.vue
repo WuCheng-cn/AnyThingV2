@@ -48,6 +48,7 @@ async function validateAndSubmit() {
     <AnyButton type="ghost" content="asda">
       <AnyIcon name="RefreshCw" />
     </AnyButton>
+    <AnyThemeButton />
   </div>
 </template>
 

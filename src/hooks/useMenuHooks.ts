@@ -9,8 +9,10 @@ const excludeMenuList = ['login', '404', '401']
  * # 菜单钩子函数
  */
 export function useMenuHooks() {
+  /** # 菜单过滤参数 */
   const filter = ref('')
 
+  /** # 所有菜单 */
   const menuItems = computed(() => getMenuByRoutes())
 
   const validRoutes = computed(() => {
@@ -20,6 +22,7 @@ export function useMenuHooks() {
       .sort((a, b) => a.path.localeCompare(b.path))
   })
 
+  /** # 过滤后的菜单 */
   const filteredMenuItems = computed(() => {
     if (filter.value) {
       const filteredRoutes = validRoutes.value.filter(item => item.meta?.title?.includes(filter.value))
@@ -117,6 +120,7 @@ export function useMenuHooks() {
     })
   }
 
+  /** # 根据路由构建菜单 */
   function getMenuByRoutes() {
     const routes = useRouter().getRoutes()
     const items = buildMenuTree(routes)
