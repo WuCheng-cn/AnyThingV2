@@ -1,5 +1,5 @@
-import type { EnhancedRouteLocation } from '@/router/types'
 import type { RouteRecordName } from 'vue-router'
+import type { EnhancedRouteLocation } from '@/router/types'
 import { defineStore } from 'pinia'
 
 const useRouteCacheStore = defineStore('route-cache', () => {

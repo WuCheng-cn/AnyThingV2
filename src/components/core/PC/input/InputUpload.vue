@@ -1,26 +1,3 @@
-<template>
-  <a-upload-dragger
-    v-model:file-list="value"
-    v-bind="$attrs"
-    :accept="formFieldConfig.accept?.join(',')"
-    :max-count="formFieldConfig.maxCount || AppConfig.MAX_UPLOAD_COUNT"
-    :multiple="maxCount !== 1"
-    :before-upload="beforeUpload"
-    @change="onChange"
-  >
-    <div class="flex flex-col items-center justify-center">
-      <HardDriveUpload :size="32" :stroke-width="2" />
-      <div> 单击或拖动文件到此区域进行上传 </div>
-      <div>
-        {{
-          `最大允许上传数量：${maxCount}，
-          支持格式：${formFieldConfig.accept || '不限'}`
-        }}
-      </div>
-    </div>
-  </a-upload-dragger>
-</template>
-
 <script lang="ts" setup>
 import type { IFormFieldConfig } from '@arayui/core'
 import type { UploadChangeParam, UploadFile } from 'ant-design-vue'
@@ -81,3 +58,26 @@ function beforeUpload(_file: File) {
   return true
 }
 </script>
+
+<template>
+  <a-upload-dragger
+    v-model:file-list="value"
+    v-bind="$attrs"
+    :accept="formFieldConfig.accept?.join(',')"
+    :max-count="formFieldConfig.maxCount || AppConfig.MAX_UPLOAD_COUNT"
+    :multiple="maxCount !== 1"
+    :before-upload="beforeUpload"
+    @change="onChange"
+  >
+    <div class="flex flex-col items-center justify-center">
+      <HardDriveUpload :size="32" :stroke-width="2" />
+      <div> 单击或拖动文件到此区域进行上传 </div>
+      <div>
+        {{
+          `最大允许上传数量：${maxCount}，
+          支持格式：${formFieldConfig.accept || '不限'}`
+        }}
+      </div>
+    </div>
+  </a-upload-dragger>
+</template>

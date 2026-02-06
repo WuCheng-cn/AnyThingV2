@@ -1,44 +1,3 @@
-<template>
-  <van-field
-    v-model="fieldValue"
-    v-bind="$attrs"
-    readonly
-    @click="!canInput && !$attrs.disabled && (showPicker = true)"
-  >
-    <template #right-icon>
-      <Transition
-        enter-active-class="animate-in fade-in zoom-in"
-        leave-active-class="animate-out fade-out zoom-out"
-        @click.stop="value = [''];inputValue = ''"
-      >
-        <CircleX v-show="!$attrs.disabled && fieldValue" />
-      </Transition>
-    </template>
-    <template v-if="canInput" #input>
-      <van-field
-        v-model="inputValue"
-        class="p-0!"
-        :placeholder="$attrs.placeholder as unknown as string"
-        @blur="handleBlur"
-      />
-      <van-icon name="arrow" @click="!$attrs.disabled && (showPicker = true)" />
-    </template>
-  </van-field>
-  <van-popup
-    v-model:show="showPicker"
-    destroy-on-close
-    round
-    position="bottom"
-  >
-    <van-picker
-      :columns="(options as any)"
-      :columns-field-names="{ text: 'label' }"
-      @cancel="showPicker = false"
-      @confirm="onConfirm"
-    />
-  </van-popup>
-</template>
-
 <script lang="ts" setup>
 import type { IDictionary } from '@arayui/core'
 import { CircleX } from 'lucide-vue-next'
@@ -122,3 +81,44 @@ function onConfirm({ selectedValues }: any) {
   emits('change', selectedValues[0])
 }
 </script>
+
+<template>
+  <van-field
+    v-model="fieldValue"
+    v-bind="$attrs"
+    readonly
+    @click="!canInput && !$attrs.disabled && (showPicker = true)"
+  >
+    <template #right-icon>
+      <Transition
+        enter-active-class="animate-in fade-in zoom-in"
+        leave-active-class="animate-out fade-out zoom-out"
+        @click.stop="value = [''];inputValue = ''"
+      >
+        <CircleX v-show="!$attrs.disabled && fieldValue" />
+      </Transition>
+    </template>
+    <template v-if="canInput" #input>
+      <van-field
+        v-model="inputValue"
+        class="p-0!"
+        :placeholder="$attrs.placeholder as unknown as string"
+        @blur="handleBlur"
+      />
+      <van-icon name="arrow" @click="!$attrs.disabled && (showPicker = true)" />
+    </template>
+  </van-field>
+  <van-popup
+    v-model:show="showPicker"
+    destroy-on-close
+    round
+    position="bottom"
+  >
+    <van-picker
+      :columns="(options as any)"
+      :columns-field-names="{ text: 'label' }"
+      @cancel="showPicker = false"
+      @confirm="onConfirm"
+    />
+  </van-popup>
+</template>

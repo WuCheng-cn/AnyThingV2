@@ -1,12 +1,3 @@
-<template>
-  <a-input-number
-    v-model:value.trim="value"
-    v-bind="$attrs"
-    style="width: 100%;"
-    @change="onChange"
-  />
-</template>
-
 <script lang="ts" setup>
 import type { ValueType } from 'ant-design-vue/es/input-number/src/utils/MiniDecimal'
 
@@ -30,3 +21,12 @@ function onChange(value: ValueType) {
   emits('change', value)
 }
 </script>
+
+<template>
+  <a-input-number
+    v-model:value.trim="value"
+    v-bind="$attrs"
+    style="width: 100%;"
+    @change="onChange"
+  />
+</template>

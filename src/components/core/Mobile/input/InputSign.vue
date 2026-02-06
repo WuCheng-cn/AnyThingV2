@@ -1,46 +1,3 @@
-<template>
-  <van-field input-align="right" v-bind="$attrs">
-    <template #input>
-      <img
-        v-if="value"
-        :src="value"
-        class="w-12 mr-3 border border-[#f2f2f2] rounded-sm"
-        alt=""
-        @click="showImagePreview([value])"
-      >
-      <van-button v-if="!$attrs.disabled" size="mini" @click="showSign">
-        点击签字
-      </van-button>
-    </template>
-  </van-field>
-  <div v-show="show" class=" fixed top-0 left-0 flex w-[100vw] h-[100vh] bg-white z-99999">
-    <div class="w-[40px] flex items-center justify-center">
-      <div class="rotate-90 whitespace-nowrap">
-        <van-button
-          size="small"
-          type="danger"
-          class="mr-3!"
-          @click="show = false"
-        >
-          退出
-        </van-button>
-        <van-button size="small" class="mr-3!" @click="handleClear">
-          清除
-        </van-button>
-        <van-button size="small" type="primary" @click="handleSign">
-          保存
-        </van-button>
-      </div>
-    </div>
-    <canvas
-      ref="canvasRef"
-      width="100%"
-      height="100%"
-      class="flex-1"
-    />
-  </div>
-</template>
-
 <script lang="ts" setup>
 import type { IFormFieldConfig } from '@arayui/core'
 import SmoothSignature from 'smooth-signature'
@@ -110,6 +67,49 @@ onMounted(() => {
   })
 })
 </script>
+
+<template>
+  <van-field input-align="right" v-bind="$attrs">
+    <template #input>
+      <img
+        v-if="value"
+        :src="value"
+        class="w-12 mr-3 border border-[#f2f2f2] rounded-sm"
+        alt=""
+        @click="showImagePreview([value])"
+      >
+      <van-button v-if="!$attrs.disabled" size="mini" @click="showSign">
+        点击签字
+      </van-button>
+    </template>
+  </van-field>
+  <div v-show="show" class=" fixed top-0 left-0 flex w-[100vw] h-[100vh] bg-white z-99999">
+    <div class="w-[40px] flex items-center justify-center">
+      <div class="rotate-90 whitespace-nowrap">
+        <van-button
+          size="small"
+          type="danger"
+          class="mr-3!"
+          @click="show = false"
+        >
+          退出
+        </van-button>
+        <van-button size="small" class="mr-3!" @click="handleClear">
+          清除
+        </van-button>
+        <van-button size="small" type="primary" @click="handleSign">
+          保存
+        </van-button>
+      </div>
+    </div>
+    <canvas
+      ref="canvasRef"
+      width="100%"
+      height="100%"
+      class="flex-1"
+    />
+  </div>
+</template>
 
 <style lang="less" scoped>
 

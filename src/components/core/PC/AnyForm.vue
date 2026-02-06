@@ -1,50 +1,3 @@
-<template>
-  <a-form
-    v-bind="$attrs"
-    ref="formRef"
-    :model="formState"
-    :rules="rules"
-    :disabled="props.disabled"
-    :label-col="labelCol"
-    label-wrap
-    @submit="props.onSubmit"
-    @finish="props.onFinish"
-  >
-    <div>
-      <a-checkbox-group
-        v-model:value="(checkedFormKeys as string[])"
-        class="grid gap-x-6"
-        :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }"
-      >
-        <slot name="form-before" :data="formState" />
-        <div
-          v-for="field in formFieldList"
-          :key="field"
-          class="flex items-center gap-3"
-        >
-          <a-checkbox v-if="showCheckbox" class="mb-[24px]" :value="field" />
-          <a-form-item :name="field.toString()" class="flex-1">
-            <template #label>
-              <span class="max-w-[calc(100%-20px)] inline-block">
-                {{ formState.getFormFieldLabel(field) }}
-              </span>
-            </template>
-            <slot :name="field" :data="formState">
-              <AnyInput
-                v-model="formState[field]"
-                class="w-full"
-                v-bind="getInputProps(field)"
-                @change="handleChange($event, field)"
-              />
-            </slot>
-          </a-form-item>
-        </div>
-        <slot name="form-after" :data="formState" />
-      </a-checkbox-group>
-    </div>
-  </a-form>
-</template>
-
 <script lang="ts" setup generic="T extends AnyBaseModel">
 import type { AnyBaseModel, ClassFieldNames, IFormProps } from '@arayui/core'
 import type { FormProps } from 'ant-design-vue'
@@ -113,6 +66,53 @@ function getFormData() {
 
 defineExpose({ getValidatedFormData, checkedFormKeys, getFormData })
 </script>
+
+<template>
+  <a-form
+    v-bind="$attrs"
+    ref="formRef"
+    :model="formState"
+    :rules="rules"
+    :disabled="props.disabled"
+    :label-col="labelCol"
+    label-wrap
+    @submit="props.onSubmit"
+    @finish="props.onFinish"
+  >
+    <div>
+      <a-checkbox-group
+        v-model:value="(checkedFormKeys as string[])"
+        class="grid gap-x-6"
+        :style="{ gridTemplateColumns: `repeat(${cols}, 1fr)` }"
+      >
+        <slot name="form-before" :data="formState" />
+        <div
+          v-for="field in formFieldList"
+          :key="field"
+          class="flex items-center gap-3"
+        >
+          <a-checkbox v-if="showCheckbox" class="mb-[24px]" :value="field" />
+          <a-form-item :name="field.toString()" class="flex-1">
+            <template #label>
+              <span class="max-w-[calc(100%-20px)] inline-block">
+                {{ formState.getFormFieldLabel(field) }}
+              </span>
+            </template>
+            <slot :name="field" :data="formState">
+              <AnyInput
+                v-model="formState[field]"
+                class="w-full"
+                v-bind="getInputProps(field)"
+                @change="handleChange($event, field)"
+              />
+            </slot>
+          </a-form-item>
+        </div>
+        <slot name="form-after" :data="formState" />
+      </a-checkbox-group>
+    </div>
+  </a-form>
+</template>
 
 <style scoped>
 :deep(.ant-form-item .ant-form-item-label > label) {

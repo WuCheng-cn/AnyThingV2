@@ -1,21 +1,3 @@
-<template>
-  <van-field
-    v-model.trim="value"
-    v-bind="$attrs"
-    @update:model-value="onChange"
-  >
-    <template #right-icon>
-      <Transition
-        enter-active-class="animate-in fade-in zoom-in"
-        leave-active-class="animate-out fade-out zoom-out"
-        @click="value = undefined"
-      >
-        <CircleX v-show="!$attrs.disabled && value" />
-      </Transition>
-    </template>
-  </van-field>
-</template>
-
 <script lang="ts" setup>
 import { CircleX } from 'lucide-vue-next'
 import { computed } from 'vue'
@@ -40,3 +22,21 @@ function onChange(e: string) {
   emits('change', e)
 }
 </script>
+
+<template>
+  <van-field
+    v-model.trim="value"
+    v-bind="$attrs"
+    @update:model-value="onChange"
+  >
+    <template #right-icon>
+      <Transition
+        enter-active-class="animate-in fade-in zoom-in"
+        leave-active-class="animate-out fade-out zoom-out"
+        @click="value = undefined"
+      >
+        <CircleX v-show="!$attrs.disabled && value" />
+      </Transition>
+    </template>
+  </van-field>
+</template>

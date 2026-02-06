@@ -1,47 +1,3 @@
-<template>
-  <van-field
-    v-model="fieldValue"
-    v-bind="$attrs"
-    readonly
-    @click="!$attrs.disabled && (showPicker = true)"
-  >
-    <template #right-icon>
-      <Transition
-        enter-active-class="animate-in fade-in zoom-in"
-        leave-active-class="animate-out fade-out zoom-out"
-        @click.stop="onClear()"
-      >
-        <CircleX v-show="!$attrs.disabled && fieldValue" />
-      </Transition>
-    </template>
-  </van-field>
-  <van-popup
-    v-model:show="showPicker"
-    destroy-on-close
-    round
-    position="bottom"
-  >
-    <van-picker-group
-      v-if="props.showTime"
-      title="日期时间"
-      next-step-text="下一步"
-      :tabs="['选择日期', '选择时间']"
-      @confirm="onDateTimeChange"
-      @cancel="showPicker = false"
-    >
-      <van-date-picker v-model="date" />
-      <van-time-picker v-model="time" />
-    </van-picker-group>
-    <van-date-picker
-      v-else
-      v-model="datePickerBind"
-      title="选择日期"
-      @confirm="onChange"
-      @cancel="showPicker = false"
-    />
-  </van-popup>
-</template>
-
 <script lang="ts" setup>
 import type { IFormFieldConfig } from '@arayui/core'
 import { AnyDateTimeHelper } from '@arayui/core'
@@ -123,3 +79,47 @@ function onClear() {
   }
 }
 </script>
+
+<template>
+  <van-field
+    v-model="fieldValue"
+    v-bind="$attrs"
+    readonly
+    @click="!$attrs.disabled && (showPicker = true)"
+  >
+    <template #right-icon>
+      <Transition
+        enter-active-class="animate-in fade-in zoom-in"
+        leave-active-class="animate-out fade-out zoom-out"
+        @click.stop="onClear()"
+      >
+        <CircleX v-show="!$attrs.disabled && fieldValue" />
+      </Transition>
+    </template>
+  </van-field>
+  <van-popup
+    v-model:show="showPicker"
+    destroy-on-close
+    round
+    position="bottom"
+  >
+    <van-picker-group
+      v-if="props.showTime"
+      title="日期时间"
+      next-step-text="下一步"
+      :tabs="['选择日期', '选择时间']"
+      @confirm="onDateTimeChange"
+      @cancel="showPicker = false"
+    >
+      <van-date-picker v-model="date" />
+      <van-time-picker v-model="time" />
+    </van-picker-group>
+    <van-date-picker
+      v-else
+      v-model="datePickerBind"
+      title="选择日期"
+      @confirm="onChange"
+      @cancel="showPicker = false"
+    />
+  </van-popup>
+</template>

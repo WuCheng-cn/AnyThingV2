@@ -1,11 +1,3 @@
-<template>
-  <a-input
-    v-model:value.trim="value"
-    v-bind="$attrs"
-    @change="onChange"
-  />
-</template>
-
 <script lang="ts" setup>
 const props = defineProps<{
   modelValue: string | number | undefined
@@ -27,3 +19,11 @@ function onChange(e: Event) {
   emits('change', (e.target as HTMLInputElement).value)
 }
 </script>
+
+<template>
+  <a-input
+    v-model:value.trim="value"
+    v-bind="$attrs"
+    @change="onChange"
+  />
+</template>

@@ -1,25 +1,3 @@
-<template>
-  <van-field>
-    <template #input>
-      <van-radio-group
-        v-model="value"
-        v-bind="$attrs"
-        @click="onChange"
-      >
-        <div class="radio-group">
-          <van-radio
-            v-for="item in options"
-            :key="item.value.toString()"
-            :name="item.value"
-          >
-            {{ item.label }}
-          </van-radio>
-        </div>
-      </van-radio-group>
-    </template>
-  </van-field>
-</template>
-
 <script lang="ts" setup>
 import type { IDictionary } from '@arayui/core'
 import { computed } from 'vue'
@@ -45,6 +23,28 @@ function onChange(name: string) {
   emits('change', name)
 }
 </script>
+
+<template>
+  <van-field>
+    <template #input>
+      <van-radio-group
+        v-model="value"
+        v-bind="$attrs"
+        @click="onChange"
+      >
+        <div class="radio-group">
+          <van-radio
+            v-for="item in options"
+            :key="item.value.toString()"
+            :name="item.value"
+          >
+            {{ item.label }}
+          </van-radio>
+        </div>
+      </van-radio-group>
+    </template>
+  </van-field>
+</template>
 
 <style scoped>
 .radio-group{

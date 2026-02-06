@@ -1,3 +1,26 @@
+<script lang="ts" setup>
+import { FilterIcon, LayoutGrid, LayoutList } from 'lucide-vue-next'
+import { h, ref } from 'vue'
+
+const emits = defineEmits<{
+  (event: 'change', data: string): void
+  (event: 'columnsChange', data: number): void
+}>()
+
+const isFocus = ref<boolean>(false)
+
+const columns = ref(1)
+
+const searchValue = ref('')
+
+function handleGridChange() {
+  columns.value >= 3
+    ? columns.value = 1
+    : columns.value += 1
+  emits('columnsChange', columns.value)
+}
+</script>
+
 <template>
   <div class="flex items-center gap-2.5 w-full justify-between p-[5px_10px] bg-[var(--colorBgLayout)] backdrop-blur-lg rounded-t-[10px] transition-all duration-300">
     <div class="flex items-center gap-1">
@@ -30,26 +53,3 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { FilterIcon, LayoutGrid, LayoutList } from 'lucide-vue-next'
-import { h, ref } from 'vue'
-
-const emits = defineEmits<{
-  (event: 'change', data: string): void
-  (event: 'columnsChange', data: number): void
-}>()
-
-const isFocus = ref<boolean>(false)
-
-const columns = ref(1)
-
-const searchValue = ref('')
-
-function handleGridChange() {
-  columns.value >= 3
-    ? columns.value = 1
-    : columns.value += 1
-  emits('columnsChange', columns.value)
-}
-</script>

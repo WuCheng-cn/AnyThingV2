@@ -1,11 +1,3 @@
-<template>
-  <a-date-picker
-    v-model:value="value"
-    v-bind="$attrs"
-    @change="onChange"
-  />
-</template>
-
 <script lang="ts" setup>
 import type { Dayjs } from 'dayjs'
 
@@ -29,3 +21,11 @@ function onChange(e: string | Dayjs | undefined) {
   emits('change', e)
 }
 </script>
+
+<template>
+  <a-date-picker
+    v-model:value="value"
+    v-bind="$attrs"
+    @change="onChange"
+  />
+</template>

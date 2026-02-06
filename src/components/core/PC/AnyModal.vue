@@ -1,73 +1,3 @@
-<template>
-  <div
-    ref="PositionProviderRef"
-    class="w-full h-full "
-    :style="positionProviderStyle"
-    :class="{ 'hidden!': isHidden }"
-  >
-    <!-- mask -->
-    <div
-      v-if="!isClose && !isHideMask"
-      class="fixed top-0 left-0 w-full h-full bg-black/25"
-      :style="{ zIndex: String(highestIndex - 1) }"
-    />
-    <Transition name="any-dialog" appear @after-leave="handleClose()">
-      <div
-        v-if="!isClose"
-        ref="AnyModelRef"
-        class="fixed flex flex-col bg-white rounded-lg shadow-lg select-none overflow-hidden transition-all duration-500 transform scale-100"
-        :class="{
-          'w-screen! h-screen! left-0! top-0! bottom-0! rounded-none!': isFullScreen,
-        }"
-        :style="{ ...modalPositionStyle }"
-        @mousedown.stop="handleModelClick"
-      >
-        <!-- 标题栏 -->
-        <div
-          class="h-10 bg-gray-100 rounded-t-lg grid grid-cols-3 items-center px-2.5 cursor-grab active:cursor-grabbing"
-          @mousedown="startDrag"
-          @dblclick.stop="onMaximize()"
-        >
-          <!-- 控制按钮区域 -->
-          <div class="flex gap-1">
-            <button
-              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-red-500 text-transparent! hover:text-white! "
-              @click.stop="isClose = true"
-            >
-              <X class="w-3.5 h-3.5" :stroke-width="3" />
-            </button>
-            <button
-              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-yellow-500 text-transparent! hover:text-white!"
-              @click.stop="onMinimize()"
-            >
-              <Minus class="w-3.5 h-3.5" :stroke-width="3" />
-            </button>
-            <button
-              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-green-500 text-transparent! hover:text-white!"
-              @click.stop="onMaximize()"
-            >
-              <Maximize class="w-3.5 h-3.5" :stroke-width="3" />
-            </button>
-          </div>
-
-          <!-- 标题 -->
-          <div class="text-sm font-medium text-gray-700 text-center">
-            {{ title }}
-          </div>
-
-          <!-- 占位 -->
-          <div />
-        </div>
-
-        <!-- 主体内容 -->
-        <div class="flex-1 p-2.5 overflow-auto">
-          <slot />
-        </div>
-      </div>
-    </Transition>
-  </div>
-</template>
-
 <script lang="ts" setup>
 import type { IDialogPropsParam } from '@arayui/core'
 import type { IDialogPropsExtend } from '@/interface/IDialogPropsExtend'
@@ -276,6 +206,76 @@ onMounted(async () => {
   }
 })
 </script>
+
+<template>
+  <div
+    ref="PositionProviderRef"
+    class="w-full h-full "
+    :style="positionProviderStyle"
+    :class="{ 'hidden!': isHidden }"
+  >
+    <!-- mask -->
+    <div
+      v-if="!isClose && !isHideMask"
+      class="fixed top-0 left-0 w-full h-full bg-black/25"
+      :style="{ zIndex: String(highestIndex - 1) }"
+    />
+    <Transition name="any-dialog" appear @after-leave="handleClose()">
+      <div
+        v-if="!isClose"
+        ref="AnyModelRef"
+        class="fixed flex flex-col bg-white rounded-lg shadow-lg select-none overflow-hidden transition-all duration-500 transform scale-100"
+        :class="{
+          'w-screen! h-screen! left-0! top-0! bottom-0! rounded-none!': isFullScreen,
+        }"
+        :style="{ ...modalPositionStyle }"
+        @mousedown.stop="handleModelClick"
+      >
+        <!-- 标题栏 -->
+        <div
+          class="h-10 bg-gray-100 rounded-t-lg grid grid-cols-3 items-center px-2.5 cursor-grab active:cursor-grabbing"
+          @mousedown="startDrag"
+          @dblclick.stop="onMaximize()"
+        >
+          <!-- 控制按钮区域 -->
+          <div class="flex gap-1">
+            <button
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-red-500 text-transparent! hover:text-white! "
+              @click.stop="isClose = true"
+            >
+              <X class="w-3.5 h-3.5" :stroke-width="3" />
+            </button>
+            <button
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-yellow-500 text-transparent! hover:text-white!"
+              @click.stop="onMinimize()"
+            >
+              <Minus class="w-3.5 h-3.5" :stroke-width="3" />
+            </button>
+            <button
+              class="w-5 h-5 flex items-center justify-center rounded-full cursor-pointer bg-green-500 text-transparent! hover:text-white!"
+              @click.stop="onMaximize()"
+            >
+              <Maximize class="w-3.5 h-3.5" :stroke-width="3" />
+            </button>
+          </div>
+
+          <!-- 标题 -->
+          <div class="text-sm font-medium text-gray-700 text-center">
+            {{ title }}
+          </div>
+
+          <!-- 占位 -->
+          <div />
+        </div>
+
+        <!-- 主体内容 -->
+        <div class="flex-1 p-2.5 overflow-auto">
+          <slot />
+        </div>
+      </div>
+    </Transition>
+  </div>
+</template>
 
 <style scoped>
 /* 动画效果 */

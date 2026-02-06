@@ -1,14 +1,3 @@
-<template>
-  <a-select
-    v-model:value="value"
-    v-bind="$attrs"
-    style="width: 100%;"
-    show-search
-    :filter-option="filterOption"
-    @change="onChange"
-  />
-</template>
-
 <script lang="ts" setup>
 import type { SelectValue } from 'ant-design-vue/es/select'
 
@@ -35,3 +24,14 @@ function onChange(value: SelectValue) {
   emits('change', value)
 }
 </script>
+
+<template>
+  <a-select
+    v-model:value="value"
+    v-bind="$attrs"
+    style="width: 100%;"
+    show-search
+    :filter-option="filterOption"
+    @change="onChange"
+  />
+</template>

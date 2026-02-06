@@ -1,9 +1,9 @@
+<script lang="ts" setup>
+</script>
+
 <template>
   测试路由
 </template>
-
-<script lang="ts" setup>
-</script>
 
 <route lang="json">
   {

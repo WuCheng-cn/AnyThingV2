@@ -1,53 +1,3 @@
-<template>
-  <van-field v-model="res" input-align="right" v-bind="$attrs">
-    <template #input>
-      <div v-if="!$attrs.disabled || formFieldConfig.isUploadOffline" class="flex flex-col">
-        <van-uploader
-          v-model="value"
-          :disabled="!!$attrs.disabled"
-        >
-          <div />
-        </van-uploader>
-        <div class="flex items-start justify-end gap-1">
-          <van-uploader
-            v-if="formFieldConfig.uploadType !== EUploadType.CAMERA || !isAndroid"
-            v-model="value"
-            :disabled="!!$attrs.disabled"
-            :max-size="formFieldConfig.maxSize || AppConfig.MAX_UPLOAD_SIZE"
-            :max-count="formFieldConfig.maxCount || AppConfig.MAX_UPLOAD_COUNT"
-            :accept="formFieldConfig.accept?.join(',')"
-            :after-read="formFieldConfig?.isUploadOffline ? offlineAfterRead : afterRead"
-            :preview-image="false"
-          >
-            <div v-if="!$attrs.disabled">
-              <van-button icon="plus" size="small">
-                上传文件
-              </van-button>
-            </div>
-          </van-uploader>
-          <van-button v-if="(formFieldConfig.uploadType !== EUploadType.FILE && !$attrs.disabled) && isAndroid" size="small" @click="handleTakePhoto">
-            <Camera />
-          </van-button>
-        </div>
-        <div v-if="!$attrs.disabled && formFieldConfig.uploadType !== EUploadType.CAMERA">
-          <div class="text-xs text-gray-500 ">
-            <div>最大上传数量:{{ formFieldConfig.maxCount || AppConfig.MAX_UPLOAD_COUNT }}</div>
-            <div>单文件限制大小:{{ AnyFileHelper.getFileSizeFriendly(formFieldConfig.maxSize || AppConfig.MAX_UPLOAD_SIZE, 0) }}</div>
-            <div v-if="formFieldConfig.accept?.length">
-              支持类型{{ formFieldConfig.accept?.join(',') }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <template v-else>
-        <div v-for="i in value " :key="i.id">
-          {{ i.name }}
-        </div>
-      </template>
-    </template>
-  </van-field>
-</template>
-
 <script lang="ts" setup>
 import type { IFormFieldConfig } from '@arayui/core'
 import { AnyFileHelper, EUploadType } from '@arayui/core'
@@ -133,3 +83,53 @@ async function handleTakePhoto() {
   }
 }
 </script>
+
+<template>
+  <van-field v-model="res" input-align="right" v-bind="$attrs">
+    <template #input>
+      <div v-if="!$attrs.disabled || formFieldConfig.isUploadOffline" class="flex flex-col">
+        <van-uploader
+          v-model="value"
+          :disabled="!!$attrs.disabled"
+        >
+          <div />
+        </van-uploader>
+        <div class="flex items-start justify-end gap-1">
+          <van-uploader
+            v-if="formFieldConfig.uploadType !== EUploadType.CAMERA || !isAndroid"
+            v-model="value"
+            :disabled="!!$attrs.disabled"
+            :max-size="formFieldConfig.maxSize || AppConfig.MAX_UPLOAD_SIZE"
+            :max-count="formFieldConfig.maxCount || AppConfig.MAX_UPLOAD_COUNT"
+            :accept="formFieldConfig.accept?.join(',')"
+            :after-read="formFieldConfig?.isUploadOffline ? offlineAfterRead : afterRead"
+            :preview-image="false"
+          >
+            <div v-if="!$attrs.disabled">
+              <van-button icon="plus" size="small">
+                上传文件
+              </van-button>
+            </div>
+          </van-uploader>
+          <van-button v-if="(formFieldConfig.uploadType !== EUploadType.FILE && !$attrs.disabled) && isAndroid" size="small" @click="handleTakePhoto">
+            <Camera />
+          </van-button>
+        </div>
+        <div v-if="!$attrs.disabled && formFieldConfig.uploadType !== EUploadType.CAMERA">
+          <div class="text-xs text-gray-500 ">
+            <div>最大上传数量:{{ formFieldConfig.maxCount || AppConfig.MAX_UPLOAD_COUNT }}</div>
+            <div>单文件限制大小:{{ AnyFileHelper.getFileSizeFriendly(formFieldConfig.maxSize || AppConfig.MAX_UPLOAD_SIZE, 0) }}</div>
+            <div v-if="formFieldConfig.accept?.length">
+              支持类型{{ formFieldConfig.accept?.join(',') }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <template v-else>
+        <div v-for="i in value " :key="i.id">
+          {{ i.name }}
+        </div>
+      </template>
+    </template>
+  </van-field>
+</template>

@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+import { AnyDialogHelper } from '@/helper/AnyDialogHelper'
+import Demo from '@/views/demo/index.vue'
+</script>
+
 <template>
   <a-card>
     <LucideIcon name="House" />
@@ -9,11 +14,6 @@
     </router-link>
   </a-card>
 </template>
-
-<script lang="ts" setup>
-import { AnyDialogHelper } from '@/helper/AnyDialogHelper'
-import Demo from '@/views/demo/index.vue'
-</script>
 
 <route lang="json">
 {

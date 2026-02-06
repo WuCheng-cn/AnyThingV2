@@ -1,18 +1,3 @@
-<template>
-  <component
-    :is="componentsMap[formFieldConfig.formType || EFormItemType.INPUT]"
-    v-bind="$attrs"
-    v-model="value"
-    allow-clear
-    :value-format="formFieldConfig.dateFormat"
-    :placeholder="placeholder"
-    :options="configInstance.getOptions(field)"
-    :disabled="disabled"
-    :form-field-config="formFieldConfig"
-    @change="(e:any) => emits('change', e)"
-  />
-</template>
-
 <script lang="ts" setup generic="T extends AnyBaseModel">
 import type { AnyBaseModel, ClassConstructorWithBaseModel, ClassFieldNames } from '@arayui/core'
 import { AnyDateTimeHelper, EFormItemType } from '@arayui/core'
@@ -97,3 +82,18 @@ const placeholder = computed(() => {
   }
 })
 </script>
+
+<template>
+  <component
+    :is="componentsMap[formFieldConfig.formType || EFormItemType.INPUT]"
+    v-bind="$attrs"
+    v-model="value"
+    allow-clear
+    :value-format="formFieldConfig.dateFormat"
+    :placeholder="placeholder"
+    :options="configInstance.getOptions(field)"
+    :disabled="disabled"
+    :form-field-config="formFieldConfig"
+    @change="(e:any) => emits('change', e)"
+  />
+</template>

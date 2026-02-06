@@ -1,26 +1,3 @@
-<template>
-  <van-form
-    ref="formRef"
-    v-bind="$attrs"
-  >
-    <van-cell-group :inset="isCard">
-      <template v-for="(field, _index) in formFieldList" :key="_index">
-        <slot
-          :name="field"
-          :data="formState"
-          :props="getInputProps(field)"
-        >
-          <AnyInputMobile
-            v-bind="getInputProps(field)"
-            v-model="formState[field]"
-            @change="handleChange($event, field)"
-          />
-        </slot>
-      </template>
-    </van-cell-group>
-  </van-form>
-</template>
-
 <script lang="ts" setup generic="T extends AnyBaseModel">
 import type { AnyBaseModel, ClassFieldNames, IFormProps } from '@arayui/core'
 import { nextTick } from 'vue'
@@ -89,3 +66,26 @@ async function getFormData(): Promise<T> {
 
 defineExpose({ getValidatedFormData, getFormData })
 </script>
+
+<template>
+  <van-form
+    ref="formRef"
+    v-bind="$attrs"
+  >
+    <van-cell-group :inset="isCard">
+      <template v-for="(field, _index) in formFieldList" :key="_index">
+        <slot
+          :name="field"
+          :data="formState"
+          :props="getInputProps(field)"
+        >
+          <AnyInputMobile
+            v-bind="getInputProps(field)"
+            v-model="formState[field]"
+            @change="handleChange($event, field)"
+          />
+        </slot>
+      </template>
+    </van-cell-group>
+  </van-form>
+</template>

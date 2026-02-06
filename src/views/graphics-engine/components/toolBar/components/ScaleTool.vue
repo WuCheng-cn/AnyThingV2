@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { Lock, LockOpen, Minus, Percent, Plus } from 'lucide-vue-next'
+import { h } from 'vue'
+import { useGraphicsController } from '../../../hooks/useGraphicsController'
+
+const minScale = 50
+
+const maxScale = 300
+
+const { scale, lockScale } = useGraphicsController()
+
+const marks = {
+  100: '100%',
+  200: '200%',
+  300: '300%',
+}
+</script>
+
 <template>
   <a-row align="middle" :gutter="5">
     <a-col flex="1 1 200px">
@@ -41,24 +59,6 @@
     </a-col>
   </a-row>
 </template>
-
-<script setup lang="ts">
-import { Lock, LockOpen, Minus, Percent, Plus } from 'lucide-vue-next'
-import { h } from 'vue'
-import { useGraphicsController } from '../../../hooks/useGraphicsController'
-
-const minScale = 50
-
-const maxScale = 300
-
-const { scale, lockScale } = useGraphicsController()
-
-const marks = {
-  100: '100%',
-  200: '200%',
-  300: '300%',
-}
-</script>
 
 <style scoped>
 :deep(.ant-slider-with-marks) {

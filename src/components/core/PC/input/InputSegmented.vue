@@ -1,13 +1,3 @@
-<template>
-  <a-segmented
-    v-model:value="value"
-    v-bind="$attrs"
-    class="w-[unset]! min-w-[unset]! max-w-[unset]!"
-    :options="props.options?.map(i => i.label)"
-    @change="onChange"
-  />
-</template>
-
 <script lang="ts" setup>
 import type { IDictionary } from '@arayui/core'
 import type { SelectValue } from 'ant-design-vue/es/select'
@@ -37,3 +27,13 @@ function onChange(value: SelectValue) {
   emits('change', item!.value as string | number | undefined)
 }
 </script>
+
+<template>
+  <a-segmented
+    v-model:value="value"
+    v-bind="$attrs"
+    class="w-[unset]! min-w-[unset]! max-w-[unset]!"
+    :options="props.options?.map(i => i.label)"
+    @change="onChange"
+  />
+</template>

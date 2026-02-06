@@ -1,18 +1,3 @@
-<template>
-  <van-field>
-    <template #input>
-      <van-switch
-        v-model="value"
-        v-bind="$attrs"
-        size="20px"
-        :active-value="formFieldConfig.checkedValue"
-        :inactive-value="formFieldConfig.unCheckedValue"
-        @change="onChange"
-      />
-    </template>
-  </van-field>
-</template>
-
 <script lang="ts" setup>
 import type { IFormFieldConfig } from '@arayui/core'
 import { computed } from 'vue'
@@ -41,3 +26,18 @@ function onChange(e: string | number | boolean) {
   emits('change', e)
 }
 </script>
+
+<template>
+  <van-field>
+    <template #input>
+      <van-switch
+        v-model="value"
+        v-bind="$attrs"
+        size="20px"
+        :active-value="formFieldConfig.checkedValue"
+        :inactive-value="formFieldConfig.unCheckedValue"
+        @change="onChange"
+      />
+    </template>
+  </van-field>
+</template>

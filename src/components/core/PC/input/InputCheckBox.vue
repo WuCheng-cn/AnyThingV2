@@ -1,11 +1,3 @@
-<template>
-  <a-checkbox-group
-    v-model:value="value"
-    v-bind="$attrs"
-    @change="onChange"
-  />
-</template>
-
 <script lang="ts" setup>
 import type { CheckboxValueType } from 'ant-design-vue/es/checkbox/interface'
 
@@ -29,3 +21,11 @@ function onChange(e: CheckboxValueType[]) {
   emits('change', e)
 }
 </script>
+
+<template>
+  <a-checkbox-group
+    v-model:value="value"
+    v-bind="$attrs"
+    @change="onChange"
+  />
+</template>

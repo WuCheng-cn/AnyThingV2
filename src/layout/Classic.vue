@@ -1,3 +1,12 @@
+<script lang="ts" setup>
+import { ListCollapse } from 'lucide-vue-next'
+import ClassicHeader from './components/ClassicHeader.vue'
+
+const collapsed = ref(false)
+
+provide('collapsed', collapsed)
+</script>
+
 <template>
   <a-layout class="h-full">
     <a-layout-header style="padding-inline: 0px;">
@@ -32,12 +41,3 @@
     </a-layout>
   </a-layout>
 </template>
-
-<script lang="ts" setup>
-import { ListCollapse } from 'lucide-vue-next'
-import ClassicHeader from './components/ClassicHeader.vue'
-
-const collapsed = ref(false)
-
-provide('collapsed', collapsed)
-</script>

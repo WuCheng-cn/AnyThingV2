@@ -1,18 +1,3 @@
-<template>
-  <van-field v-bind="$attrs">
-    <template #input>
-      <van-stepper
-        v-model.trim="value"
-        v-bind="$attrs"
-        default-value=""
-        :max="formFieldConfig.max ?? AppConfig.MAX_NUMBER"
-        :min="formFieldConfig.min ?? AppConfig.MIN_NUMBER"
-        @change="onChange"
-      />
-    </template>
-  </van-field>
-</template>
-
 <script lang="ts" setup>
 import type { IFormFieldConfig } from '@arayui/core'
 import { computed } from 'vue'
@@ -40,3 +25,18 @@ function onChange(value: string) {
   emits('change', value)
 }
 </script>
+
+<template>
+  <van-field v-bind="$attrs">
+    <template #input>
+      <van-stepper
+        v-model.trim="value"
+        v-bind="$attrs"
+        default-value=""
+        :max="formFieldConfig.max ?? AppConfig.MAX_NUMBER"
+        :min="formFieldConfig.min ?? AppConfig.MIN_NUMBER"
+        @change="onChange"
+      />
+    </template>
+  </van-field>
+</template>

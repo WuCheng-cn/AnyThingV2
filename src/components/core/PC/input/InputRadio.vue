@@ -1,11 +1,3 @@
-<template>
-  <a-radio-group
-    v-model:value="value"
-    v-bind="$attrs"
-    @change="onChange"
-  />
-</template>
-
 <script lang="ts" setup>
 import type { RadioChangeEvent } from 'ant-design-vue'
 
@@ -29,3 +21,11 @@ function onChange(e: RadioChangeEvent) {
   emits('change', e.target.value)
 }
 </script>
+
+<template>
+  <a-radio-group
+    v-model:value="value"
+    v-bind="$attrs"
+    @change="onChange"
+  />
+</template>

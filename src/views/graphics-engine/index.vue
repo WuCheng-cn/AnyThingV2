@@ -1,30 +1,3 @@
-<template>
-  <a-layout class="h-full">
-    <a-layout class="h-full flex flex-col">
-      <WidgetFilter class="absolute left-0 top-0 z-50 w-[280px]" />
-      <div class="flex-1 h-0 ">
-        <div ref="container" class="w-full h-full" />
-        <TeleportContainer />
-      </div>
-      <div class="p-2">
-        <ToolBar v-if="graph" class="w-full" />
-      </div>
-    </a-layout>
-    <a-layout-sider
-      v-model:collapsed="collapsed"
-      class="h-full "
-      collapsible
-      collapsed-width="0"
-      width="400"
-      theme="light"
-    >
-      <template v-if="currentNode">
-        <ConfigurationForm />
-      </template>
-    </a-layout-sider>
-  </a-layout>
-</template>
-
 <script lang="ts" setup>
 import type { Graph, Node } from '@antv/x6'
 import type { Dnd } from '@antv/x6-plugin-dnd'
@@ -86,6 +59,33 @@ onUnmounted(() => {
   graph.value?.dispose()
 })
 </script>
+
+<template>
+  <a-layout class="h-full">
+    <a-layout class="h-full flex flex-col">
+      <WidgetFilter class="absolute left-0 top-0 z-50 w-[280px]" />
+      <div class="flex-1 h-0 ">
+        <div ref="container" class="w-full h-full" />
+        <TeleportContainer />
+      </div>
+      <div class="p-2">
+        <ToolBar v-if="graph" class="w-full" />
+      </div>
+    </a-layout>
+    <a-layout-sider
+      v-model:collapsed="collapsed"
+      class="h-full "
+      collapsible
+      collapsed-width="0"
+      width="400"
+      theme="light"
+    >
+      <template v-if="currentNode">
+        <ConfigurationForm />
+      </template>
+    </a-layout-sider>
+  </a-layout>
+</template>
 
 <style lang="less">
 // 画布的覆盖样式文件

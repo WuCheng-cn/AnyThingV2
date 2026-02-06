@@ -1,41 +1,3 @@
-<template>
-  <a-collapse v-model:active-key="active" :bordered="false">
-    <a-collapse-panel
-      v-for="item in (Object.keys(renderMap) as IWidgetUnknown['category'][])"
-      :key="item"
-      :header="WidgetCategoryDict.getLabelByValue(item)"
-    >
-      <div
-        class="relative h-full p-2.5 overflow-hidden transition-all duration-300 ease-in-out"
-        :style="[{ 'background-color': 'var(--body-color)' }, getCategoryContainerStyle(item)]"
-      >
-        <div
-          v-for="(widget, index) in renderMap[item]"
-          :key="widget.name"
-          class=" absolute flex flex-col cursor-grab backdrop-blur-md transition-all duration-300 ease-in-out shadow-md rounded-md overflow-hidden"
-          :style="getItemStyle(index)"
-          @mousedown="onMousedown($event, widget)"
-        >
-          <div class="p-1.5 bg-[var(--colorBgLayout)]">
-            <div
-              class="text-sm tracking-wider transition-all duration-300 ease-in-out font-bold text-ellipsis whitespace-nowrap overflow-hidden"
-              :style="{ fontSize: 'var(--fontSize)px' }"
-            >
-              {{ widget.name }}
-            </div>
-          </div>
-          <div class="flex-1 h-0 p-1.5">
-            <img
-              :src="widget.image"
-              class="w-full h-full bg-[#1a1a1a] rounded-md object-contain"
-            >
-          </div>
-        </div>
-      </div>
-    </a-collapse-panel>
-  </a-collapse>
-</template>
-
 <script lang="ts" setup>
 import type { Graph } from '@antv/x6'
 import type { Dnd } from '@antv/x6-plugin-dnd'
@@ -130,3 +92,41 @@ function getCategoryContainerStyle(category: IWidgetUnknown['category']) {
   }
 }
 </script>
+
+<template>
+  <a-collapse v-model:active-key="active" :bordered="false">
+    <a-collapse-panel
+      v-for="item in (Object.keys(renderMap) as IWidgetUnknown['category'][])"
+      :key="item"
+      :header="WidgetCategoryDict.getLabelByValue(item)"
+    >
+      <div
+        class="relative h-full p-2.5 overflow-hidden transition-all duration-300 ease-in-out"
+        :style="[{ 'background-color': 'var(--body-color)' }, getCategoryContainerStyle(item)]"
+      >
+        <div
+          v-for="(widget, index) in renderMap[item]"
+          :key="widget.name"
+          class=" absolute flex flex-col cursor-grab backdrop-blur-md transition-all duration-300 ease-in-out shadow-md rounded-md overflow-hidden"
+          :style="getItemStyle(index)"
+          @mousedown="onMousedown($event, widget)"
+        >
+          <div class="p-1.5 bg-[var(--colorBgLayout)]">
+            <div
+              class="text-sm tracking-wider transition-all duration-300 ease-in-out font-bold text-ellipsis whitespace-nowrap overflow-hidden"
+              :style="{ fontSize: 'var(--fontSize)px' }"
+            >
+              {{ widget.name }}
+            </div>
+          </div>
+          <div class="flex-1 h-0 p-1.5">
+            <img
+              :src="widget.image"
+              class="w-full h-full bg-[#1a1a1a] rounded-md object-contain"
+            >
+          </div>
+        </div>
+      </div>
+    </a-collapse-panel>
+  </a-collapse>
+</template>

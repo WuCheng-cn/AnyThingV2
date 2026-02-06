@@ -1,27 +1,3 @@
-<template>
-  <a-collapse
-    v-model:active-key="activeKey"
-    :bordered="false"
-  >
-    <a-collapse-panel
-      v-for="(item, index) in widget?.formConfig"
-      :key="index"
-      :header="item?.prototype?.getCustomClassName()"
-      :style="{ border: 0 }"
-    >
-      <AnyForm
-        :ref="(el:any) => setFormRef(el, item)"
-        :init-data="initData[item.name]"
-        :entity="item"
-        :cols="item?.getCustomClassConfig()?.formCols || 1"
-        :label-col="item?.getCustomClassConfig()?.formLabelVertical ? { span: 24 } : undefined"
-        label-align="left"
-        @change="handleChange"
-      />
-    </a-collapse-panel>
-  </a-collapse>
-</template>
-
 <script setup lang="ts">
 import type { Node } from '@antv/x6'
 import type { AnyBaseModel, ClassConstructorWithBaseModel } from '@arayui/core'
@@ -60,6 +36,30 @@ function handleChange() {
   })
 }
 </script>
+
+<template>
+  <a-collapse
+    v-model:active-key="activeKey"
+    :bordered="false"
+  >
+    <a-collapse-panel
+      v-for="(item, index) in widget?.formConfig"
+      :key="index"
+      :header="item?.prototype?.getCustomClassName()"
+      :style="{ border: 0 }"
+    >
+      <AnyForm
+        :ref="(el:any) => setFormRef(el, item)"
+        :init-data="initData[item.name]"
+        :entity="item"
+        :cols="item?.getCustomClassConfig()?.formCols || 1"
+        :label-col="item?.getCustomClassConfig()?.formLabelVertical ? { span: 24 } : undefined"
+        label-align="left"
+        @change="handleChange"
+      />
+    </a-collapse-panel>
+  </a-collapse>
+</template>
 
 <style scoped lang="less">
 :deep(.ant-form-item){

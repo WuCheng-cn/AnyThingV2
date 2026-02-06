@@ -1,20 +1,3 @@
-<template>
-  <component
-    :is="componentsMobileMap[formFieldConfig.formType || EFormItemType.INPUT]"
-    v-if="visible"
-    v-bind="$attrs"
-    allow-clear
-    :name="field"
-    :model-value="value"
-    :disabled="disabled"
-    :placeholder="placeholder"
-    :form-field-config="formFieldConfig"
-    :options="configInstance.getOptions(field)"
-    @update:model-value="value = $event"
-    @change="(e:any) => emits('change', e)"
-  />
-</template>
-
 <script lang="ts" setup generic="T extends AnyBaseModel">
 import type { AnyBaseModel, ClassConstructorWithBaseModel, ClassFieldNames } from '@arayui/core'
 import { AnyDateTimeHelper, EFormItemType } from '@arayui/core'
@@ -141,3 +124,20 @@ const placeholder = computed(() => {
   }
 })
 </script>
+
+<template>
+  <component
+    :is="componentsMobileMap[formFieldConfig.formType || EFormItemType.INPUT]"
+    v-if="visible"
+    v-bind="$attrs"
+    allow-clear
+    :name="field"
+    :model-value="value"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    :form-field-config="formFieldConfig"
+    :options="configInstance.getOptions(field)"
+    @update:model-value="value = $event"
+    @change="(e:any) => emits('change', e)"
+  />
+</template>

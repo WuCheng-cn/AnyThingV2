@@ -1,26 +1,3 @@
-<template>
-  <van-field>
-    <template #input>
-      <van-checkbox-group
-        v-model="value"
-        v-bind="$attrs"
-        @click="onChange"
-      >
-        <div class="checkbox-group">
-          <van-checkbox
-            v-for="item in options"
-            :key="item.value.toString()"
-            :name="item.value"
-            shape="square"
-          >
-            {{ item.label }}
-          </van-checkbox>
-        </div>
-      </van-checkbox-group>
-    </template>
-  </van-field>
-</template>
-
 <script lang="ts" setup>
 import type { IDictionary } from '@arayui/core'
 import { computed } from 'vue'
@@ -46,6 +23,29 @@ function onChange(e: number[] | string[] | undefined) {
   emits('change', e)
 }
 </script>
+
+<template>
+  <van-field>
+    <template #input>
+      <van-checkbox-group
+        v-model="value"
+        v-bind="$attrs"
+        @click="onChange"
+      >
+        <div class="checkbox-group">
+          <van-checkbox
+            v-for="item in options"
+            :key="item.value.toString()"
+            :name="item.value"
+            shape="square"
+          >
+            {{ item.label }}
+          </van-checkbox>
+        </div>
+      </van-checkbox-group>
+    </template>
+  </van-field>
+</template>
 
 <style scoped>
 .checkbox-group{

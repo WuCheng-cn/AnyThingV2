@@ -1,20 +1,3 @@
-<template>
-  <div class="flex items-center gap-0">
-    <ColorPicker
-      v-model:pure-color="value"
-      format="hex"
-      @pure-color-change="onChange"
-    />
-    <Copy
-      v-if="isSupported"
-      :size="12"
-      :stroke-width="3"
-      class="cursor-pointer hover:opacity-70"
-      @click="copy(value);message.success('复制成功')"
-    />
-  </div>
-</template>
-
 <script lang="ts" setup>
 import { message } from 'ant-design-vue'
 import { Copy } from 'lucide-vue-next'
@@ -43,3 +26,20 @@ function onChange(e: string) {
   emits('change', e)
 }
 </script>
+
+<template>
+  <div class="flex items-center gap-0">
+    <ColorPicker
+      v-model:pure-color="value"
+      format="hex"
+      @pure-color-change="onChange"
+    />
+    <Copy
+      v-if="isSupported"
+      :size="12"
+      :stroke-width="3"
+      class="cursor-pointer hover:opacity-70"
+      @click="copy(value);message.success('复制成功')"
+    />
+  </div>
+</template>

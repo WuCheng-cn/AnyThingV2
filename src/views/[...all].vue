@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const router = useRouter()
+
+function onBack() {
+  if (window.history.state.back)
+    history.back()
+  else
+    router.replace('/')
+}
+</script>
+
 <template>
   <div text="center gray-300 dark:gray-200 18">
     <van-icon name="warn-o" size="3em" />
@@ -15,17 +26,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const router = useRouter()
-
-function onBack() {
-  if (window.history.state.back)
-    history.back()
-  else
-    router.replace('/')
-}
-</script>
 
 <route lang="json">
 {
